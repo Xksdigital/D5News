@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>D5News - Podcasts & Emissions</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/shared.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#0f58bd", "background-light": "#f6f7f8", "background-dark": "#101822" },
+                    fontFamily: { "display": ["Inter", "system-ui", "sans-serif"] },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        .filled-icon { font-variation-settings: 'FILL' 1; }
+        .wave-eq { display: flex; align-items: flex-end; gap: 2px; height: 20px; }
+        .wave-eq span { width: 3px; background: #0f58bd; border-radius: 1px; animation: eqBounce 0.8s ease-in-out infinite alternate; }
+        .wave-eq span:nth-child(1) { height: 40%; animation-delay: 0s; }
+        .wave-eq span:nth-child(2) { height: 80%; animation-delay: 0.15s; }
+        .wave-eq span:nth-child(3) { height: 50%; animation-delay: 0.3s; }
+        .wave-eq span:nth-child(4) { height: 90%; animation-delay: 0.1s; }
+        .wave-eq span:nth-child(5) { height: 60%; animation-delay: 0.25s; }
+        @keyframes eqBounce {
+            0% { transform: scaleY(0.3); }
+            100% { transform: scaleY(1); }
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-6 lg:px-20 py-3">
+        <div class="max-w-[1200px] mx-auto flex items-center justify-between gap-8">
+            <div class="flex items-center gap-8">
+                <a href="home.html" class="flex items-center">
+                    <img src="images/logo.png" alt="D5News" class="h-8"/>
+                </a>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-semibold transition-colors" href="live.html">Direct</a>
+                    <a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="podcast.html">Podcasts</a>
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-semibold transition-colors" href="category.html">Actualites</a>
+                    <a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-semibold transition-colors" href="home.html">Accueil</a>
+                </nav>
+            </div>
+            <div class="flex flex-1 justify-end items-center gap-4">
+                <div class="hidden sm:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-1.5 w-full max-w-xs">
+                    <span class="material-symbols-outlined text-slate-500 text-xl">search</span>
+                    <input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-slate-500" placeholder="Rechercher un podcast..." type="text"/>
+                </div>
+                <button data-lang-toggle class="px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold hover:bg-primary/10 transition-colors">
+                    <span data-lang-display>FR</span>
+                </button>
+                <button data-theme-toggle class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+                </button>
+                <button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                    <span class="material-symbols-outlined">notifications</span>
+                </button>
+                <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30">
+                    <span class="material-symbols-outlined text-primary text-lg">person</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-[1200px] mx-auto w-full px-6 lg:px-20 py-8 space-y-12 pb-32">
+
+        <!-- Hero Header -->
+        <section class="space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div class="space-y-2">
+                    <h1 class="text-4xl md:text-5xl font-black tracking-tight">Podcasts & Emissions</h1>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg max-w-2xl font-medium">L'essentiel de l'info et de la culture a ecouter et regarder ou vous voulez.</p>
+                </div>
+            </div>
+            <!-- Filters -->
+            <div class="flex flex-wrap gap-2 py-2">
+                <button class="px-5 py-2 rounded-full bg-primary text-white text-sm font-bold shadow-lg shadow-primary/20">Tous</button>
+                <button class="px-5 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Actualite</button>
+                <button class="px-5 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Culture</button>
+                <button class="px-5 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Sport</button>
+                <button class="px-5 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Economie</button>
+                <button class="px-5 py-2 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">Debat</button>
+            </div>
+        </section>
+
+        <!-- Featured Section (À la une) -->
+        <section>
+            <h3 class="text-xl font-extrabold mb-6 flex items-center gap-2">
+                <span class="w-2 h-8 bg-primary rounded-full"></span>
+                A la une
+            </h3>
+            <div class="relative overflow-hidden rounded-2xl aspect-[16/9] md:aspect-[21/9] group cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=900&h=400&fit=crop&q=80" alt="Studio podcast" class="absolute inset-0 w-full h-full object-cover"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 p-8 md:p-12 space-y-4 max-w-3xl">
+                    <span class="inline-block px-3 py-1 rounded-md bg-primary text-white text-xs font-bold uppercase tracking-wider">Serie Exclusive</span>
+                    <h2 class="text-3xl md:text-5xl font-black text-white leading-tight">Le Grand Decryptage : Les enjeux de demain</h2>
+                    <p class="text-slate-200 text-lg hidden md:block">Un voyage sonore au coeur des transformations technologiques avec nos experts invites.</p>
+                    <div class="flex items-center gap-4 pt-2">
+                        <button class="flex items-center gap-2 bg-white text-slate-900 px-6 py-3 rounded-lg font-bold hover:bg-primary hover:text-white transition-all shadow-xl">
+                            <span class="material-symbols-outlined filled-icon">play_arrow</span> Ecouter le dernier episode
+                        </button>
+                        <button class="p-3 rounded-lg bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30 transition-colors">
+                            <span class="material-symbols-outlined">add</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Podcast Series Grid -->
+        <section>
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-extrabold flex items-center gap-2">
+                    <span class="w-2 h-8 bg-primary rounded-full"></span>
+                    Series de Podcasts
+                </h3>
+                <a class="text-primary font-bold text-sm flex items-center gap-1 hover:underline" href="#">
+                    Tout voir <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Podcast Card 1 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-square overflow-hidden rounded-xl mb-3 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=300&h=300&fit=crop&q=80" alt="Echoes of Science" class="w-full h-full object-cover"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                            <div class="bg-primary p-3 rounded-full text-white shadow-2xl">
+                                <span class="material-symbols-outlined filled-icon text-3xl">play_arrow</span>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 bg-black/50 backdrop-blur-sm rounded-md">
+                            <span class="material-symbols-outlined text-primary text-xs">headphones</span>
+                            <span class="text-[10px] text-white font-bold">24 episodes</span>
+                        </div>
+                    </div>
+                    <h4 class="font-bold group-hover:text-primary transition-colors line-clamp-1">Echoes of Science</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm line-clamp-2 mt-1">L'actualite scientifique decryptee en 15 minutes chrono.</p>
+                </div>
+
+                <!-- Podcast Card 2 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-square overflow-hidden rounded-xl mb-3 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=300&h=300&fit=crop&q=80" alt="Cultures & Mondes" class="w-full h-full object-cover"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                            <div class="bg-primary p-3 rounded-full text-white shadow-2xl">
+                                <span class="material-symbols-outlined filled-icon text-3xl">play_arrow</span>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 bg-black/50 backdrop-blur-sm rounded-md">
+                            <span class="material-symbols-outlined text-primary text-xs">headphones</span>
+                            <span class="text-[10px] text-white font-bold">18 episodes</span>
+                        </div>
+                    </div>
+                    <h4 class="font-bold group-hover:text-primary transition-colors line-clamp-1">Cultures & Mondes</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm line-clamp-2 mt-1">Histoires et traditions des quatre coins de la planete.</p>
+                </div>
+
+                <!-- Podcast Card 3 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-square overflow-hidden rounded-xl mb-3 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=300&h=300&fit=crop&q=80" alt="Le Talk Politique" class="w-full h-full object-cover"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                            <div class="bg-primary p-3 rounded-full text-white shadow-2xl">
+                                <span class="material-symbols-outlined filled-icon text-3xl">play_arrow</span>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 bg-black/50 backdrop-blur-sm rounded-md">
+                            <span class="material-symbols-outlined text-primary text-xs">headphones</span>
+                            <span class="text-[10px] text-white font-bold">32 episodes</span>
+                        </div>
+                    </div>
+                    <h4 class="font-bold group-hover:text-primary transition-colors line-clamp-1">Le Talk Politique</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm line-clamp-2 mt-1">Les debats qui agitent l'hemicycle et la societe.</p>
+                </div>
+
+                <!-- Podcast Card 4 -->
+                <div class="group cursor-pointer">
+                    <div class="relative aspect-square overflow-hidden rounded-xl mb-3 shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=300&h=300&fit=crop&q=80" alt="Stade Numerique" class="w-full h-full object-cover"/>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                            <div class="bg-primary p-3 rounded-full text-white shadow-2xl">
+                                <span class="material-symbols-outlined filled-icon text-3xl">play_arrow</span>
+                            </div>
+                        </div>
+                        <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 bg-black/50 backdrop-blur-sm rounded-md">
+                            <span class="material-symbols-outlined text-primary text-xs">headphones</span>
+                            <span class="text-[10px] text-white font-bold">15 episodes</span>
+                        </div>
+                    </div>
+                    <h4 class="font-bold group-hover:text-primary transition-colors line-clamp-1">Stade Numerique</h4>
+                    <p class="text-slate-500 dark:text-slate-400 text-sm line-clamp-2 mt-1">L'innovation au service de la performance sportive.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Episodes récents -->
+        <section>
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-extrabold flex items-center gap-2">
+                    <span class="w-2 h-8 bg-primary rounded-full"></span>
+                    Derniers episodes
+                </h3>
+                <a class="text-primary font-bold text-sm flex items-center gap-1 hover:underline" href="#">
+                    Tout voir <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+            </div>
+            <div class="space-y-3">
+                <!-- Episode 1 - Currently Playing -->
+                <div class="bg-primary/5 dark:bg-primary/10 border border-primary/20 rounded-xl p-4 flex items-center gap-5">
+                    <div class="w-16 h-16 rounded-lg flex-shrink-0 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=100&h=100&fit=crop&q=80" alt="Echoes of Science" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Echoes of Science</span>
+                            <span class="text-[10px] text-slate-400">• Ep. 24</span>
+                        </div>
+                        <h4 class="font-bold text-sm leading-snug line-clamp-1">Le Grand Decryptage : Les enjeux de demain</h4>
+                        <div class="flex items-center gap-3 mt-1">
+                            <span class="text-xs text-slate-400">35:45</span>
+                            <span class="text-xs text-slate-400">• Hier</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 flex-shrink-0">
+                        <div class="wave-eq">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <button class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white shadow-lg shadow-primary/30 flex-shrink-0">
+                            <span class="material-symbols-outlined filled-icon">pause</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Episode 2 -->
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex items-center gap-5 hover:border-primary/30 transition-all group cursor-pointer">
+                    <div class="w-16 h-16 rounded-lg flex-shrink-0 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=100&h=100&fit=crop&q=80" alt="Cultures & Mondes" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Cultures & Mondes</span>
+                            <span class="text-[10px] text-slate-400">• Ep. 18</span>
+                        </div>
+                        <h4 class="font-bold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-1">Traditions orales : quand l'Afrique raconte le monde</h4>
+                        <div class="flex items-center gap-3 mt-1">
+                            <span class="text-xs text-slate-400">42:10</span>
+                            <span class="text-xs text-slate-400">• Il y a 2j</span>
+                        </div>
+                    </div>
+                    <button class="w-10 h-10 bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-all flex-shrink-0">
+                        <span class="material-symbols-outlined">play_arrow</span>
+                    </button>
+                </div>
+
+                <!-- Episode 3 -->
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex items-center gap-5 hover:border-primary/30 transition-all group cursor-pointer">
+                    <div class="w-16 h-16 rounded-lg flex-shrink-0 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=100&h=100&fit=crop&q=80" alt="Le Talk Politique" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Le Talk Politique</span>
+                            <span class="text-[10px] text-slate-400">• Ep. 32</span>
+                        </div>
+                        <h4 class="font-bold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-1">Presidentielle 2025 : les candidats face aux enjeux climatiques</h4>
+                        <div class="flex items-center gap-3 mt-1">
+                            <span class="text-xs text-slate-400">28:30</span>
+                            <span class="text-xs text-slate-400">• Il y a 3j</span>
+                        </div>
+                    </div>
+                    <button class="w-10 h-10 bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-all flex-shrink-0">
+                        <span class="material-symbols-outlined">play_arrow</span>
+                    </button>
+                </div>
+
+                <!-- Episode 4 -->
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 flex items-center gap-5 hover:border-primary/30 transition-all group cursor-pointer">
+                    <div class="w-16 h-16 rounded-lg flex-shrink-0 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=100&h=100&fit=crop&q=80" alt="Stade Numerique" class="w-full h-full object-cover"/>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[10px] font-bold text-primary uppercase tracking-wider">Stade Numerique</span>
+                            <span class="text-[10px] text-slate-400">• Ep. 15</span>
+                        </div>
+                        <h4 class="font-bold text-sm leading-snug group-hover:text-primary transition-colors line-clamp-1">CAN 2025 : la data au service des selectioneurs africains</h4>
+                        <div class="flex items-center gap-3 mt-1">
+                            <span class="text-xs text-slate-400">19:55</span>
+                            <span class="text-xs text-slate-400">• Il y a 4j</span>
+                        </div>
+                    </div>
+                    <button class="w-10 h-10 bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-all flex-shrink-0">
+                        <span class="material-symbols-outlined">play_arrow</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Émissions & Replays Video Section -->
+        <section>
+            <div class="flex items-center justify-between mb-6">
+                <h3 class="text-xl font-extrabold flex items-center gap-2">
+                    <span class="w-2 h-8 bg-primary rounded-full"></span>
+                    Emissions & Replays
+                </h3>
+                <div class="flex gap-2">
+                    <button class="p-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                    </button>
+                    <button class="p-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Video Card 1 -->
+                <div class="space-y-3 group cursor-pointer">
+                    <div class="relative aspect-video rounded-xl overflow-hidden shadow-md">
+                        <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?w=400&h=250&fit=crop&q=80" alt="Le Journal des Entreprises" class="w-full h-full object-cover"/>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                        <div class="absolute bottom-3 right-3 px-2 py-1 bg-black/80 text-white text-[10px] font-bold rounded">24:15</div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="w-12 h-12 rounded-full bg-white/90 text-primary flex items-center justify-center shadow-2xl">
+                                <span class="material-symbols-outlined filled-icon text-2xl">play_arrow</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-primary text-xs font-bold uppercase">Economie</span>
+                        <h4 class="font-bold text-lg leading-tight mt-1 group-hover:text-primary transition-colors">Le Journal des Entreprises : Special Tech</h4>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Diffuse hier a 20h00</p>
+                    </div>
+                </div>
+
+                <!-- Video Card 2 -->
+                <div class="space-y-3 group cursor-pointer">
+                    <div class="relative aspect-video rounded-xl overflow-hidden shadow-md">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=250&fit=crop&q=80" alt="Immersion : La jeunesse" class="w-full h-full object-cover"/>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                        <div class="absolute bottom-3 right-3 px-2 py-1 bg-black/80 text-white text-[10px] font-bold rounded">52:40</div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="w-12 h-12 rounded-full bg-white/90 text-primary flex items-center justify-center shadow-2xl">
+                                <span class="material-symbols-outlined filled-icon text-2xl">play_arrow</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-primary text-xs font-bold uppercase">Societe</span>
+                        <h4 class="font-bold text-lg leading-tight mt-1 group-hover:text-primary transition-colors">Immersion : La jeunesse et l'engagement</h4>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Diffuse le 12 Oct.</p>
+                    </div>
+                </div>
+
+                <!-- Video Card 3 -->
+                <div class="space-y-3 group cursor-pointer">
+                    <div class="relative aspect-video rounded-xl overflow-hidden shadow-md">
+                        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=250&fit=crop&q=80" alt="Debrief Hebdo Sport" class="w-full h-full object-cover"/>
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                        <div class="absolute bottom-3 right-3 px-2 py-1 bg-black/80 text-white text-[10px] font-bold rounded">18:05</div>
+                        <div class="absolute top-3 left-3 flex items-center gap-1.5 px-2 py-1 bg-red-600 rounded-md">
+                            <span class="flex h-1.5 w-1.5 rounded-full bg-white animate-pulse"></span>
+                            <span class="text-[10px] text-white font-bold uppercase">Direct a 18h30</span>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div class="w-12 h-12 rounded-full bg-white/90 text-primary flex items-center justify-center shadow-2xl">
+                                <span class="material-symbols-outlined filled-icon text-2xl">play_arrow</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-primary text-xs font-bold uppercase">Sport</span>
+                        <h4 class="font-bold text-lg leading-tight mt-1 group-hover:text-primary transition-colors">Debrief Hebdo : Le week-end de Ligue 1</h4>
+                        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">Direct a 18h30</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publicite -->
+        <div class="rounded-xl overflow-hidden border border-slate-700/50 relative max-w-sm mx-auto">
+            <div class="absolute top-2 right-2 px-1.5 py-0.5 bg-black/50 text-[9px] text-white/60 rounded uppercase tracking-wider z-10">Publicite</div>
+            <a href="#" class="block">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=250&fit=crop&q=80" alt="Publicite - Casque audio" class="w-full h-40 object-cover"/>
+                <div class="p-3 bg-violet-600">
+                    <p class="text-white font-bold text-sm">SoundWave Pro</p>
+                    <p class="text-white/80 text-xs">Casques premium pour une experience audio immersive. -30%</p>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- Audio Player (Fixed Bottom) -->
+    <footer class="fixed bottom-0 left-0 right-0 z-[60] px-4 pb-4">
+        <div class="max-w-[1000px] mx-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xl rounded-2xl p-4 flex items-center gap-6">
+            <!-- Track Info -->
+            <div class="flex items-center gap-4 min-w-[200px]">
+                <div class="w-12 h-12 rounded-lg flex-shrink-0 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=100&h=100&fit=crop&q=80" alt="Echoes of Science" class="w-full h-full object-cover"/>
+                </div>
+                <div class="hidden sm:block">
+                    <h5 class="text-sm font-bold line-clamp-1">Le Grand Decryptage</h5>
+                    <p class="text-xs text-slate-500 line-clamp-1">Les enjeux de demain</p>
+                </div>
+            </div>
+            <!-- Controls -->
+            <div class="flex-1 flex flex-col gap-1 items-center">
+                <div class="flex items-center gap-6">
+                    <button class="text-slate-500 hover:text-primary transition-colors hidden sm:block">
+                        <span class="material-symbols-outlined text-xl">shuffle</span>
+                    </button>
+                    <button class="text-slate-900 dark:text-slate-100 hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined filled-icon">skip_previous</span>
+                    </button>
+                    <button class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg shadow-primary/30 hover:scale-105 transition-transform">
+                        <span class="material-symbols-outlined filled-icon text-2xl">pause</span>
+                    </button>
+                    <button class="text-slate-900 dark:text-slate-100 hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined filled-icon">skip_next</span>
+                    </button>
+                    <button class="text-slate-500 hover:text-primary transition-colors hidden sm:block">
+                        <span class="material-symbols-outlined text-xl">repeat</span>
+                    </button>
+                </div>
+                <!-- Progress Bar -->
+                <div class="w-full flex items-center gap-3">
+                    <span class="text-[10px] text-slate-500 font-medium">12:30</span>
+                    <div class="flex-1 h-1.5 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden relative group">
+                        <div class="absolute top-0 left-0 h-full w-1/3 bg-primary rounded-full"></div>
+                    </div>
+                    <span class="text-[10px] text-slate-500 font-medium">35:45</span>
+                </div>
+            </div>
+            <!-- Volume -->
+            <div class="hidden md:flex items-center gap-4 min-w-[150px] justify-end">
+                <button class="text-slate-500 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined">playlist_play</span>
+                </button>
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-slate-500 text-lg">volume_up</span>
+                    <div class="w-20 h-1 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                        <div class="h-full w-2/3 bg-slate-500 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

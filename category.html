@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>D5News - Politique</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/shared.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#0f58bd", "background-light": "#f6f7f8", "background-dark": "#101822" },
+                    fontFamily: { "display": ["Inter", "system-ui", "sans-serif"] },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex flex-col min-h-screen">
+    <!-- Public Header -->
+    <header class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 lg:px-40 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <a href="home.html" class="flex items-center">
+                    <img src="images/logo.png" alt="D5News" class="h-8"/>
+                </a>
+                <nav class="hidden lg:flex items-center gap-6">
+                    <a class="text-primary text-sm font-semibold border-b-2 border-primary pb-0.5" href="category.html">Politique</a>
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Economie</a>
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Culture</a>
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Afrique</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-2 w-56">
+                    <span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+                    <input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-slate-400 outline-none ml-2" placeholder="Rechercher..." type="text"/>
+                </div>
+                <button data-lang-toggle class="flex items-center gap-1 px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold hover:bg-primary/10 transition-colors">
+                    <span data-lang-display>FR</span>
+                </button>
+                <button data-theme-toggle class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+                </button>
+                <div class="w-10 h-10 rounded-full bg-primary/20 border-2 border-primary/30 flex items-center justify-center text-primary font-bold text-sm">JD</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Category Hero -->
+    <section class="bg-gradient-to-b from-primary/5 to-transparent dark:from-primary/10 dark:to-transparent py-16 px-6 md:px-20 lg:px-40">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="material-symbols-outlined text-primary text-3xl">account_balance</span>
+                <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">48 articles</span>
+            </div>
+            <h2 class="text-4xl font-black tracking-tight mb-3">Politique</h2>
+            <p class="text-slate-500 dark:text-slate-400 max-w-2xl text-lg">Suivez l'actualite politique en Afrique et dans le monde. Analyses, decryptages et reportages sur les enjeux qui faconnent nos societes.</p>
+        </div>
+    </section>
+
+    <!-- Filter Bar & Articles -->
+    <main class="flex-1 px-6 md:px-20 lg:px-40 py-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Filter Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-8 pb-6 border-b border-slate-200 dark:border-slate-800">
+                <div class="flex bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+                    <button class="px-4 py-2 rounded-md bg-white dark:bg-slate-700 shadow-sm text-sm font-bold text-primary">Recents</button>
+                    <button class="px-4 py-2 rounded-md text-sm font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Populaires</button>
+                    <button class="px-4 py-2 rounded-md text-sm font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors">Commentes</button>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-sm text-slate-400">Affichage :</span>
+                    <div class="flex bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+                        <button class="p-2 rounded-md bg-white dark:bg-slate-700 shadow-sm text-primary">
+                            <span class="material-symbols-outlined text-xl">grid_view</span>
+                        </button>
+                        <button class="p-2 rounded-md text-slate-400">
+                            <span class="material-symbols-outlined text-xl">view_list</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content + Sidebar Layout -->
+            <div class="flex flex-col xl:flex-row gap-8">
+
+            <!-- Articles Column -->
+            <div class="flex-1">
+            <!-- Articles Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
+                <!-- Article Card 1 -->
+                <a href="article.html" class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=400&h=250&fit=crop&q=80" alt="Parlement - Reforme constitutionnelle" class="w-full h-full object-cover"/>
+                        <span class="absolute bottom-3 left-3 px-2 py-1 bg-primary text-white text-[10px] font-bold rounded uppercase tracking-wider">Politique</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-slate-400">5 mars 2026</span>
+                            <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                            <span class="text-xs text-slate-400">Par Amadou Diallo</span>
+                        </div>
+                        <h3 class="font-bold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">Reforme constitutionnelle : les enjeux du scrutin de 2026 en Cote d'Ivoire</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-2">Le processus de revision constitutionnelle suscite un vif debat au sein de la classe politique ivoirienne...</p>
+                        <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 8 min</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 15.2K</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 42</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article Card 2 -->
+                <a href="article.html" class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=400&h=250&fit=crop&q=80" alt="Diplomatie - Sommet Union Africaine" class="w-full h-full object-cover"/>
+                        <span class="absolute bottom-3 left-3 px-2 py-1 bg-primary text-white text-[10px] font-bold rounded uppercase tracking-wider">Politique</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-slate-400">4 mars 2026</span>
+                            <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                            <span class="text-xs text-slate-400">Par Fatou Ba</span>
+                        </div>
+                        <h3 class="font-bold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">Sommet de l'Union Africaine : les decisions cles pour l'avenir du continent</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-2">Les chefs d'Etat africains se sont reunis pour discuter des defis majeurs du continent, de la securite a l'integration economique...</p>
+                        <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 12 min</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 22.8K</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 67</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article Card 3 -->
+                <a href="article.html" class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1577415124269-fc1140a69e91?w=400&h=250&fit=crop&q=80" alt="Gouvernance en Afrique - Transition democratique" class="w-full h-full object-cover"/>
+                        <span class="absolute bottom-3 left-3 px-2 py-1 bg-primary text-white text-[10px] font-bold rounded uppercase tracking-wider">Politique</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-slate-400">3 mars 2026</span>
+                            <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                            <span class="text-xs text-slate-400">Par Ibrahim Kone</span>
+                        </div>
+                        <h3 class="font-bold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">Transition democratique au Sahel : entre espoirs et incertitudes</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-2">Les pays du Sahel traversent une periode de transition politique complexe, avec des calendriers electoraux encore flous...</p>
+                        <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 10 min</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 18.5K</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 53</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article Card 4 -->
+                <a href="article.html" class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=400&h=250&fit=crop&q=80" alt="Conference - CEDEAO diplomatie" class="w-full h-full object-cover"/>
+                        <span class="absolute bottom-3 left-3 px-2 py-1 bg-primary text-white text-[10px] font-bold rounded uppercase tracking-wider">Politique</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-slate-400">2 mars 2026</span>
+                            <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                            <span class="text-xs text-slate-400">Par Oumar Keita</span>
+                        </div>
+                        <h3 class="font-bold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">Diplomatie : le role croissant de la CEDEAO dans la resolution des conflits</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-2">La Communaute Economique des Etats de l'Afrique de l'Ouest renforce son role de mediateur dans les crises politiques regionales...</p>
+                        <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 7 min</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 9.4K</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 28</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article Card 5 -->
+                <a href="article.html" class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1494172961521-33799ddd43a5?w=400&h=250&fit=crop&q=80" alt="Ville africaine - Decentralisation Senegal" class="w-full h-full object-cover"/>
+                        <span class="absolute bottom-3 left-3 px-2 py-1 bg-primary text-white text-[10px] font-bold rounded uppercase tracking-wider">Politique</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-slate-400">1 mars 2026</span>
+                            <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                            <span class="text-xs text-slate-400">Par Aissatou Sow</span>
+                        </div>
+                        <h3 class="font-bold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">Decentralisation au Senegal : un modele pour l'Afrique de l'Ouest ?</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-2">Le Senegal accelere sa politique de decentralisation, transferant plus de competences aux collectivites locales...</p>
+                        <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 6 min</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 7.1K</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 19</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Article Card 6 -->
+                <a href="article.html" class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1532375810709-75b1da00537c?w=400&h=250&fit=crop&q=80" alt="Leader africain - Relations France-Afrique" class="w-full h-full object-cover"/>
+                        <span class="absolute bottom-3 left-3 px-2 py-1 bg-primary text-white text-[10px] font-bold rounded uppercase tracking-wider">Politique</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-slate-400">28 fev. 2026</span>
+                            <span class="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                            <span class="text-xs text-slate-400">Par Claire Martin</span>
+                        </div>
+                        <h3 class="font-bold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">France-Afrique : vers un nouveau paradigme des relations bilaterales</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-2">Les relations entre la France et ses partenaires africains connaissent une mutation profonde, marquee par une volonte de reequilibrage...</p>
+                        <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 14 min</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 31.6K</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 89</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex items-center justify-center gap-2 mt-12">
+                <button class="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 disabled:opacity-30 transition-colors flex items-center gap-1" disabled>
+                    <span class="material-symbols-outlined text-lg">chevron_left</span>
+                    Precedent
+                </button>
+                <div class="flex items-center gap-1">
+                    <button class="w-10 h-10 rounded-lg bg-primary text-white font-bold text-sm">1</button>
+                    <button class="w-10 h-10 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 font-bold text-sm transition-colors">2</button>
+                    <button class="w-10 h-10 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 font-bold text-sm transition-colors">3</button>
+                    <span class="w-10 h-10 flex items-center justify-center text-slate-400 text-sm">...</span>
+                    <button class="w-10 h-10 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 font-bold text-sm transition-colors">8</button>
+                </div>
+                <button class="px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-sm font-medium hover:text-primary hover:border-primary/30 transition-colors flex items-center gap-1">
+                    Suivant
+                    <span class="material-symbols-outlined text-lg">chevron_right</span>
+                </button>
+            </div>
+            </div><!-- End Articles Column -->
+
+            <!-- Sidebar -->
+            <aside class="w-full xl:w-72 flex-shrink-0 space-y-6">
+                <!-- Sidebar Ad -->
+                <div class="rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700/50 relative">
+                    <div class="absolute top-2 right-2 px-1.5 py-0.5 bg-black/50 text-[9px] text-white/60 rounded uppercase tracking-wider z-10">Publicite</div>
+                    <a href="#" class="block">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop&q=80" alt="Publicite - Assurance" class="w-full h-48 object-cover"/>
+                        <div class="p-3 bg-emerald-600">
+                            <p class="text-white font-bold text-sm">SahelAssur</p>
+                            <p class="text-white/80 text-xs">Protegez votre avenir. Assurance sante des 9.99€/mois.</p>
+                        </div>
+                    </a>
+                </div>
+            </aside>
+
+            </div><!-- End Content + Sidebar Layout -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark py-10 px-6 md:px-20 lg:px-40">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="mb-4">
+                    <img src="images/logo.png" alt="D5News" class="h-7"/>
+                </div>
+            <div class="flex gap-8 text-sm text-slate-500 dark:text-slate-400">
+                <a class="hover:text-primary transition-colors" href="#">A propos</a>
+                <a class="hover:text-primary transition-colors" href="legal.html">Mentions legales</a>
+                <a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
+                <a class="hover:text-primary transition-colors" href="#">Publicite</a>
+            </div>
+        </div>
+        <p class="text-center text-xs text-slate-400 mt-8">&copy; 2024 D5News. Tous droits reserves.</p>
+    </footer>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>D5News - 500 Erreur Serveur</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/shared.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f58bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101822",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "system-ui", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Minimal Public Header -->
+    <header class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md px-6 flex items-center flex-shrink-0">
+        <a href="index.html" class="flex items-center gap-3">
+            <img src="images/logo.png" alt="D5News" class="h-7"/>
+        </a>
+    </header>
+
+    <!-- Centered Content -->
+    <main class="flex-1 flex items-center justify-center px-6">
+        <div class="text-center max-w-lg animate-fade-in">
+            <!-- Large 500 -->
+            <h1 class="text-[150px] md:text-[200px] font-black leading-none tracking-tighter text-primary/10 dark:text-primary/15 select-none">500</h1>
+
+            <!-- Title -->
+            <h2 class="text-2xl md:text-3xl font-black tracking-tight -mt-6 mb-2">Erreur Serveur</h2>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mb-1">Internal Server Error</p>
+
+            <!-- Subtitle -->
+            <p class="text-slate-500 dark:text-slate-400 mt-4 mb-8 leading-relaxed">
+                Une erreur inattendue s'est produite. Nos equipes travaillent a la resoudre.
+            </p>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                <button onclick="window.location.reload()" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+                    <span class="material-symbols-outlined text-lg">refresh</span>
+                    Recharger la page
+                </button>
+                <a href="index.html" class="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-bold shadow-sm hover:shadow transition-all">
+                    <span class="material-symbols-outlined text-lg">home</span>
+                    Retour a l'accueil
+                </a>
+            </div>
+
+            <!-- Support Link -->
+            <div class="mt-8">
+                <a href="mailto:support@d5news.com" class="inline-flex items-center gap-2 text-sm text-primary font-semibold hover:underline">
+                    <span class="material-symbols-outlined text-lg">support_agent</span>
+                    Contacter le support technique
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="py-6 text-center border-t border-slate-200 dark:border-slate-800 flex-shrink-0">
+        <p class="text-xs text-slate-400 dark:text-slate-500">&copy; 2024 D5News. Tous droits reserves.</p>
+    </footer>
+
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>D5News - Profil & Notifications</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/shared.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f58bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101822",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "system-ui", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Public Header -->
+    <header class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-30 flex-shrink-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <a href="home.html" class="flex items-center flex-shrink-0">
+                    <img src="images/logo.png" alt="D5News" class="h-8"/>
+                </a>
+                <nav class="hidden md:flex items-center gap-1">
+                    <a href="#" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded-lg">Actualites</a>
+                    <a href="#" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded-lg">Direct</a>
+                    <a href="#" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded-lg">Emissions</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button data-lang-toggle class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    <span class="material-symbols-outlined text-lg">language</span>
+                    <span data-lang-display>FR</span>
+                </button>
+                <button data-theme-toggle class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+                </button>
+                <div class="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs flex-shrink-0 ring-2 ring-primary">
+                    JD
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+
+                <!-- Sidebar Navigation -->
+                <aside class="w-full lg:w-72 flex-shrink-0">
+                    <!-- User Card -->
+                    <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 mb-4 animate-fade-in">
+                        <div class="flex flex-col items-center text-center">
+                            <div class="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-2xl mb-4">
+                                JD
+                            </div>
+                            <h2 class="text-lg font-bold">Jean Dupont</h2>
+                            <div class="flex items-center gap-1.5 mt-2">
+                                <span class="material-symbols-outlined text-amber-500 text-sm fill-icon">star</span>
+                                <span class="text-xs font-bold text-amber-600 dark:text-amber-400">Premium Account</span>
+                            </div>
+                            <p class="text-xs text-slate-400 dark:text-slate-500 mt-2">Membre depuis Mars 2023</p>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Links -->
+                    <nav class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden animate-fade-in">
+                        <a href="#" class="flex items-center gap-3 px-5 py-3.5 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border-b border-slate-100 dark:border-slate-800">
+                            <span class="material-symbols-outlined text-xl">person</span>
+                            Profil
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-5 py-3.5 text-sm font-semibold text-primary bg-primary/5 dark:bg-primary/10 border-l-[3px] border-primary border-b border-b-slate-100 dark:border-b-slate-800">
+                            <span class="material-symbols-outlined text-xl">notifications</span>
+                            Notifications
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-5 py-3.5 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border-b border-slate-100 dark:border-slate-800">
+                            <span class="material-symbols-outlined text-xl">shield</span>
+                            Securite
+                        </a>
+                        <a href="subscription.html" class="flex items-center gap-3 px-5 py-3.5 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            <span class="material-symbols-outlined text-xl">credit_card</span>
+                            Abonnement
+                        </a>
+                    </nav>
+                </aside>
+
+                <!-- Main Settings Content -->
+                <div class="flex-1 min-w-0 animate-fade-in">
+                    <!-- Page Title -->
+                    <div class="mb-8">
+                        <h1 class="text-2xl font-extrabold tracking-tight mb-1">Parametres des notifications</h1>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Gerez la facon dont vous recevez les alertes et les mises a jour de D5News.</p>
+                    </div>
+
+                    <!-- Delivery Channels Section -->
+                    <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 mb-6">
+                        <h2 class="text-base font-bold mb-1">Canaux de reception</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Choisissez comment recevoir vos notifications.</p>
+
+                        <div class="space-y-0 divide-y divide-slate-100 dark:divide-slate-800">
+                            <!-- Browser Push -->
+                            <div class="flex items-center justify-between py-5 first:pt-0">
+                                <div class="flex items-start gap-4 flex-1 min-w-0 pr-4">
+                                    <div class="w-10 h-10 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 flex-shrink-0 mt-0.5">
+                                        <span class="material-symbols-outlined">web</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-semibold">Notifications push du navigateur</h3>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Recevez des alertes en temps reel directement dans votre navigateur, meme quand D5News est ferme.</p>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch flex-shrink-0">
+                                    <input type="checkbox" checked/>
+                                    <div class="toggle-track"></div>
+                                </label>
+                            </div>
+
+                            <!-- Mobile Alerts -->
+                            <div class="flex items-center justify-between py-5">
+                                <div class="flex items-start gap-4 flex-1 min-w-0 pr-4">
+                                    <div class="w-10 h-10 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 flex-shrink-0 mt-0.5">
+                                        <span class="material-symbols-outlined">phone_android</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-semibold">Alertes mobiles pour emissions marquees</h3>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Soyez notifie sur votre telephone quand vos emissions favorites commencent.</p>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch flex-shrink-0">
+                                    <input type="checkbox"/>
+                                    <div class="toggle-track"></div>
+                                </label>
+                            </div>
+
+                            <!-- Email Reminders -->
+                            <div class="flex items-center justify-between py-5 last:pb-0">
+                                <div class="flex items-start gap-4 flex-1 min-w-0 pr-4">
+                                    <div class="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center text-emerald-600 flex-shrink-0 mt-0.5">
+                                        <span class="material-symbols-outlined">mail</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-semibold">Rappels par email</h3>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Recevez un recapitulatif quotidien des articles importants et des mises a jour de la plateforme.</p>
+                                    </div>
+                                </div>
+                                <label class="toggle-switch flex-shrink-0">
+                                    <input type="checkbox" checked/>
+                                    <div class="toggle-track"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification Test Section -->
+                    <div class="border-2 border-dashed border-primary/30 dark:border-primary/20 rounded-xl p-6 sm:p-8 mb-6 bg-primary/5 dark:bg-primary/5">
+                        <div class="flex items-start gap-4 mb-5">
+                            <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+                                <span class="material-symbols-outlined">science</span>
+                            </div>
+                            <div>
+                                <h2 class="text-base font-bold mb-1">Tester vos notifications</h2>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Verifiez que vos canaux de notification fonctionnent correctement en envoyant un message de test.</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <button class="flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all">
+                                <span class="material-symbols-outlined text-lg">notifications_active</span>
+                                Tester le Push
+                            </button>
+                            <button class="flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-bold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 shadow-sm transition-all">
+                                <span class="material-symbols-outlined text-lg">forward_to_inbox</span>
+                                Email de test
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Notification Preferences -->
+                    <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 mb-6">
+                        <h2 class="text-base font-bold mb-1">Types de notifications</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mb-6">Selectionnez les types de contenus pour lesquels vous souhaitez etre notifie.</p>
+
+                        <div class="space-y-0 divide-y divide-slate-100 dark:divide-slate-800">
+                            <div class="flex items-center justify-between py-4 first:pt-0">
+                                <div>
+                                    <h3 class="text-sm font-semibold">Breaking news</h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Alertes pour les actualites majeures</p>
+                                </div>
+                                <label class="toggle-switch flex-shrink-0">
+                                    <input type="checkbox" checked/>
+                                    <div class="toggle-track"></div>
+                                </label>
+                            </div>
+                            <div class="flex items-center justify-between py-4">
+                                <div>
+                                    <h3 class="text-sm font-semibold">Newsletter quotidienne</h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Resume des articles du jour</p>
+                                </div>
+                                <label class="toggle-switch flex-shrink-0">
+                                    <input type="checkbox" checked/>
+                                    <div class="toggle-track"></div>
+                                </label>
+                            </div>
+                            <div class="flex items-center justify-between py-4">
+                                <div>
+                                    <h3 class="text-sm font-semibold">Reponses aux commentaires</h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Quand quelqu'un repond a votre commentaire</p>
+                                </div>
+                                <label class="toggle-switch flex-shrink-0">
+                                    <input type="checkbox"/>
+                                    <div class="toggle-track"></div>
+                                </label>
+                            </div>
+                            <div class="flex items-center justify-between py-4 last:pb-0">
+                                <div>
+                                    <h3 class="text-sm font-semibold">Offres et promotions</h3>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Offres speciales et reductions Premium</p>
+                                </div>
+                                <label class="toggle-switch flex-shrink-0">
+                                    <input type="checkbox"/>
+                                    <div class="toggle-track"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Save / Cancel Buttons -->
+                    <div class="flex items-center justify-end gap-3">
+                        <button class="px-6 py-2.5 border border-slate-200 dark:border-slate-700 text-sm font-bold rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            Annuler
+                        </button>
+                        <button class="px-6 py-2.5 bg-primary text-white text-sm font-bold rounded-xl shadow-lg shadow-primary/25 hover:bg-primary/90 hover:shadow-xl hover:shadow-primary/30 transition-all">
+                            Sauvegarder les modifications
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+            <div class="text-center">
+                <p class="text-xs text-slate-400 dark:text-slate-500">&copy; 2024 D5News Media Group. Tous droits reserves.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

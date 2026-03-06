@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>D5News - Recherche Avancee</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/shared.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#0f58bd", "background-light": "#f6f7f8", "background-dark": "#101822" },
+                    fontFamily: { "display": ["Inter", "system-ui", "sans-serif"] },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex flex-col min-h-screen">
+    <!-- Public Header -->
+    <header class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 lg:px-40 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <a href="home.html" class="flex items-center">
+                    <img src="images/logo.png" alt="D5News" class="h-8"/>
+                </a>
+                <nav class="hidden lg:flex items-center gap-6">
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Politique</a>
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Economie</a>
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Culture</a>
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Afrique</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-3">
+                <button data-lang-toggle class="px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold hover:bg-primary/10 transition-colors">
+                    <span data-lang-display>FR</span>
+                </button>
+                <button data-theme-toggle class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+                </button>
+                <div class="w-10 h-10 rounded-full bg-primary/20 border-2 border-primary/30 flex items-center justify-center text-primary font-bold text-sm">JD</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Search Hero -->
+    <section class="bg-gradient-to-b from-primary/5 to-transparent dark:from-primary/10 dark:to-transparent py-16 px-6 md:px-20 lg:px-40">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-4xl font-black tracking-tight mb-4">Recherche Avancee</h2>
+            <p class="text-slate-500 dark:text-slate-400 mb-8">Trouvez exactement ce que vous cherchez parmi des milliers d'articles.</p>
+            <div class="relative">
+                <span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-slate-400 text-2xl">search</span>
+                <input class="w-full pl-14 pr-6 py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-base focus:ring-2 focus:ring-primary/50 shadow-lg transition-all placeholder:text-slate-400 outline-none" placeholder="Rechercher des articles, auteurs, sujets..." type="text" value="technologies vertes Afrique"/>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters & Results -->
+    <main class="flex-1 px-6 md:px-20 lg:px-40 py-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Filters Row -->
+            <div class="flex flex-wrap gap-3 mb-8">
+                <select class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm py-2 pl-4 pr-10 focus:ring-2 focus:ring-primary/50 outline-none">
+                    <option>Toutes categories</option>
+                    <option>Politique</option>
+                    <option>Economie</option>
+                    <option>Tech</option>
+                    <option>Sports</option>
+                    <option>Culture</option>
+                    <option>Afrique</option>
+                    <option>Sante</option>
+                </select>
+                <select class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm py-2 pl-4 pr-10 focus:ring-2 focus:ring-primary/50 outline-none">
+                    <option>Toute periode</option>
+                    <option>Aujourd'hui</option>
+                    <option>Cette semaine</option>
+                    <option>Ce mois</option>
+                    <option>Cette annee</option>
+                </select>
+                <select class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm py-2 pl-4 pr-10 focus:ring-2 focus:ring-primary/50 outline-none">
+                    <option>Pertinence</option>
+                    <option>Plus recents</option>
+                    <option>Plus lus</option>
+                    <option>Plus commentes</option>
+                </select>
+                <div class="flex items-center gap-2 ml-auto">
+                    <span class="text-sm text-slate-500">24 resultats</span>
+                </div>
+            </div>
+
+            <!-- Active Filters -->
+            <div class="flex flex-wrap gap-2 mb-6">
+                <span class="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">
+                    technologies vertes
+                    <button class="ml-1 hover:text-primary/70"><span class="material-symbols-outlined text-sm">close</span></button>
+                </span>
+                <span class="inline-flex items-center gap-1 px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">
+                    Afrique
+                    <button class="ml-1 hover:text-primary/70"><span class="material-symbols-outlined text-sm">close</span></button>
+                </span>
+            </div>
+
+            <!-- Results List -->
+            <div class="space-y-4">
+                <!-- Result 1 -->
+                <a href="article.html" class="block bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 hover:shadow-md hover:border-primary/30 transition-all group">
+                    <div class="flex gap-6">
+                        <div class="hidden md:block w-48 h-32 rounded-lg flex-shrink-0 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=200&h=140&fit=crop&q=80" alt="Technologies vertes en Afrique" class="w-full h-full object-cover"/>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase">Afrique</span>
+                                <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-600 text-[10px] font-bold rounded uppercase">Economie</span>
+                            </div>
+                            <h3 class="font-bold text-lg leading-snug group-hover:text-primary transition-colors">L'essor des technologies vertes en Afrique de l'Ouest</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">Alors que le monde se tourne vers la transition energetique, l'Afrique de l'Ouest emerge comme un laboratoire d'innovation pour les technologies vertes...</p>
+                            <div class="flex items-center gap-4 mt-3">
+                                <span class="text-xs text-slate-400">Par Amadou Diallo</span>
+                                <span class="text-xs text-slate-400">Il y a 2h</span>
+                                <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 8 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Result 2 -->
+                <a href="#" class="block bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 hover:shadow-md hover:border-primary/30 transition-all group">
+                    <div class="flex gap-6">
+                        <div class="hidden md:block w-48 h-32 rounded-lg flex-shrink-0 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=200&h=140&fit=crop&q=80" alt="Hydrogene vert Mauritanie" class="w-full h-full object-cover"/>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-600 text-[10px] font-bold rounded uppercase">Energie</span>
+                            </div>
+                            <h3 class="font-bold text-lg leading-snug group-hover:text-primary transition-colors">L'hydrogene vert, le futur or de la Mauritanie ?</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">La Mauritanie se positionne comme un acteur majeur de l'hydrogene vert, attirant des investissements massifs dans ce secteur strategique...</p>
+                            <div class="flex items-center gap-4 mt-3">
+                                <span class="text-xs text-slate-400">Par Fatou Ba</span>
+                                <span class="text-xs text-slate-400">Il y a 5h</span>
+                                <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 6 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Result 3 -->
+                <a href="#" class="block bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 hover:shadow-md hover:border-primary/30 transition-all group">
+                    <div class="flex gap-6">
+                        <div class="hidden md:block w-48 h-32 rounded-lg flex-shrink-0 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=200&h=140&fit=crop&q=80" alt="Financement climatique COP29" class="w-full h-full object-cover"/>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-0.5 bg-amber-500/10 text-amber-600 text-[10px] font-bold rounded uppercase">Politique</span>
+                            </div>
+                            <h3 class="font-bold text-lg leading-snug group-hover:text-primary transition-colors">Financement climatique : ce que l'Afrique attend de la COP29</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">Les pays africains arrivent a la COP29 avec des attentes claires sur le financement de la transition ecologique et l'adaptation aux changements climatiques...</p>
+                            <div class="flex items-center gap-4 mt-3">
+                                <span class="text-xs text-slate-400">Par Oumar Keita</span>
+                                <span class="text-xs text-slate-400">Hier</span>
+                                <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 11 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Result 4 -->
+                <a href="#" class="block bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 hover:shadow-md hover:border-primary/30 transition-all group">
+                    <div class="flex gap-6">
+                        <div class="hidden md:block w-48 h-32 rounded-lg flex-shrink-0 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=200&h=140&fit=crop&q=80" alt="Recyclage plastiques Lagos" class="w-full h-full object-cover"/>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="px-2 py-0.5 bg-sky-500/10 text-sky-600 text-[10px] font-bold rounded uppercase">Economie</span>
+                            </div>
+                            <h3 class="font-bold text-lg leading-snug group-hover:text-primary transition-colors">Nigeria : Le boom du recyclage des plastiques a Lagos</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 line-clamp-2">Lagos devient un hub africain du recyclage, avec des startups innovantes qui transforment les dechets plastiques en opportunites economiques...</p>
+                            <div class="flex items-center gap-4 mt-3">
+                                <span class="text-xs text-slate-400">Par Chidi Okafor</span>
+                                <span class="text-xs text-slate-400">Il y a 2j</span>
+                                <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 7 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex items-center justify-center gap-2 mt-10">
+                <button class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-400 disabled:opacity-30" disabled>
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button class="w-10 h-10 rounded-lg bg-primary text-white font-bold text-sm">1</button>
+                <button class="w-10 h-10 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 font-bold text-sm">2</button>
+                <button class="w-10 h-10 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 font-bold text-sm">3</button>
+                <button class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark py-10 px-6 md:px-20 lg:px-40">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="mb-4">
+                    <img src="images/logo.png" alt="D5News" class="h-7"/>
+                </div>
+            <div class="flex gap-8 text-sm text-slate-500 dark:text-slate-400">
+                <a class="hover:text-primary transition-colors" href="#">A propos</a>
+                <a class="hover:text-primary transition-colors" href="legal.html">Mentions legales</a>
+                <a class="hover:text-primary transition-colors" href="#">Contact</a>
+            </div>
+        </div>
+        <p class="text-center text-xs text-slate-400 mt-8">© 2024 D5News. Tous droits reserves.</p>
+    </footer>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

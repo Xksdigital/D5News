@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Centre Juridique | D5News</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/shared.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#0f58bd", "background-light": "#f6f7f8", "background-dark": "#101822" },
+                    fontFamily: { "display": ["Inter", "system-ui", "sans-serif"] },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex flex-col min-h-screen">
+    <!-- Public Header -->
+    <header class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 lg:px-40 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="home.html" class="flex items-center">
+                    <img src="images/logo.png" alt="D5News" class="h-8"/>
+                </a>
+            <div class="flex items-center gap-3">
+                <button data-lang-toggle class="px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold">
+                    <span data-lang-display>FR</span>
+                </button>
+                <button data-theme-toggle class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800">
+                    <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="bg-gradient-to-b from-primary/5 to-transparent dark:from-primary/10 py-16 px-6 md:px-20 lg:px-40">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-6">
+                <span class="material-symbols-outlined text-primary">gavel</span>
+                <span class="text-sm font-bold text-primary">Centre Juridique</span>
+            </div>
+            <h2 class="text-4xl font-black tracking-tight mb-4">Informations Legales</h2>
+            <p class="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">Consultez nos conditions d'utilisation, politique de confidentialite et mentions legales. Derniere mise a jour : 1er Mars 2024.</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <main class="flex-1 px-6 md:px-20 lg:px-40 py-10">
+        <div class="max-w-4xl mx-auto">
+            <!-- Navigation Tabs -->
+            <div class="flex flex-wrap gap-2 mb-10 p-1 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
+                <button class="flex-1 px-4 py-3 bg-primary text-white rounded-lg text-sm font-bold transition-all">Conditions d'Utilisation</button>
+                <button class="flex-1 px-4 py-3 text-slate-500 rounded-lg text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">Politique de Confidentialite</button>
+                <button class="flex-1 px-4 py-3 text-slate-500 rounded-lg text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">Mentions Legales</button>
+                <button class="flex-1 px-4 py-3 text-slate-500 rounded-lg text-sm font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">Cookies</button>
+            </div>
+
+            <!-- Content Sections -->
+            <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                <!-- Section 1 -->
+                <div class="p-8 border-b border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2 bg-primary/10 rounded-lg text-primary">
+                            <span class="material-symbols-outlined">description</span>
+                        </div>
+                        <h3 class="text-xl font-bold">1. Acceptation des conditions</h3>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed space-y-4 pl-12">
+                        <p>En accedant et en utilisant la plateforme D5News, vous acceptez d'etre lie par les presentes conditions d'utilisation. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser nos services.</p>
+                        <p>D5News se reserve le droit de modifier ces conditions a tout moment. Les utilisateurs seront notifies des changements significatifs par email ou via une notification sur la plateforme.</p>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="p-8 border-b border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2 bg-primary/10 rounded-lg text-primary">
+                            <span class="material-symbols-outlined">person</span>
+                        </div>
+                        <h3 class="text-xl font-bold">2. Comptes Utilisateurs</h3>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed space-y-4 pl-12">
+                        <p>Pour acceder a certaines fonctionnalites de D5News, vous devez creer un compte. Vous etes responsable de la confidentialite de vos identifiants de connexion et de toute activite effectuee sous votre compte.</p>
+                        <p>Vous vous engagez a fournir des informations exactes, actuelles et completes lors de l'inscription et a les mettre a jour si necessaire.</p>
+                    </div>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="p-8 border-b border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2 bg-primary/10 rounded-lg text-primary">
+                            <span class="material-symbols-outlined">copyright</span>
+                        </div>
+                        <h3 class="text-xl font-bold">3. Propriete Intellectuelle</h3>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed space-y-4 pl-12">
+                        <p>L'ensemble du contenu publie sur D5News (articles, images, videos, graphiques, logos, etc.) est protege par les droits de propriete intellectuelle. Toute reproduction ou distribution non autorisee est strictement interdite.</p>
+                        <p>Les partenaires et contributeurs conservent les droits sur leur contenu original, tout en accordant a D5News une licence non-exclusive de publication.</p>
+                    </div>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="p-8 border-b border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2 bg-primary/10 rounded-lg text-primary">
+                            <span class="material-symbols-outlined">shield</span>
+                        </div>
+                        <h3 class="text-xl font-bold">4. Protection des Donnees</h3>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed space-y-4 pl-12">
+                        <p>D5News s'engage a proteger vos donnees personnelles conformement au Reglement General sur la Protection des Donnees (RGPD) et aux lois applicables.</p>
+                        <p>Nous collectons uniquement les donnees necessaires au fonctionnement de nos services. Vous disposez d'un droit d'acces, de rectification, de suppression et de portabilite de vos donnees.</p>
+                        <div class="p-4 bg-primary/5 border border-primary/10 rounded-lg mt-4">
+                            <p class="flex items-center gap-2 font-bold text-primary mb-2">
+                                <span class="material-symbols-outlined text-sm">info</span>
+                                Contact DPO
+                            </p>
+                            <p class="text-xs">Pour toute question relative a vos donnees personnelles, contactez notre Delegue a la Protection des Donnees : dpo@d5news.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5 -->
+                <div class="p-8 border-b border-slate-100 dark:border-slate-800">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2 bg-primary/10 rounded-lg text-primary">
+                            <span class="material-symbols-outlined">credit_card</span>
+                        </div>
+                        <h3 class="text-xl font-bold">5. Abonnements et Paiements</h3>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed space-y-4 pl-12">
+                        <p>Les abonnements Premium sont factures de maniere recurrente selon la periodicite choisie (mensuelle ou annuelle). Vous pouvez annuler votre abonnement a tout moment.</p>
+                        <p>En cas d'annulation, l'acces Premium reste actif jusqu'a la fin de la periode en cours. Aucun remboursement au prorata ne sera effectue.</p>
+                    </div>
+                </div>
+
+                <!-- Section 6 -->
+                <div class="p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2 bg-primary/10 rounded-lg text-primary">
+                            <span class="material-symbols-outlined">chat_bubble</span>
+                        </div>
+                        <h3 class="text-xl font-bold">6. Commentaires et Moderation</h3>
+                    </div>
+                    <div class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed space-y-4 pl-12">
+                        <p>Les commentaires publies sur D5News doivent respecter les regles de la communaute. Tout contenu haineux, discriminatoire, diffamatoire ou illegal sera supprime sans preavis.</p>
+                        <p>D5News utilise un systeme de moderation mixte (IA + humain) pour garantir la qualite des echanges sur la plateforme.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Card -->
+            <div class="mt-10 bg-gradient-to-r from-primary to-[#0d4ea3] rounded-xl p-8 text-white">
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div class="p-4 bg-white/10 rounded-xl">
+                        <span class="material-symbols-outlined text-4xl">support_agent</span>
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <h4 class="text-xl font-bold mb-2">Une question juridique ?</h4>
+                        <p class="text-white/80 text-sm">Notre equipe juridique est disponible pour repondre a toutes vos questions concernant nos conditions d'utilisation et notre politique de confidentialite.</p>
+                    </div>
+                    <button class="px-8 py-3 bg-white text-primary font-bold rounded-lg hover:bg-slate-100 transition-colors flex-shrink-0">
+                        Nous contacter
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark py-10 px-6 md:px-20 lg:px-40">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="mb-4">
+                    <img src="images/logo.png" alt="D5News" class="h-7"/>
+                </div>
+            <div class="flex gap-8 text-sm text-slate-500 dark:text-slate-400">
+                <a class="hover:text-primary transition-colors" href="#">A propos</a>
+                <a class="hover:text-primary transition-colors text-primary font-bold" href="legal.html">Mentions legales</a>
+                <a class="hover:text-primary transition-colors" href="#">Contact</a>
+                <a class="hover:text-primary transition-colors" href="#">Publicite</a>
+            </div>
+        </div>
+        <p class="text-center text-xs text-slate-400 mt-8">© 2024 D5News. Tous droits reserves. Propulse par la Tech Africaine.</p>
+    </footer>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

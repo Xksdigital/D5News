@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>D5News Admin - Parametres Systeme</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/shared.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f58bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101822",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "system-ui", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+
+    <!-- Sidebar Overlay (mobile) -->
+    <div id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 lg:flex flex-col flex-shrink-0 hidden">
+        <div class="p-6 flex items-center gap-3">
+            <img src="images/logo.png" alt="D5News" class="h-7"/>
+            <div>
+                <p class="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Administration</p>
+            </div>
+        </div>
+        <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+            <a data-nav="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="index.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="text-sm font-medium">Dashboard</span>
+            </a>
+            <a data-nav="users.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="users.html">
+                <span class="material-symbols-outlined">group</span>
+                <span class="text-sm font-medium">Utilisateurs</span>
+            </a>
+            <a data-nav="editorial.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="editorial.html">
+                <span class="material-symbols-outlined">article</span>
+                <span class="text-sm font-medium">Contenu</span>
+            </a>
+            <a data-nav="partners.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="partners.html">
+                <span class="material-symbols-outlined">handshake</span>
+                <span class="text-sm font-medium">Partenaires</span>
+            </a>
+            <a data-nav="radio.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="radio.html">
+                <span class="material-symbols-outlined">radio</span>
+                <span class="text-sm font-medium">Web Radio</span>
+            </a>
+            <div class="pt-4 pb-2">
+                <p class="px-3 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Systeme</p>
+            </div>
+            <a data-nav="settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="settings.html">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="text-sm font-medium">Parametres</span>
+            </a>
+            <a data-nav="logs.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="logs.html">
+                <span class="material-symbols-outlined">history_edu</span>
+                <span class="text-sm font-medium">Logs d'activite</span>
+            </a>
+            <a data-nav="integrations.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="integrations.html">
+                <span class="material-symbols-outlined">hub</span>
+                <span class="text-sm font-medium">Integrations</span>
+            </a>
+        </nav>
+        <div class="p-4 border-t border-slate-200 dark:border-slate-800 space-y-3">
+            <a href="home.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+                <span class="material-symbols-outlined">language</span>
+                <span class="text-sm font-semibold">Voir le site</span>
+                <span class="material-symbols-outlined text-sm ml-auto">open_in_new</span>
+            </a>
+            <div class="flex items-center gap-3 p-2">
+                <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">AC</div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold truncate">Alex Chen</p>
+                    <p class="text-xs text-slate-500 truncate">Super Admin</p>
+                </div>
+                <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <span class="material-symbols-outlined text-xl">logout</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col overflow-y-auto">
+        <!-- Header -->
+        <header class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-10 px-6 flex items-center justify-between flex-shrink-0">
+            <div class="flex items-center gap-4 flex-1">
+                <button id="sidebarToggle" class="lg:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="relative max-w-md w-full hidden md:block">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-400 outline-none" placeholder="Rechercher analytics, utilisateurs, articles..." type="text"/>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <button data-lang-toggle class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    <span class="material-symbols-outlined text-lg">language</span>
+                    <span data-lang-display>FR</span>
+                </button>
+                <button data-theme-toggle class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+                </button>
+                <button class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Settings Content -->
+        <div class="p-6 lg:p-10 space-y-8">
+            <!-- Header Section -->
+            <div class="animate-fade-in">
+                <h1 class="text-3xl font-black tracking-tight mb-1">Parametres Systeme</h1>
+                <p class="text-slate-500 dark:text-slate-400">Configurez les parametres globaux de la plateforme D5News.</p>
+            </div>
+
+            <!-- Settings Cards -->
+            <div class="space-y-6 stagger-children">
+
+                <!-- General Settings -->
+                <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
+                        <div class="p-2 bg-blue-100 dark:bg-blue-900/30 text-primary rounded-lg">
+                            <span class="material-symbols-outlined">tune</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Parametres Generaux</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Informations de base du site</p>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-5">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Nom du site</label>
+                            <input type="text" value="D5News" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"/>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Description du site</label>
+                            <textarea rows="3" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all resize-none" placeholder="Decrivez votre plateforme...">Plateforme d'information et de media numerique de nouvelle generation.</textarea>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Langue par defaut</label>
+                                <select class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all">
+                                    <option value="fr" selected>Francais (FR)</option>
+                                    <option value="en">English (EN)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Fuseau horaire</label>
+                                <select class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all">
+                                    <option value="Europe/Paris" selected>Europe/Paris (UTC+1)</option>
+                                    <option value="America/New_York">America/New_York (UTC-5)</option>
+                                    <option value="Asia/Tokyo">Asia/Tokyo (UTC+9)</option>
+                                    <option value="Africa/Lagos">Africa/Lagos (UTC+1)</option>
+                                    <option value="UTC">UTC (UTC+0)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security -->
+                <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
+                        <div class="p-2 bg-red-100 dark:bg-red-900/30 text-red-600 rounded-lg">
+                            <span class="material-symbols-outlined">shield</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Securite</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Authentification et controle d'acces</p>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-5">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-semibold">Authentification a deux facteurs (2FA)</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Exiger la 2FA pour tous les comptes administrateurs</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked/>
+                                <div class="toggle-track"></div>
+                            </label>
+                        </div>
+                        <div class="border-t border-slate-100 dark:border-slate-800 pt-5">
+                            <label class="block text-sm font-semibold mb-2">Expiration de session</label>
+                            <select class="w-full md:w-64 px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all">
+                                <option value="30" selected>30 minutes</option>
+                                <option value="60">1 heure</option>
+                                <option value="120">2 heures</option>
+                            </select>
+                        </div>
+                        <div class="border-t border-slate-100 dark:border-slate-800 pt-5">
+                            <label class="block text-sm font-semibold mb-2">Liste blanche d'adresses IP</label>
+                            <textarea rows="3" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all resize-none font-mono" placeholder="Entrez une adresse IP par ligne...">192.168.1.0/24
+10.0.0.0/8</textarea>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5">Une adresse IP ou un sous-reseau CIDR par ligne. Laissez vide pour autoriser toutes les IP.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email & Notifications -->
+                <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
+                        <div class="p-2 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-lg">
+                            <span class="material-symbols-outlined">mail</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Email & Notifications</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Configuration du serveur de messagerie</p>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-5">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Serveur SMTP</label>
+                                <input type="text" value="smtp.d5news.com" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"/>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Email expediteur</label>
+                                <input type="email" value="noreply@d5news.com" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"/>
+                            </div>
+                        </div>
+                        <div class="border-t border-slate-100 dark:border-slate-800 pt-5">
+                            <a href="#" class="inline-flex items-center gap-2 text-sm text-primary font-semibold hover:underline">
+                                <span class="material-symbols-outlined text-lg">edit_note</span>
+                                Gerer les templates d'emails
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maintenance -->
+                <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
+                        <div class="p-2 bg-amber-100 dark:bg-amber-900/30 text-amber-600 rounded-lg">
+                            <span class="material-symbols-outlined">build</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Maintenance</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Mode maintenance et sauvegardes</p>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-5">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-semibold">Mode Maintenance</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Desactiver l'acces public au site</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox"/>
+                                <div class="toggle-track"></div>
+                            </label>
+                        </div>
+                        <div class="flex items-start gap-3 p-3 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 rounded-lg">
+                            <span class="material-symbols-outlined text-amber-600 text-lg mt-0.5">warning</span>
+                            <p class="text-xs text-amber-700 dark:text-amber-400">Activer le mode maintenance rendra le site inaccessible pour tous les utilisateurs non-administrateurs. Utilisez cette option uniquement lors de mises a jour critiques.</p>
+                        </div>
+                        <div class="border-t border-slate-100 dark:border-slate-800 pt-5 grid grid-cols-1 md:grid-cols-2 gap-5 items-end">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Planification des backups</label>
+                                <select class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all">
+                                    <option value="daily" selected>Quotidien (02:00 UTC)</option>
+                                    <option value="weekly">Hebdomadaire (Dimanche 02:00 UTC)</option>
+                                    <option value="monthly">Mensuel (1er du mois 02:00 UTC)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <button class="flex items-center gap-2 px-4 py-2.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-sm font-bold transition-colors shadow-sm">
+                                    <span class="material-symbols-outlined text-lg">backup</span>
+                                    Lancer un backup manuel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3 pt-4 animate-fade-in">
+                <button class="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-lg text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+                    <span class="material-symbols-outlined text-lg">save</span>
+                    Enregistrer les modifications
+                </button>
+                <button class="flex items-center gap-2 px-6 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-bold shadow-sm hover:shadow transition-all">
+                    Annuler
+                </button>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

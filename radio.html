@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>D5News Admin - Web Radio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/shared.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f58bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101822",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "system-ui", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+
+    <!-- Sidebar Overlay (mobile) -->
+    <div id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 lg:flex flex-col flex-shrink-0 hidden">
+        <div class="p-6 flex items-center gap-3">
+            <img src="images/logo.png" alt="D5News" class="h-7"/>
+            <div>
+                <p class="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Administration</p>
+            </div>
+        </div>
+        <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+            <a data-nav="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="index.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="text-sm font-medium">Dashboard</span>
+            </a>
+            <a data-nav="users.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="users.html">
+                <span class="material-symbols-outlined">group</span>
+                <span class="text-sm font-medium">Utilisateurs</span>
+            </a>
+            <a data-nav="editorial.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="editorial.html">
+                <span class="material-symbols-outlined">article</span>
+                <span class="text-sm font-medium">Contenu</span>
+            </a>
+            <a data-nav="partners.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="partners.html">
+                <span class="material-symbols-outlined">handshake</span>
+                <span class="text-sm font-medium">Partenaires</span>
+            </a>
+            <a data-nav="radio.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="radio.html">
+                <span class="material-symbols-outlined">radio</span>
+                <span class="text-sm font-medium">Web Radio</span>
+            </a>
+            <div class="pt-4 pb-2">
+                <p class="px-3 text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Systeme</p>
+            </div>
+            <a data-nav="settings.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="settings.html">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="text-sm font-medium">Parametres</span>
+            </a>
+            <a data-nav="logs.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="logs.html">
+                <span class="material-symbols-outlined">history_edu</span>
+                <span class="text-sm font-medium">Logs d'activite</span>
+            </a>
+            <a data-nav="integrations.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors" href="integrations.html">
+                <span class="material-symbols-outlined">hub</span>
+                <span class="text-sm font-medium">Integrations</span>
+            </a>
+        </nav>
+        <div class="p-4 border-t border-slate-200 dark:border-slate-800 space-y-3">
+            <a href="home.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+                <span class="material-symbols-outlined">language</span>
+                <span class="text-sm font-semibold">Voir le site</span>
+                <span class="material-symbols-outlined text-sm ml-auto">open_in_new</span>
+            </a>
+            <div class="flex items-center gap-3 p-2">
+                <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">AC</div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold truncate">Alex Chen</p>
+                    <p class="text-xs text-slate-500 truncate">Super Admin</p>
+                </div>
+                <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                    <span class="material-symbols-outlined text-xl">logout</span>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col overflow-y-auto">
+        <!-- Header -->
+        <header class="h-16 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-10 px-6 flex items-center justify-between flex-shrink-0">
+            <div class="flex items-center gap-4 flex-1">
+                <button id="sidebarToggle" class="lg:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <div class="relative max-w-md w-full hidden md:block">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-400 outline-none" placeholder="Rechercher analytics, utilisateurs, articles..." type="text"/>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <button data-lang-toggle class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    <span class="material-symbols-outlined text-lg">language</span>
+                    <span data-lang-display>FR</span>
+                </button>
+                <button data-theme-toggle class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                    <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+                </button>
+                <button class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Radio Content -->
+        <div class="p-6 lg:p-10 space-y-8">
+            <!-- Header Section -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 animate-fade-in">
+                <div>
+                    <h1 class="text-3xl font-black tracking-tight mb-1">Web Radio</h1>
+                    <p class="text-slate-500 dark:text-slate-400">Gerez les flux en direct, la programmation et la mediatheque.</p>
+                </div>
+                <div class="flex gap-3">
+                    <button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-bold shadow-sm hover:shadow transition-all">
+                        <span class="material-symbols-outlined text-lg">history</span>
+                        Historique
+                    </button>
+                    <button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
+                        <span class="material-symbols-outlined text-lg">add</span>
+                        Nouveau Programme
+                    </button>
+                </div>
+            </div>
+
+            <!-- Top Section: Live Stream Status + Now Playing -->
+            <div class="grid grid-cols-1 xl:grid-cols-5 gap-6 stagger-children">
+                <!-- Live Stream Status (3/5) -->
+                <div class="xl:col-span-3 bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <span class="relative flex h-3.5 w-3.5">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500"></span>
+                            </span>
+                            <div>
+                                <h3 class="font-bold text-lg">Live Stream Status</h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Streaming active on EN and FR channels</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="flex items-center gap-2 px-4 py-2 border-2 border-red-500 text-red-500 rounded-lg text-sm font-bold hover:bg-red-500 hover:text-white transition-all">
+                                <span class="material-symbols-outlined text-lg">stop_circle</span>
+                                Stop Stream
+                            </button>
+                            <button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-bold hover:bg-primary/90 transition-all">
+                                <span class="material-symbols-outlined text-lg">settings</span>
+                                Configure Encoder
+                            </button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700/50">
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Current Listeners</p>
+                            <div class="flex items-end gap-2">
+                                <p class="text-2xl font-bold">1,248</p>
+                                <span class="text-emerald-500 text-xs font-bold flex items-center bg-emerald-500/10 px-2 py-0.5 rounded-full mb-1">+12%</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700/50">
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Peak Listeners (Today)</p>
+                            <div class="flex items-end gap-2">
+                                <p class="text-2xl font-bold">3,892</p>
+                                <span class="text-xs text-slate-500 mb-1">at 14:32</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl border border-slate-100 dark:border-slate-700/50">
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Avg Session Duration</p>
+                            <div class="flex items-end gap-2">
+                                <p class="text-2xl font-bold">42m</p>
+                                <span class="text-xs text-emerald-500 font-semibold mb-1">High Retention</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Now Playing (2/5) -->
+                <div class="xl:col-span-2 bg-slate-900 rounded-xl border border-slate-800 shadow-sm overflow-hidden relative">
+                    <!-- Gradient overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-purple-900/20 pointer-events-none"></div>
+                    <div class="relative p-6 flex flex-col h-full">
+                        <div class="flex items-center gap-2 mb-5">
+                            <span class="relative flex h-2.5 w-2.5">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
+                            </span>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-red-400">Now Playing</span>
+                        </div>
+                        <div class="flex gap-4 flex-1">
+                            <!-- Album Art Placeholder -->
+                            <div class="w-20 h-20 rounded-xl bg-gradient-to-br from-primary to-blue-700 flex-shrink-0 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-white/80 text-3xl">radio</span>
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="text-white font-bold text-sm truncate">Morning News Report - Daily Deep Dive</h4>
+                                <p class="text-slate-400 text-xs mt-1">Jean-Pierre - 128kbps AAC</p>
+                            </div>
+                        </div>
+                        <!-- Progress bar -->
+                        <div class="mt-5">
+                            <div class="w-full bg-slate-700 rounded-full h-1.5">
+                                <div class="bg-primary h-1.5 rounded-full" style="width: 65%"></div>
+                            </div>
+                            <div class="flex justify-between mt-2">
+                                <span class="text-[11px] text-slate-400 font-medium">12:45</span>
+                                <span class="text-[11px] text-slate-400 font-medium">18:30</span>
+                            </div>
+                        </div>
+                        <!-- Play Controls -->
+                        <div class="flex items-center justify-center gap-6 mt-4">
+                            <button class="text-slate-400 hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-2xl">skip_previous</span>
+                            </button>
+                            <button class="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:scale-105 transition-transform shadow-lg">
+                                <span class="material-symbols-outlined text-slate-900 text-2xl fill-icon">pause</span>
+                            </button>
+                            <button class="text-slate-400 hover:text-white transition-colors">
+                                <span class="material-symbols-outlined text-2xl">skip_next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Section: Schedule + Media Library -->
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                <!-- Weekly Schedule -->
+                <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                        <div>
+                            <h3 class="font-bold text-lg">Weekly Schedule</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Programming overview for the week</p>
+                        </div>
+                        <button class="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                            <span class="material-symbols-outlined text-base">edit_calendar</span>
+                            Edit
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b border-slate-200 dark:border-slate-800">
+                                    <th class="text-left px-6 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Time</th>
+                                    <th class="text-left px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Monday</th>
+                                    <th class="text-left px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Tuesday</th>
+                                    <th class="text-left px-4 py-3 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Wednesday</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="px-6 py-4 text-xs font-bold text-slate-500 whitespace-nowrap">08:00 AM</td>
+                                    <td class="px-4 py-4">
+                                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                            Early Bird News
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-4">
+                                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                            Early Bird News
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-4">
+                                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                            Le Cafe Politique
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <td class="px-6 py-4 text-xs font-bold text-slate-500 whitespace-nowrap">10:00 AM</td>
+                                    <td class="px-4 py-4">
+                                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                                            Jazz Mornings
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-4">
+                                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                            Le Cafe Politique
+                                        </span>
+                                    </td>
+                                    <td class="px-4 py-4">
+                                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-semibold">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                                            Jazz Mornings
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+                        <a href="#" class="text-primary text-xs font-bold hover:underline flex items-center gap-1">
+                            <span class="material-symbols-outlined text-base">calendar_month</span>
+                            View Full Weekly Calendar
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Media Library -->
+                <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col">
+                    <div class="p-6 border-b border-slate-200 dark:border-slate-800">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-lg">Media Library</h3>
+                            <button class="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-lg text-xs font-bold hover:bg-primary/90 transition-all">
+                                <span class="material-symbols-outlined text-base">upload_file</span>
+                                Upload
+                            </button>
+                        </div>
+                        <!-- Tabs -->
+                        <div class="flex gap-1 bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+                            <button class="flex-1 px-3 py-1.5 rounded-md bg-white dark:bg-slate-700 text-xs font-bold shadow-sm transition-all">All Files</button>
+                            <button class="flex-1 px-3 py-1.5 rounded-md text-xs font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-all">Jingles</button>
+                            <button class="flex-1 px-3 py-1.5 rounded-md text-xs font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-all">Advertisements</button>
+                            <button class="flex-1 px-3 py-1.5 rounded-md text-xs font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-all">Auto-Playlists</button>
+                        </div>
+                    </div>
+                    <div class="flex-1 divide-y divide-slate-100 dark:divide-slate-800">
+                        <!-- File Item 1 -->
+                        <div class="group p-4 flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors table-row-hover">
+                            <button class="w-9 h-9 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 hover:bg-primary hover:text-white transition-all">
+                                <span class="material-symbols-outlined text-lg fill-icon">play_arrow</span>
+                            </button>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-semibold truncate">D5News_Morning_Jingle_v2.mp3</p>
+                                <p class="text-xs text-slate-500 mt-0.5">0:15 &middot; Jingles &middot; 12.4 MB</p>
+                            </div>
+                            <div class="row-actions opacity-0 flex items-center gap-1 transition-opacity">
+                                <button class="p-1.5 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors">
+                                    <span class="material-symbols-outlined text-lg">edit</span>
+                                </button>
+                                <button class="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
+                                    <span class="material-symbols-outlined text-lg">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- File Item 2 -->
+                        <div class="group p-4 flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors table-row-hover">
+                            <button class="w-9 h-9 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 hover:bg-primary hover:text-white transition-all">
+                                <span class="material-symbols-outlined text-lg fill-icon">play_arrow</span>
+                            </button>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-semibold truncate">Breaking_News_Intro_Orchestral.wav</p>
+                                <p class="text-xs text-slate-500 mt-0.5">0:08 &middot; News Bumpers &middot; 4.2 MB</p>
+                            </div>
+                            <div class="row-actions opacity-0 flex items-center gap-1 transition-opacity">
+                                <button class="p-1.5 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors">
+                                    <span class="material-symbols-outlined text-lg">edit</span>
+                                </button>
+                                <button class="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
+                                    <span class="material-symbols-outlined text-lg">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- File Item 3 -->
+                        <div class="group p-4 flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors table-row-hover">
+                            <button class="w-9 h-9 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 hover:bg-primary hover:text-white transition-all">
+                                <span class="material-symbols-outlined text-lg fill-icon">play_arrow</span>
+                            </button>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-semibold truncate">Ad_Space_Automotive_Client_30s.mp3</p>
+                                <p class="text-xs text-slate-500 mt-0.5">0:30 &middot; Commercials &middot; 1.5 MB</p>
+                            </div>
+                            <div class="row-actions opacity-0 flex items-center gap-1 transition-opacity">
+                                <button class="p-1.5 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors">
+                                    <span class="material-symbols-outlined text-lg">edit</span>
+                                </button>
+                                <button class="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
+                                    <span class="material-symbols-outlined text-lg">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- File Item 4 -->
+                        <div class="group p-4 flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors table-row-hover">
+                            <button class="w-9 h-9 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 hover:bg-primary hover:text-white transition-all">
+                                <span class="material-symbols-outlined text-lg fill-icon">play_arrow</span>
+                            </button>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-semibold truncate">Station_ID_Top_Of_Hour_FR.mp3</p>
+                                <p class="text-xs text-slate-500 mt-0.5">0:12 &middot; Station IDs &middot; 2.8 MB</p>
+                            </div>
+                            <div class="row-actions opacity-0 flex items-center gap-1 transition-opacity">
+                                <button class="p-1.5 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors">
+                                    <span class="material-symbols-outlined text-lg">edit</span>
+                                </button>
+                                <button class="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
+                                    <span class="material-symbols-outlined text-lg">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Stats Row -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 stagger-children">
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="p-2.5 bg-blue-100 dark:bg-blue-900/30 text-primary rounded-lg">
+                            <span class="material-symbols-outlined">folder</span>
+                        </div>
+                    </div>
+                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Library Size</p>
+                    <p class="text-2xl font-bold mt-1">142.8 GB</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="p-2.5 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-lg">
+                            <span class="material-symbols-outlined">cloud_upload</span>
+                        </div>
+                    </div>
+                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Bandwidth Used</p>
+                    <p class="text-2xl font-bold mt-1">1.2 TB/mo</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="p-2.5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-lg">
+                            <span class="material-symbols-outlined">timer</span>
+                        </div>
+                    </div>
+                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Station Uptime</p>
+                    <p class="text-2xl font-bold mt-1">99.98%</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="p-2.5 bg-orange-100 dark:bg-orange-900/30 text-orange-600 rounded-lg">
+                            <span class="material-symbols-outlined">backup</span>
+                        </div>
+                    </div>
+                    <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Auto-Backup</p>
+                    <p class="text-2xl font-bold mt-1">Enabled</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

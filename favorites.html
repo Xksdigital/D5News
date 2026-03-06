@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>D5News - Mes Favoris</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/shared.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#0f58bd", "background-light": "#f6f7f8", "background-dark": "#101822" },
+                    fontFamily: { "display": ["Inter", "system-ui", "sans-serif"] },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex flex-col min-h-screen">
+    <!-- Public Header -->
+    <header class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 md:px-20 lg:px-40 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <a href="home.html" class="flex items-center">
+                    <img src="images/logo.png" alt="D5News" class="h-8"/>
+                </a>
+                <nav class="hidden lg:flex items-center gap-6">
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Politique</a>
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Economie</a>
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Culture</a>
+                    <a class="text-slate-600 dark:text-slate-300 text-sm font-semibold hover:text-primary transition-colors" href="#">Afrique</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="hidden md:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg px-3 py-2 w-56">
+                    <span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+                    <input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-slate-400 outline-none ml-2" placeholder="Rechercher..." type="text"/>
+                </div>
+                <button data-lang-toggle class="flex items-center gap-1 px-3 py-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold hover:bg-primary/10 transition-colors">
+                    <span data-lang-display>FR</span>
+                </button>
+                <button data-theme-toggle class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
+                    <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+                </button>
+                <div class="w-10 h-10 rounded-full bg-primary/20 border-2 border-primary/30 flex items-center justify-center text-primary font-bold text-sm">JD</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 px-6 md:px-20 lg:px-40 py-10">
+        <div class="max-w-7xl mx-auto">
+            <!-- Page Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+                <div>
+                    <h2 class="text-3xl font-black tracking-tight">Mes Favoris</h2>
+                    <p class="text-slate-500 dark:text-slate-400 mt-1">Retrouvez tous les articles que vous avez sauvegardes.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <select class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm py-2 pl-4 pr-10 focus:ring-2 focus:ring-primary/50 outline-none">
+                        <option>Tous les articles</option>
+                        <option>Politique</option>
+                        <option>Economie</option>
+                        <option>Tech</option>
+                        <option>Afrique</option>
+                    </select>
+                    <div class="flex bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+                        <button class="p-2 rounded-md bg-white dark:bg-slate-700 shadow-sm text-primary">
+                            <span class="material-symbols-outlined text-xl">grid_view</span>
+                        </button>
+                        <button class="p-2 rounded-md text-slate-400">
+                            <span class="material-symbols-outlined text-xl">view_list</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Favorites Count -->
+            <div class="flex items-center gap-2 mb-6">
+                <span class="material-symbols-outlined text-primary fill-icon">bookmark</span>
+                <span class="text-sm font-bold text-slate-500 dark:text-slate-400">12 articles sauvegardes</span>
+            </div>
+
+            <!-- Articles Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 stagger-children">
+                <!-- Article Card 1 -->
+                <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&h=250&fit=crop&q=80" alt="Technologies vertes Afrique" class="w-full h-full object-cover"/>
+                        <button class="absolute top-3 right-3 p-2 bg-white/90 dark:bg-slate-900/90 rounded-lg text-primary hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined fill-icon text-xl">bookmark</span>
+                        </button>
+                        <span class="absolute bottom-3 left-3 px-2 py-1 bg-primary text-white text-[10px] font-bold rounded uppercase tracking-wider">Afrique</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">L'essor des technologies vertes en Afrique de l'Ouest</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Par Amadou Diallo - Il y a 2h</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-2">Alors que le monde se tourne vers la transition energetique, l'Afrique de l'Ouest emerge comme un laboratoire d'innovation...</p>
+                        <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 12.4K</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 24</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 8 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article Card 2 -->
+                <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=400&h=250&fit=crop&q=80" alt="IA dans le journalisme" class="w-full h-full object-cover"/>
+                        <button class="absolute top-3 right-3 p-2 bg-white/90 dark:bg-slate-900/90 rounded-lg text-primary hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined fill-icon text-xl">bookmark</span>
+                        </button>
+                        <span class="absolute bottom-3 left-3 px-2 py-1 bg-purple-600 text-white text-[10px] font-bold rounded uppercase tracking-wider">Tech</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">Le futur de l'IA dans le journalisme moderne</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Par Sarah Jenkins - Il y a 5h</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-2">L'intelligence artificielle transforme la maniere dont les medias produisent et distribuent l'information...</p>
+                        <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 8.2K</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 18</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 6 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article Card 3 -->
+                <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&h=250&fit=crop&q=80" alt="Marches emergents" class="w-full h-full object-cover"/>
+                        <button class="absolute top-3 right-3 p-2 bg-white/90 dark:bg-slate-900/90 rounded-lg text-primary hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined fill-icon text-xl">bookmark</span>
+                        </button>
+                        <span class="absolute bottom-3 left-3 px-2 py-1 bg-emerald-600 text-white text-[10px] font-bold rounded uppercase tracking-wider">Finance</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">Nouvelle politique economique : impacts sur les marches emergents</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Par Michael Ross - Hier</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-2">Les nouvelles mesures economiques pourraient redessiner les equilibres financiers en Afrique et en Europe...</p>
+                        <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 15.1K</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 31</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 10 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article Card 4 -->
+                <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&h=250&fit=crop&q=80" alt="Sport feminin France" class="w-full h-full object-cover"/>
+                        <button class="absolute top-3 right-3 p-2 bg-white/90 dark:bg-slate-900/90 rounded-lg text-primary hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined fill-icon text-xl">bookmark</span>
+                        </button>
+                        <span class="absolute bottom-3 left-3 px-2 py-1 bg-amber-600 text-white text-[10px] font-bold rounded uppercase tracking-wider">Sports</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">La montee du sport feminin en France : un tournant historique</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Par Claire Martin - Il y a 2j</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-2">Le sport feminin connait une croissance sans precedent en France, avec des audiences record et de nouveaux sponsors...</p>
+                        <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 22.7K</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 45</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 7 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article Card 5 -->
+                <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=400&h=250&fit=crop&q=80" alt="Sante mentale therapeutiques" class="w-full h-full object-cover"/>
+                        <button class="absolute top-3 right-3 p-2 bg-white/90 dark:bg-slate-900/90 rounded-lg text-primary hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined fill-icon text-xl">bookmark</span>
+                        </button>
+                        <span class="absolute bottom-3 left-3 px-2 py-1 bg-rose-600 text-white text-[10px] font-bold rounded uppercase tracking-wider">Sante</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">Sante mentale : les nouvelles approches therapeutiques en 2024</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Par Dr. Marie Lefevre - Il y a 3j</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-2">De nouvelles approches therapeutiques revolutionnent la prise en charge de la sante mentale...</p>
+                        <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 6.8K</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 12</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 5 min</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article Card 6 -->
+                <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden group hover:shadow-lg transition-all">
+                    <div class="aspect-video relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=400&h=250&fit=crop&q=80" alt="Elections Afrique de l'Ouest" class="w-full h-full object-cover"/>
+                        <button class="absolute top-3 right-3 p-2 bg-white/90 dark:bg-slate-900/90 rounded-lg text-primary hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined fill-icon text-xl">bookmark</span>
+                        </button>
+                        <span class="absolute bottom-3 left-3 px-2 py-1 bg-sky-600 text-white text-[10px] font-bold rounded uppercase tracking-wider">Politique</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors">Elections 2024 : les enjeux geopolitiques en Afrique de l'Ouest</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">Par Ibrahim Kone - Il y a 4j</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-3 line-clamp-2">Les prochaines elections dans plusieurs pays ouest-africains pourraient redefinir les alliances regionales...</p>
+                        <div class="flex items-center gap-4 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">visibility</span> 19.3K</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">chat_bubble</span> 67</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> 12 min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More -->
+            <div class="text-center mt-10">
+                <button class="px-8 py-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-bold hover:shadow-md transition-all">
+                    Charger plus d'articles
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark py-10 px-6 md:px-20 lg:px-40">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="mb-4">
+                    <img src="images/logo.png" alt="D5News" class="h-7"/>
+                </div>
+            <div class="flex gap-8 text-sm text-slate-500 dark:text-slate-400">
+                <a class="hover:text-primary transition-colors" href="#">A propos</a>
+                <a class="hover:text-primary transition-colors" href="legal.html">Mentions legales</a>
+                <a class="hover:text-primary transition-colors" href="#">Contact</a>
+                <a class="hover:text-primary transition-colors" href="#">Publicite</a>
+            </div>
+        </div>
+        <p class="text-center text-xs text-slate-400 mt-8">© 2024 D5News. Tous droits reserves.</p>
+    </footer>
+</div>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>D5News - L'essor des technologies vertes en Afrique de l'Ouest</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="css/shared.css" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0f58bd",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101822",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "system-ui", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+
+    <!-- Public Header -->
+    <header class="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-30 flex-shrink-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="h-16 flex items-center justify-between">
+                <!-- Logo & Nav -->
+                <div class="flex items-center gap-8">
+                    <a href="home.html" class="flex items-center flex-shrink-0">
+                        <img src="images/logo.png" alt="D5News" class="h-8"/>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-1">
+                        <a href="#" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded-lg">Politique</a>
+                        <a href="#" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded-lg">Economie</a>
+                        <a href="#" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded-lg">Culture</a>
+                        <a href="#" class="px-3 py-2 text-sm font-semibold text-primary border-b-2 border-primary rounded-none">Afrique</a>
+                    </nav>
+                </div>
+                <!-- Right Controls -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <div class="relative hidden lg:block">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+                        <input class="w-52 pl-9 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-400 outline-none" placeholder="Rechercher..." type="text"/>
+                    </div>
+                    <button class="lg:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                    <button data-lang-toggle class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                        <span data-lang-display>FR</span>
+                    </button>
+                    <button id="textSizeBtn" class="hidden sm:flex p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" title="Taille du texte">
+                        <span class="material-symbols-outlined text-lg">text_fields</span>
+                    </button>
+                    <button data-theme-toggle class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                        <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
+                        <span class="material-symbols-outlined hidden dark:block">light_mode</span>
+                    </button>
+                    <a href="profile.html" class="w-9 h-9 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs flex-shrink-0">
+                        JD
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+
+            <!-- Breadcrumbs -->
+            <nav class="mb-6 animate-fade-in">
+                <ol class="flex items-center gap-2 text-sm text-slate-400 dark:text-slate-500">
+                    <li><a href="#" class="hover:text-primary transition-colors">Accueil</a></li>
+                    <li><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+                    <li><a href="#" class="hover:text-primary transition-colors">Afrique</a></li>
+                    <li><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+                    <li class="text-slate-600 dark:text-slate-300 font-medium">Economie</li>
+                </ol>
+            </nav>
+
+            <!-- Article + Sidebar Layout -->
+            <div class="flex flex-col lg:flex-row gap-8">
+
+                <!-- Article Column -->
+                <article class="flex-1 max-w-3xl animate-fade-in">
+
+                    <!-- Hero Image -->
+                    <div class="aspect-video rounded-2xl overflow-hidden mb-4">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1000&h=500&fit=crop&q=80" alt="Panneaux solaires en Afrique - Technologies vertes" class="w-full h-full object-cover"/>
+                    </div>
+                    <p class="text-xs text-slate-400 dark:text-slate-500 mb-6">Photo: Reuters / Amadou Keita - Panneaux solaires a Dakar, Senegal</p>
+
+                    <!-- Reading Controls Bar -->
+                    <div class="flex items-center justify-between p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 mb-8">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-medium text-slate-500 dark:text-slate-400 hidden sm:inline">Ajuster la lecture:</span>
+                            <div class="flex items-center gap-1">
+                                <button onclick="adjustFontSize(-1)" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">A-</button>
+                                <button onclick="adjustFontSize(1)" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-sm font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">A+</button>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <button class="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition-colors" title="Partager sur Twitter">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            </button>
+                            <button class="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition-colors" title="Partager sur Facebook">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            </button>
+                            <button class="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition-colors" title="Copier le lien">
+                                <span class="material-symbols-outlined text-lg">link</span>
+                            </button>
+                            <button class="w-8 h-8 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center justify-center transition-colors" title="Sauvegarder">
+                                <span class="material-symbols-outlined text-lg">bookmark</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Article Title -->
+                    <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-5">
+                        L'essor des technologies vertes en Afrique de l'Ouest
+                    </h1>
+
+                    <!-- Article Metadata -->
+                    <div class="flex flex-wrap items-center gap-4 mb-8 pb-6 border-b border-slate-200 dark:border-slate-800">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-600 font-bold text-sm">AD</div>
+                            <div>
+                                <p class="text-sm font-semibold">Amadou Diallo</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">Correspondant Afrique de l'Ouest</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs text-slate-400 dark:text-slate-500">
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">calendar_today</span>
+                                15 Janvier 2025
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">schedule</span>
+                                8 min de lecture
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Article Body -->
+                    <div id="articleContent" class="article-content text-slate-700 dark:text-slate-300">
+                        <p class="text-lg text-slate-500 dark:text-slate-400 leading-relaxed">
+                            L'Afrique de l'Ouest connait une transformation energetique sans precedent. Des startups innovantes aux investissements massifs des gouvernements, la region se positionne comme un futur leader mondial des energies renouvelables.
+                        </p>
+
+                        <h3>Une revolution energetique en marche</h3>
+                        <p>
+                            Depuis cinq ans, les investissements dans les technologies vertes ont triple en Afrique de l'Ouest. Le Senegal, le Ghana et le Nigeria menent cette transition avec des projets solaires et eoliens d'envergure qui transforment le paysage energetique du continent.
+                        </p>
+                        <p>
+                            Les gouvernements de la region ont adopte des politiques ambitieuses pour attirer les investisseurs internationaux. Des zones economiques speciales dediees aux technologies propres ont ete creees, offrant des avantages fiscaux et un cadre reglementaire favorable.
+                        </p>
+
+                        <!-- Blockquote -->
+                        <blockquote class="border-l-4 border-primary pl-6 py-3 my-8 bg-primary/5 rounded-r-xl">
+                            <p class="text-base italic font-medium text-slate-600 dark:text-slate-300 !mb-2">
+                                "L'Afrique de l'Ouest ne se contente plus de suivre les tendances mondiales - elle les definit. Notre potentiel solaire est le plus eleve au monde, et nous allons l'exploiter pleinement."
+                            </p>
+                            <cite class="text-sm text-slate-500 dark:text-slate-400 not-italic font-semibold">
+                                - Dr. Fatima Ndiaye, Directrice de l'Agence Regionale pour les Energies Renouvelables
+                            </cite>
+                        </blockquote>
+
+                        <h3>L'impact sur l'economie locale</h3>
+                        <p>
+                            Les retombees economiques sont considerables. Plus de 150 000 emplois directs ont ete crees dans le secteur des energies renouvelables au cours des trois dernieres annees. Les communautes rurales, longtemps privees d'electricite, beneficient desormais d'un acces fiable a l'energie grace aux micro-reseaux solaires.
+                        </p>
+
+                        <!-- In-article Ad -->
+                        <div class="my-8 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700/50 relative not-prose">
+                            <div class="absolute top-2 right-2 px-1.5 py-0.5 bg-black/50 text-[9px] text-white/60 rounded uppercase tracking-wider z-10">Publicite</div>
+                            <a href="#" class="block">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=200&fit=crop&q=80" alt="Publicite" class="w-full h-32 object-cover"/>
+                                <div class="p-3 bg-gradient-to-r from-[#0a3f8a] to-[#0f58bd]">
+                                    <p class="text-white font-bold text-sm">AfriTech Solutions - Transformez votre entreprise</p>
+                                    <p class="text-white/70 text-xs">Decouvrez nos solutions cloud adaptees au marche africain.</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- Info Box -->
+                        <div class="my-8 p-6 bg-primary/10 dark:bg-primary/20 rounded-2xl border border-primary/20">
+                            <h4 class="text-sm font-bold text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-lg">bar_chart</span>
+                                Chiffres cles
+                            </h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                                <div>
+                                    <p class="text-2xl font-extrabold text-primary">3.2 GW</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Capacite solaire installee</p>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-extrabold text-primary">150K+</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Emplois crees</p>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-extrabold text-primary">$4.8B</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Investissements 2024</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>
+                            Le secteur prive joue egalement un role crucial. Des entreprises locales comme SolarGen Africa et WindPower West se sont imposees comme des acteurs incontournables, rivalisant avec les multinationales sur les appels d'offres regionaux.
+                        </p>
+                        <p>
+                            Les experts prevoient que d'ici 2030, l'Afrique de l'Ouest pourrait generer plus de 40% de son electricite a partir de sources renouvelables, contre 12% aujourd'hui. Un objectif ambitieux mais realiste, soutenu par une volonte politique forte et un ecosysteme d'innovation florissant.
+                        </p>
+                    </div>
+
+                    <!-- Comments Section -->
+                    <div class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-bold flex items-center gap-2">
+                                <span class="material-symbols-outlined">forum</span>
+                                Commentaires
+                                <span class="text-sm font-medium text-slate-400 dark:text-slate-500">(24)</span>
+                            </h3>
+                        </div>
+
+                        <!-- Premium Lock Notice -->
+                        <div class="bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700 p-6 text-center mb-6">
+                            <span class="material-symbols-outlined text-3xl text-slate-400 dark:text-slate-500 mb-2">lock</span>
+                            <h4 class="text-sm font-bold mb-1">Commentaires Premium</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Rejoignez D5News Premium pour participer aux discussions et acceder a tous les commentaires.</p>
+                            <a href="subscription.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 transition-colors">
+                                <span class="material-symbols-outlined text-lg">star</span>
+                                Devenir Premium
+                            </a>
+                        </div>
+
+                        <!-- Sample Comments -->
+                        <div class="space-y-5">
+                            <div class="flex gap-3">
+                                <div class="w-9 h-9 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-600 font-bold text-xs flex-shrink-0">MK</div>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="text-sm font-semibold">Marie Konaté</span>
+                                        <span class="px-1.5 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded">PREMIUM</span>
+                                        <span class="text-xs text-slate-400">il y a 3h</span>
+                                    </div>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Excellent article ! Il est encourageant de voir que l'Afrique de l'Ouest prend les devants sur ces questions essentielles.</p>
+                                    <div class="flex items-center gap-4 mt-2">
+                                        <button class="flex items-center gap-1 text-xs text-slate-400 hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined text-sm">thumb_up</span> 12
+                                        </button>
+                                        <button class="flex items-center gap-1 text-xs text-slate-400 hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined text-sm">reply</span> Repondre
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="w-9 h-9 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-600 font-bold text-xs flex-shrink-0">OT</div>
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span class="text-sm font-semibold">Ousmane Traore</span>
+                                        <span class="px-1.5 py-0.5 bg-primary/10 text-primary text-[10px] font-bold rounded">PREMIUM</span>
+                                        <span class="text-xs text-slate-400">il y a 5h</span>
+                                    </div>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Les chiffres sur les emplois crees sont impressionnants. J'aimerais voir une analyse plus detaillee par pays.</p>
+                                    <div class="flex items-center gap-4 mt-2">
+                                        <button class="flex items-center gap-1 text-xs text-slate-400 hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined text-sm">thumb_up</span> 8
+                                        </button>
+                                        <button class="flex items-center gap-1 text-xs text-slate-400 hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined text-sm">reply</span> Repondre
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Sidebar -->
+                <aside class="w-full lg:w-80 flex-shrink-0 space-y-6">
+
+                    <!-- Related Articles -->
+                    <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5">
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">Articles Connexes</h3>
+                        <div class="space-y-4">
+                            <a href="#" class="flex gap-3 group">
+                                <div class="w-20 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                                    <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=100&h=100&fit=crop&q=80" alt="Energie verte" class="w-full h-full object-cover"/>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="text-sm font-semibold line-clamp-2 group-hover:text-primary transition-colors">Le Ghana investit $2B dans les infrastructures solaires</h4>
+                                    <p class="text-xs text-slate-400 mt-1">12 Jan 2025</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex gap-3 group">
+                                <div class="w-20 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                                    <img src="https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=100&h=100&fit=crop&q=80" alt="Nigeria tech" class="w-full h-full object-cover"/>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="text-sm font-semibold line-clamp-2 group-hover:text-primary transition-colors">Startups vertes : le Nigeria en pointe</h4>
+                                    <p class="text-xs text-slate-400 mt-1">10 Jan 2025</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex gap-3 group">
+                                <div class="w-20 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                                    <img src="https://images.unsplash.com/photo-1569163139394-de4e4f43e4e3?w=100&h=100&fit=crop&q=80" alt="COP29 climat" class="w-full h-full object-cover"/>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="text-sm font-semibold line-clamp-2 group-hover:text-primary transition-colors">COP29 : les engagements de l'Afrique de l'Ouest</h4>
+                                    <p class="text-xs text-slate-400 mt-1">8 Jan 2025</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Most Read -->
+                    <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5">
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">Plus lus</h3>
+                        <div class="space-y-4">
+                            <a href="#" class="flex items-start gap-3 group">
+                                <span class="text-2xl font-extrabold text-primary/30">01</span>
+                                <div>
+                                    <h4 class="text-sm font-semibold leading-snug group-hover:text-primary transition-colors">Elections au Senegal : les enjeux du second tour</h4>
+                                    <p class="text-xs text-slate-400 mt-1">2.4K vues</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-start gap-3 group">
+                                <span class="text-2xl font-extrabold text-primary/30">02</span>
+                                <div>
+                                    <h4 class="text-sm font-semibold leading-snug group-hover:text-primary transition-colors">La montee de l'intelligence artificielle en Afrique</h4>
+                                    <p class="text-xs text-slate-400 mt-1">1.8K vues</p>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-start gap-3 group">
+                                <span class="text-2xl font-extrabold text-primary/30">03</span>
+                                <div>
+                                    <h4 class="text-sm font-semibold leading-snug group-hover:text-primary transition-colors">Reforme economique : impact sur les marches financiers</h4>
+                                    <p class="text-xs text-slate-400 mt-1">1.5K vues</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Signup -->
+                    <div class="bg-primary rounded-xl p-6 text-white">
+                        <h3 class="text-lg font-bold mb-2">Newsletter D5News</h3>
+                        <p class="text-sm text-white/70 mb-5">Recevez chaque matin les informations essentielles directement dans votre boite mail.</p>
+                        <div class="space-y-3">
+                            <input type="email" placeholder="votre@email.com" class="w-full px-4 py-3 bg-white/15 border border-white/20 rounded-xl text-sm placeholder:text-white/50 focus:ring-2 focus:ring-white/30 focus:bg-white/20 transition-all outline-none"/>
+                            <button class="w-full py-3 bg-white text-primary font-bold text-sm rounded-xl hover:bg-white/90 transition-colors">
+                                S'abonner gratuitement
+                            </button>
+                        </div>
+                        <p class="text-[10px] text-white/50 mt-3">En vous inscrivant, vous acceptez notre politique de confidentialite.</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <!-- Logo -->
+                <div class="flex items-center gap-2.5">
+                    <img src="images/logo.png" alt="D5News" class="h-7"/>
+                </div>
+                <!-- Links -->
+                <nav class="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500 dark:text-slate-400">
+                    <a href="#" class="hover:text-primary transition-colors">A propos</a>
+                    <a href="#" class="hover:text-primary transition-colors">Contact</a>
+                    <a href="#" class="hover:text-primary transition-colors">Mentions legales</a>
+                    <a href="#" class="hover:text-primary transition-colors">Publicite</a>
+                </nav>
+                <!-- Social Icons -->
+                <div class="flex items-center gap-3">
+                    <a href="#" class="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-primary hover:bg-primary/10 transition-all">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-primary hover:bg-primary/10 transition-all">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-primary hover:bg-primary/10 transition-all">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 text-center">
+                <p class="text-xs text-slate-400 dark:text-slate-500">&copy; 2024 D5News Media Group. Tous droits reserves.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        let currentFontSize = 17; // default 1.0625rem in px
+        function adjustFontSize(delta) {
+            currentFontSize = Math.max(14, Math.min(24, currentFontSize + delta));
+            const content = document.getElementById('articleContent');
+            if (content) {
+                content.querySelectorAll('p').forEach(p => {
+                    p.style.fontSize = currentFontSize + 'px';
+                });
+            }
+        }
+    </script>
+</body>
+</html>
