@@ -1,42 +1,84 @@
-const http = require('http');
-const fs = require('fs');
+require('dotenv').config();
+const express = require('express');
 const path = require('path');
+const helmet = require('helmet');
+const cors = require('cors');
+const morgan = require('morgan');
+const { initDatabase } = require('./src/database');
 
-const PORT = 3000;
-const MIME_TYPES = {
-    '.html': 'text/html',
-    '.css': 'text/css',
-    '.js': 'application/javascript',
-    '.json': 'application/json',
-    '.png': 'image/png',
-    '.jpg': 'image/jpeg',
-    '.svg': 'image/svg+xml',
-    '.ico': 'image/x-icon',
-};
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-const server = http.createServer((req, res) => {
-    let filePath = path.join(__dirname, req.url === '/' ? 'home.html' : req.url);
-    const ext = path.extname(filePath);
-    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+// Middleware
+app.use(helmet({ contentSecurityPolicy: false, crossOriginEmbedderPolicy: false }));
+app.use(cors());
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
+app.use(express.json());
 
-    fs.readFile(filePath, (err, content) => {
-        if (err) {
-            if (err.code === 'ENOENT') {
-                fs.readFile(path.join(__dirname, '404.html'), (e, c) => {
-                    res.writeHead(404, { 'Content-Type': 'text/html' });
-                    res.end(c || 'Not Found');
-                });
-            } else {
-                res.writeHead(500);
-                res.end('Server Error');
+// Init DB (async) then start server
+initDatabase().then(() => {
+    // API Routes
+    app.use('/api/auth', require('./src/routes/auth'));
+    app.use('/api/articles', require('./src/routes/articles'));
+    app.use('/api/favorites', require('./src/routes/favorites'));
+    app.use('/api/subscriptions', require('./src/routes/subscriptions'));
+    app.use('/api/contacts', require('./src/routes/contacts'));
+    app.use('/api/newsletter', require('./src/routes/newsletter'));
+    app.use('/api/podcasts', require('./src/routes/podcasts'));
+    app.use('/api/radio', require('./src/routes/radio'));
+    app.use('/api/admin/dashboard', require('./src/routes/admin/dashboard'));
+    app.use('/api/admin/articles', require('./src/routes/admin/articles'));
+    app.use('/api/admin/users', require('./src/routes/admin/users'));
+    app.use('/api/admin/contacts', require('./src/routes/admin/contacts'));
+    app.use('/api/admin/newsletter', require('./src/routes/admin/newsletter'));
+    app.use('/api/admin/podcasts', require('./src/routes/admin/podcasts'));
+    app.use('/api/admin/radio', require('./src/routes/admin/radio'));
+    app.use('/api/admin/partners', require('./src/routes/admin/partners'));
+    app.use('/api/admin/logs', require('./src/routes/admin/logs'));
+    app.use('/api/admin/settings', require('./src/routes/admin/settings'));
+
+    // Admin subdomain middleware
+    // Redirects admin.d5newstv.com to serve admin pages
+    app.use((req, res, next) => {
+        const host = req.hostname || req.headers.host;
+        if (host && host.startsWith('admin.')) {
+            // Rewrite root to admin panel
+            if (req.path === '/' || req.path === '') {
+                return res.sendFile(path.join(__dirname, 'admin', 'index.html'));
             }
-        } else {
-            res.writeHead(200, { 'Content-Type': contentType });
-            res.end(content);
+            // If path doesn't start with /admin and isn't an API/asset, prefix with /admin
+            if (!req.path.startsWith('/admin') && !req.path.startsWith('/api') &&
+                !req.path.startsWith('/css') && !req.path.startsWith('/js') &&
+                !req.path.startsWith('/images') && !req.path.startsWith('/fonts')) {
+                req.url = '/admin' + req.url;
+            }
         }
+        next();
     });
-});
 
-server.listen(PORT, () => {
-    console.log(`D5News server running at http://localhost:${PORT}`);
+    // Static files
+    app.use(express.static(path.join(__dirname), { extensions: ['html'] }));
+
+    // Root -> home.html
+    app.get('/', (req, res) => {
+        res.sendFile(path.join(__dirname, 'home.html'));
+    });
+
+    // 404 fallback
+    app.use((req, res) => {
+        res.status(404).sendFile(path.join(__dirname, '404.html'));
+    });
+
+    // Error handler
+    app.use((err, req, res, next) => {
+        console.error(err.stack);
+        res.status(500).sendFile(path.join(__dirname, '500.html'));
+    });
+
+    app.listen(PORT, () => {
+        console.log(`D5News server running at http://localhost:${PORT}`);
+    });
+}).catch(err => {
+    console.error('Failed to initialize database:', err);
+    process.exit(1);
 });

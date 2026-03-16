@@ -4,10 +4,17 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>D5News - Premium</title>
+    <meta name="description" content="Abonnez-vous a D5News Premium pour un acces illimite a l'actualite africaine"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="D5News"/>
+    <meta property="og:title" content="D5News - Premium"/>
+    <meta property="og:description" content="Abonnez-vous a D5News Premium pour un acces illimite a l'actualite africaine"/>
+    <meta property="og:image" content="images/logo.png"/>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link href="css/shared.css" rel="stylesheet"/>
+    <link href="css/shared.min.css" rel="stylesheet"/>
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -264,10 +271,10 @@
                     <img src="images/logo.png" alt="D5News" class="h-7"/>
                 </div>
                 <nav class="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500 dark:text-slate-400">
-                    <a href="#" class="hover:text-primary transition-colors">A propos</a>
-                    <a href="#" class="hover:text-primary transition-colors">Contact</a>
-                    <a href="#" class="hover:text-primary transition-colors">Mentions legales</a>
-                    <a href="#" class="hover:text-primary transition-colors">Publicite</a>
+                    <a href="home.html" class="hover:text-primary transition-colors">Accueil</a>
+                    <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+                    <a href="legal.html" class="hover:text-primary transition-colors">Mentions legales</a>
+                    <a href="subscription.html" class="hover:text-primary transition-colors">Abonnement</a>
                 </nav>
                 <div class="flex items-center gap-3">
                     <a href="#" class="w-9 h-9 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-primary hover:bg-primary/10 transition-all">
@@ -282,12 +289,13 @@
                 </div>
             </div>
             <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 text-center">
-                <p class="text-xs text-slate-400 dark:text-slate-500">&copy; 2024 D5News Media Group. Tous droits reserves.</p>
+                <p class="text-xs text-slate-400 dark:text-slate-500">&copy; 2025 D5News Media Group. Tous droits reserves.</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/app.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.min.js"></script>
     <script>
         function toggleFaq(button) {
             const answer = button.nextElementSibling;

@@ -4,10 +4,17 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>D5News - L'essor des technologies vertes en Afrique de l'Ouest</title>
+    <meta name="description" content="Analyses approfondies et articles de fond sur l'actualite africaine - D5News"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="D5News"/>
+    <meta property="og:title" content="D5News - L'essor des technologies vertes en Afrique de l'Ouest"/>
+    <meta property="og:description" content="Analyses approfondies et articles de fond sur l'actualite africaine - D5News"/>
+    <meta property="og:image" content="images/logo.png"/>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link href="css/shared.css" rel="stylesheet"/>
+    <link href="css/shared.min.css" rel="stylesheet"/>
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -38,11 +45,23 @@
                     <a href="home.html" class="flex items-center flex-shrink-0">
                         <img src="images/logo.png" alt="D5News" class="h-8"/>
                     </a>
+                    <!-- Direct TV / Web Radio -->
+                    <div class="hidden md:flex items-center gap-2">
+                        <a href="live.html" class="flex items-center gap-1.5 px-3 py-1.5 bg-red-500/10 border border-red-500/20 rounded-lg text-red-500 text-xs font-bold hover:bg-red-500/20 transition-all">
+                            <span class="flex h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                            <span class="material-symbols-outlined text-sm">live_tv</span>
+                            Direct TV
+                        </a>
+                        <a href="live.html" class="flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 border border-primary/20 rounded-lg text-primary text-xs font-bold hover:bg-primary/20 transition-all">
+                            <span class="material-symbols-outlined text-sm">radio</span>
+                            Web Radio
+                        </a>
+                    </div>
                     <nav class="hidden md:flex items-center gap-1">
-                        <a href="#" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded-lg">Politique</a>
-                        <a href="#" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded-lg">Economie</a>
-                        <a href="#" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded-lg">Culture</a>
-                        <a href="#" class="px-3 py-2 text-sm font-semibold text-primary border-b-2 border-primary rounded-none">Afrique</a>
+                        <a href="category.html" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded-lg">Politique</a>
+                        <a href="category.html" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded-lg">Economie</a>
+                        <a href="category.html" class="px-3 py-2 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors rounded-lg">Culture</a>
+                        <a href="category.html" class="px-3 py-2 text-sm font-semibold text-primary border-b-2 border-primary rounded-none">Afrique</a>
                     </nav>
                 </div>
                 <!-- Right Controls -->
@@ -378,10 +397,10 @@
                 </div>
                 <!-- Links -->
                 <nav class="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500 dark:text-slate-400">
-                    <a href="#" class="hover:text-primary transition-colors">A propos</a>
-                    <a href="#" class="hover:text-primary transition-colors">Contact</a>
-                    <a href="#" class="hover:text-primary transition-colors">Mentions legales</a>
-                    <a href="#" class="hover:text-primary transition-colors">Publicite</a>
+                    <a href="home.html" class="hover:text-primary transition-colors">Accueil</a>
+                    <a href="contact.html" class="hover:text-primary transition-colors">Contact</a>
+                    <a href="legal.html" class="hover:text-primary transition-colors">Mentions legales</a>
+                    <a href="subscription.html" class="hover:text-primary transition-colors">Abonnement</a>
                 </nav>
                 <!-- Social Icons -->
                 <div class="flex items-center gap-3">
@@ -397,12 +416,13 @@
                 </div>
             </div>
             <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 text-center">
-                <p class="text-xs text-slate-400 dark:text-slate-500">&copy; 2024 D5News Media Group. Tous droits reserves.</p>
+                <p class="text-xs text-slate-400 dark:text-slate-500">&copy; 2025 D5News Media Group. Tous droits reserves.</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/app.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/app.min.js"></script>
     <script>
         let currentFontSize = 17; // default 1.0625rem in px
         function adjustFontSize(delta) {

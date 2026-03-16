@@ -120,11 +120,6 @@
 .stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
 .stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
 
-/* Chart gradient */
-.chart-gradient {
-    background: linear-gradient(180deg, rgba(15, 88, 189, 0.08) 0%, rgba(15, 88, 189, 0) 100%);
-}
-
 /* Toggle switch */
 .toggle-switch {
     position: relative;
@@ -186,4 +181,138 @@
 @media print {
     #sidebar, header, footer, .no-print { display: none !important; }
     main { margin: 0 !important; padding: 1rem !important; }
+}
+
+/* ========================================
+   Styles from home.html
+   ======================================== */
+
+/* Ticker scroll animation */
+@keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.ticker-animate { animation: ticker-scroll 40s linear infinite; }
+
+/* Hero gradient */
+.hero-gradient { background: linear-gradient(135deg, #0f58bd20 0%, #101822 60%); }
+
+/* Sub-navigation scrollbar hiding */
+.subnav-scroll { scrollbar-width: none; -ms-overflow-style: none; }
+.subnav-scroll::-webkit-scrollbar { display: none; }
+
+/* Live border pulse animation */
+@keyframes pulse-live-border {
+    0%, 100% { border-color: rgba(239,68,68,0.3); }
+    50% { border-color: rgba(239,68,68,0.7); }
+}
+.live-border-pulse { animation: pulse-live-border 2s ease-in-out infinite; }
+
+/* Equalizer bar animation */
+@keyframes eq-bar {
+    0%, 100% { height: 4px; }
+    50% { height: 16px; }
+}
+.eq-bar { animation: eq-bar 0.8s ease-in-out infinite; }
+.eq-bar:nth-child(2) { animation-delay: 0.15s; }
+.eq-bar:nth-child(3) { animation-delay: 0.3s; }
+.eq-bar:nth-child(4) { animation-delay: 0.1s; }
+
+/* ========================================
+   Styles from live.html
+   ======================================== */
+
+/* Audio wave animation */
+.audio-wave {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 30px;
+}
+.wave-bar {
+    width: 3px;
+    background: #0f58bd;
+    border-radius: 1px;
+    animation: waveAnim 1.2s ease-in-out infinite;
+}
+.wave-bar:nth-child(1) { animation-delay: 0s; }
+.wave-bar:nth-child(2) { animation-delay: 0.15s; }
+.wave-bar:nth-child(3) { animation-delay: 0.3s; }
+.wave-bar:nth-child(4) { animation-delay: 0.45s; }
+.wave-bar:nth-child(5) { animation-delay: 0.6s; }
+
+@keyframes waveAnim {
+    0%, 100% { transform: scaleY(0.5); }
+    50% { transform: scaleY(1); }
+}
+
+/* News ticker scroll animation (live) */
+@keyframes scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+.animate-scroll {
+    animation: scroll 30s linear infinite;
+}
+
+/* Custom scrollbar for chat */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #0f58bd;
+}
+
+/* ========================================
+   Styles from podcast.html
+   ======================================== */
+
+/* Filled icon variant */
+.filled-icon { font-variation-settings: 'FILL' 1; }
+
+/* Wave equalizer animation */
+.wave-eq { display: flex; align-items: flex-end; gap: 2px; height: 20px; }
+.wave-eq span { width: 3px; background: #0f58bd; border-radius: 1px; animation: eqBounce 0.8s ease-in-out infinite alternate; }
+.wave-eq span:nth-child(1) { height: 40%; animation-delay: 0s; }
+.wave-eq span:nth-child(2) { height: 80%; animation-delay: 0.15s; }
+.wave-eq span:nth-child(3) { height: 50%; animation-delay: 0.3s; }
+.wave-eq span:nth-child(4) { height: 90%; animation-delay: 0.1s; }
+.wave-eq span:nth-child(5) { height: 60%; animation-delay: 0.25s; }
+@keyframes eqBounce {
+    0% { transform: scaleY(0.3); }
+    100% { transform: scaleY(1); }
+}
+
+/* ========================================
+   Homepage Carousel & Category Sections
+   ======================================== */
+
+/* Category carousel */
+.carousel-track {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Cookie popup animation */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.cookie-popup-animate {
+    animation: slideUp 0.4s ease-out forwards;
+}
+
+/* Cookie popup overlay fade */
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.cookie-overlay-animate {
+    animation: fadeInOverlay 0.3s ease-out forwards;
 }
