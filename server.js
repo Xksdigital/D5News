@@ -66,13 +66,19 @@ initDatabase().then(() => {
         res.json({ success: true });
     });
 
-    // Admin subdomain middleware
+    // Paths
+    const REACT_DIST = path.join(__dirname, 'd5news-react', 'dist');
+    const ADMIN_DIR = __dirname; // Admin pages are at root level
+
+    // Admin subdomain middleware - serve admin pages from root
     app.use((req, res, next) => {
         const host = req.hostname || req.headers.host;
         if (host && host.startsWith('admin.')) {
             if (req.path === '/' || req.path === '') {
-                return res.sendFile(path.join(__dirname, 'index.html'));
+                return res.sendFile(path.join(ADMIN_DIR, 'index.html'));
             }
+            // Serve admin static files (css, js, images) from root
+            return express.static(ADMIN_DIR, { extensions: ['html'], index: false })(req, res, next);
         }
         next();
     });
@@ -80,14 +86,11 @@ initDatabase().then(() => {
     // Coming Soon middleware - intercept public site when enabled
     app.use((req, res, next) => {
         const host = req.hostname || req.headers.host;
-        // Skip for admin subdomain, API routes, and static assets
         if (host && host.startsWith('admin.')) return next();
         if (req.path.startsWith('/api/')) return next();
-        if (req.path.startsWith('/css/') || req.path.startsWith('/js/') || req.path.startsWith('/images/') || req.path.startsWith('/fonts/')) return next();
+        if (req.path.startsWith('/assets/')) return next();
         if (req.path === '/coming-soon' || req.path === '/coming-soon.html') return next();
-        if (req.path === '/sw.js' || req.path === '/favicon.ico' || req.path.endsWith('.svg')) return next();
 
-        // Check if coming soon is enabled
         const { db } = require('./src/database');
         try {
             const row = db.prepare("SELECT value FROM settings WHERE key = 'coming_soon'").get();
@@ -97,27 +100,33 @@ initDatabase().then(() => {
                     return res.sendFile(path.join(__dirname, 'coming-soon.html'));
                 }
             }
-        } catch (e) { /* ignore, serve normal site */ }
+        } catch (e) { /* ignore */ }
         next();
     });
 
-    // Static files
-    app.use(express.static(path.join(__dirname), { extensions: ['html'], index: false }));
+    // Public site: serve React build from d5news-react/dist
+    app.use(express.static(REACT_DIST));
 
-    // Root -> home.html
-    app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, 'home.html'));
+    // Also serve root-level static files (images, css, js for admin/coming-soon)
+    app.use(express.static(ADMIN_DIR, { extensions: ['html'], index: false }));
+
+    // SPA fallback: all non-API, non-admin routes serve React index.html
+    app.get('*', (req, res, next) => {
+        const host = req.hostname || req.headers.host;
+        if (host && host.startsWith('admin.')) return next();
+        if (req.path.startsWith('/api/')) return next();
+        res.sendFile(path.join(REACT_DIST, 'index.html'));
     });
 
-    // 404 fallback
+    // 404 fallback (admin only at this point)
     app.use((req, res) => {
-        res.status(404).sendFile(path.join(__dirname, '404.html'));
+        res.status(404).sendFile(path.join(ADMIN_DIR, '404.html'));
     });
 
     // Error handler
     app.use((err, req, res, next) => {
         console.error(err.stack);
-        res.status(500).sendFile(path.join(__dirname, '500.html'));
+        res.status(500).sendFile(path.join(ADMIN_DIR, '500.html'));
     });
 
     app.listen(PORT, () => {

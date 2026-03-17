@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xksdigital.github.io/D5News/sitemap.xml
