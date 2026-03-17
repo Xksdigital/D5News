@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" fill="none">
+  <!-- D5 text - white for dark backgrounds -->
+  <text x="0" y="62" font-family="Inter, system-ui, sans-serif" font-weight="900" font-size="60" fill="white" letter-spacing="-2">D5</text>
+  <!-- NEWS badge -->
+  <rect x="88" y="8" width="148" height="64" rx="6" fill="#1A365D"/>
+  <rect x="88" y="8" width="148" height="64" rx="6" fill="url(#grad)"/>
+  <text x="162" y="55" font-family="Inter, system-ui, sans-serif" font-weight="900" font-size="46" fill="white" text-anchor="middle" letter-spacing="2">NEWS</text>
+  <defs>
+    <linearGradient id="grad" x1="88" y1="8" x2="236" y2="72" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1A365D"/>
+      <stop offset="100%" stop-color="#2B4C7E"/>
+    </linearGradient>
+  </defs>
+</svg>
