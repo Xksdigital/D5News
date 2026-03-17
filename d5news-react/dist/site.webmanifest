@@ -1,0 +1,21 @@
+{
+  "name": "D5News - L'Information Africaine Reinventee",
+  "short_name": "D5News",
+  "description": "Plateforme d'actualites africaines. Direct TV, Web Radio, Podcasts.",
+  "start_url": "/D5News/",
+  "display": "standalone",
+  "background_color": "#101822",
+  "theme_color": "#0f58bd",
+  "icons": [
+    {
+      "src": "/D5News/images/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/D5News/images/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
