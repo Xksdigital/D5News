@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Africa News Network",
+    "type": "media",
+    "logo": "https://ui-avatars.com/api/?name=ANN&background=0f58bd&color=fff&size=100",
+    "website": "https://africanews.example.com",
+    "status": "active",
+    "since": "2024-06-01",
+    "description": "Reseau d'information panafricain couvrant 54 pays."
+  },
+  {
+    "id": 2,
+    "name": "TechAfrica Foundation",
+    "type": "ong",
+    "logo": "https://ui-avatars.com/api/?name=TAF&background=16a34a&color=fff&size=100",
+    "website": "https://techafricafoundation.example.org",
+    "status": "active",
+    "since": "2024-09-15",
+    "description": "Fondation pour le developpement technologique en Afrique."
+  },
+  {
+    "id": 3,
+    "name": "Sahel Telecom",
+    "type": "entreprise",
+    "logo": "https://ui-avatars.com/api/?name=ST&background=7c3aed&color=fff&size=100",
+    "website": "https://saheltelecom.example.com",
+    "status": "active",
+    "since": "2025-01-10",
+    "description": "Operateur telecom leader en Afrique de l'Ouest."
+  },
+  {
+    "id": 4,
+    "name": "Pan-African University",
+    "type": "education",
+    "logo": "https://ui-avatars.com/api/?name=PAU&background=ca8a04&color=fff&size=100",
+    "website": "https://pau.example.edu",
+    "status": "active",
+    "since": "2025-04-20",
+    "description": "Universite panafricaine de recherche et d'innovation."
+  },
+  {
+    "id": 5,
+    "name": "GreenAfrica Invest",
+    "type": "entreprise",
+    "logo": "https://ui-avatars.com/api/?name=GAI&background=059669&color=fff&size=100",
+    "website": "https://greenafricainvest.example.com",
+    "status": "inactive",
+    "since": "2024-11-05",
+    "description": "Fonds d'investissement specialise dans les energies vertes en Afrique."
+  }
+]

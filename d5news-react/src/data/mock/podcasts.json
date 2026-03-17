@@ -1,0 +1,80 @@
+[
+  {
+    "id": 1,
+    "title": "Afrique Demain",
+    "description": "Un regard prospectif sur les enjeux economiques et technologiques du continent africain.",
+    "host": "Amadou Diallo",
+    "image": "https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400&h=400&fit=crop",
+    "episodes": 48,
+    "category": "Economie",
+    "duration": "45 min",
+    "date": "2026-03-10",
+    "audioUrl": "#",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "title": "Tech Africa Weekly",
+    "description": "L'actualite tech africaine decryptee chaque semaine par nos experts.",
+    "host": "Fatima Okonkwo",
+    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=400&fit=crop",
+    "episodes": 96,
+    "category": "Technologie",
+    "duration": "35 min",
+    "date": "2026-03-09",
+    "audioUrl": "#",
+    "featured": true
+  },
+  {
+    "id": 3,
+    "title": "Sport Continental",
+    "description": "Toute l'actualite sportive africaine, du football au basketball en passant par l'athletisme.",
+    "host": "Moussa Camara",
+    "image": "https://images.unsplash.com/photo-1461896836934-bd45ba8920c7?w=400&h=400&fit=crop",
+    "episodes": 72,
+    "category": "Sport",
+    "duration": "30 min",
+    "date": "2026-03-08",
+    "audioUrl": "#",
+    "featured": false
+  },
+  {
+    "id": 4,
+    "title": "Cultures d'Afrique",
+    "description": "Exploration des richesses culturelles du continent : musique, cinema, litterature et arts visuels.",
+    "host": "Aminata Toure",
+    "image": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=400&fit=crop",
+    "episodes": 36,
+    "category": "Culture",
+    "duration": "40 min",
+    "date": "2026-03-07",
+    "audioUrl": "#",
+    "featured": false
+  },
+  {
+    "id": 5,
+    "title": "Sante Afrique",
+    "description": "Les avancees medicales et les defis sanitaires du continent africain.",
+    "host": "Dr. Ngozi Okafor",
+    "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=400&fit=crop",
+    "episodes": 24,
+    "category": "Sante",
+    "duration": "50 min",
+    "date": "2026-03-06",
+    "audioUrl": "#",
+    "featured": false
+  },
+  {
+    "id": 6,
+    "title": "Geopolitique Africaine",
+    "description": "Analyse approfondie des dynamiques politiques et diplomatiques sur le continent.",
+    "host": "Ibrahim Diop",
+    "image": "https://images.unsplash.com/photo-1494173853739-c21f58b16055?w=400&h=400&fit=crop",
+    "episodes": 60,
+    "category": "Politique",
+    "duration": "55 min",
+    "date": "2026-03-05",
+    "audioUrl": "#",
+    "featured": false
+  }
+]

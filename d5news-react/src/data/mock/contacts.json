@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Sophie Mensah",
+    "email": "sophie.mensah@email.com",
+    "subject": "Proposition de partenariat",
+    "message": "Bonjour, je souhaite discuter d'un partenariat potentiel entre notre organisation et D5News.",
+    "date": "2026-03-11",
+    "status": "unread",
+    "type": "partnership"
+  },
+  {
+    "id": 2,
+    "name": "Ousmane Traore",
+    "email": "ousmane.t@email.com",
+    "subject": "Erreur dans un article",
+    "message": "J'ai remarque une erreur factuelle dans l'article sur la ZLECAf publie le 9 mars. Le chiffre mentionne devrait etre 25% et non 30%.",
+    "date": "2026-03-10",
+    "status": "read",
+    "type": "correction"
+  },
+  {
+    "id": 3,
+    "name": "Amina Bah",
+    "email": "amina.bah@email.com",
+    "subject": "Question sur l'abonnement Premium",
+    "message": "Je n'arrive pas a acceder aux podcasts premium malgre mon abonnement. Pouvez-vous m'aider ?",
+    "date": "2026-03-09",
+    "status": "replied",
+    "type": "support"
+  },
+  {
+    "id": 4,
+    "name": "David Osei",
+    "email": "david.osei@media.gh",
+    "subject": "Demande d'interview",
+    "message": "Je suis journaliste au Ghana Times et j'aimerais interviewer votre redacteur en chef pour un article sur les medias numeriques africains.",
+    "date": "2026-03-08",
+    "status": "read",
+    "type": "press"
+  },
+  {
+    "id": 5,
+    "name": "Fatou Diop",
+    "email": "fatou.diop@startup.sn",
+    "subject": "Publicite sur D5News",
+    "message": "Notre startup souhaite placer de la publicite sur votre plateforme. Quels sont vos tarifs et formats disponibles ?",
+    "date": "2026-03-07",
+    "status": "unread",
+    "type": "advertising"
+  }
+]

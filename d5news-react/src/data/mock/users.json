@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "name": "Admin D5News",
+    "email": "admin@d5news.com",
+    "role": "admin",
+    "avatar": "https://ui-avatars.com/api/?name=Admin+D5News&background=0f58bd&color=fff",
+    "joinDate": "2024-01-15",
+    "status": "active",
+    "articles": 0,
+    "plan": "Enterprise"
+  },
+  {
+    "id": 2,
+    "name": "Amadou Diallo",
+    "email": "amadou@d5news.com",
+    "role": "editor",
+    "avatar": "https://ui-avatars.com/api/?name=Amadou+Diallo&background=0f58bd&color=fff",
+    "joinDate": "2024-03-10",
+    "status": "active",
+    "articles": 45,
+    "plan": "Premium"
+  },
+  {
+    "id": 3,
+    "name": "Fatima Okonkwo",
+    "email": "fatima@d5news.com",
+    "role": "editor",
+    "avatar": "https://ui-avatars.com/api/?name=Fatima+Okonkwo&background=0f58bd&color=fff",
+    "joinDate": "2024-05-22",
+    "status": "active",
+    "articles": 38,
+    "plan": "Premium"
+  },
+  {
+    "id": 4,
+    "name": "Moussa Camara",
+    "email": "moussa@d5news.com",
+    "role": "journalist",
+    "avatar": "https://ui-avatars.com/api/?name=Moussa+Camara&background=0f58bd&color=fff",
+    "joinDate": "2024-07-01",
+    "status": "active",
+    "articles": 27,
+    "plan": "Premium"
+  },
+  {
+    "id": 5,
+    "name": "Marie Dupont",
+    "email": "marie.dupont@email.com",
+    "role": "subscriber",
+    "avatar": "https://ui-avatars.com/api/?name=Marie+Dupont&background=6b7280&color=fff",
+    "joinDate": "2025-01-10",
+    "status": "active",
+    "articles": 0,
+    "plan": "Premium"
+  },
+  {
+    "id": 6,
+    "name": "Jean Kabore",
+    "email": "jean.kabore@email.com",
+    "role": "subscriber",
+    "avatar": "https://ui-avatars.com/api/?name=Jean+Kabore&background=6b7280&color=fff",
+    "joinDate": "2025-03-18",
+    "status": "active",
+    "articles": 0,
+    "plan": "Gratuit"
+  },
+  {
+    "id": 7,
+    "name": "Aisha Mohamed",
+    "email": "aisha.m@email.com",
+    "role": "subscriber",
+    "avatar": "https://ui-avatars.com/api/?name=Aisha+Mohamed&background=6b7280&color=fff",
+    "joinDate": "2025-06-05",
+    "status": "inactive",
+    "articles": 0,
+    "plan": "Gratuit"
+  },
+  {
+    "id": 8,
+    "name": "Pierre Ndong",
+    "email": "pierre.ndong@email.com",
+    "role": "subscriber",
+    "avatar": "https://ui-avatars.com/api/?name=Pierre+Ndong&background=6b7280&color=fff",
+    "joinDate": "2025-08-20",
+    "status": "active",
+    "articles": 0,
+    "plan": "Premium"
+  }
+]

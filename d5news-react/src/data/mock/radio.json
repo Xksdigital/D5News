@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "name": "D5News FM",
+    "frequency": "98.5 FM",
+    "description": "La radio d'information continue de D5News",
+    "genre": "Information",
+    "streamUrl": "#",
+    "isLive": true,
+    "listeners": 2450,
+    "image": "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=400&fit=crop"
+  },
+  {
+    "id": 2,
+    "name": "Afro Beats Radio",
+    "frequency": "101.3 FM",
+    "description": "Les meilleurs sons afrobeats 24h/24",
+    "genre": "Musique",
+    "streamUrl": "#",
+    "isLive": true,
+    "listeners": 5200,
+    "image": "https://images.unsplash.com/photo-1511735111819-9a3f7709049c?w=400&h=400&fit=crop"
+  },
+  {
+    "id": 3,
+    "name": "Sahel Culture FM",
+    "frequency": "95.7 FM",
+    "description": "Radio culturelle du Sahel - musique, contes et traditions",
+    "genre": "Culture",
+    "streamUrl": "#",
+    "isLive": false,
+    "listeners": 1800,
+    "image": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop"
+  },
+  {
+    "id": 4,
+    "name": "Sport Africa Live",
+    "frequency": "103.1 FM",
+    "description": "Toute l'actualite sportive africaine en direct",
+    "genre": "Sport",
+    "streamUrl": "#",
+    "isLive": true,
+    "listeners": 3100,
+    "image": "https://images.unsplash.com/photo-1461896836934-bd45ba8920c7?w=400&h=400&fit=crop"
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "Gratuit",
+    "price": 0,
+    "currency": "EUR",
+    "period": "mois",
+    "description": "Acces limite aux actualites",
+    "features": [
+      "5 articles par jour",
+      "Acces aux categories principales",
+      "Newsletter hebdomadaire"
+    ],
+    "limitations": [
+      "Publicites affichees",
+      "Pas d'acces aux podcasts premium",
+      "Pas de mode hors-ligne"
+    ],
+    "popular": false
+  },
+  {
+    "id": 2,
+    "name": "Premium",
+    "price": 9.99,
+    "currency": "EUR",
+    "period": "mois",
+    "description": "Acces complet a tout le contenu",
+    "features": [
+      "Articles illimites",
+      "Toutes les categories",
+      "Podcasts premium",
+      "Mode hors-ligne",
+      "Sans publicite",
+      "Newsletter quotidienne"
+    ],
+    "limitations": [],
+    "popular": true
+  },
+  {
+    "id": 3,
+    "name": "Enterprise",
+    "price": 29.99,
+    "currency": "EUR",
+    "period": "mois",
+    "description": "Pour les organisations et entreprises",
+    "features": [
+      "Tout le plan Premium",
+      "Jusqu'a 10 utilisateurs",
+      "API d'acces aux donnees",
+      "Rapports personnalises",
+      "Support prioritaire",
+      "Flux RSS personnalise"
+    ],
+    "limitations": [],
+    "popular": false
+  }
+]

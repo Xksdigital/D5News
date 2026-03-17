@@ -1,0 +1,31 @@
+{
+  "totalArticles": 342,
+  "totalUsers": 15840,
+  "totalViews": 1250000,
+  "totalSubscribers": 3200,
+  "activeUsers": 8500,
+  "revenue": 28500,
+  "articlesToday": 8,
+  "newUsersToday": 45,
+  "viewsToday": 32000,
+  "topCategories": [
+    { "name": "Sport", "views": 320000, "percentage": 25.6 },
+    { "name": "Politique", "views": 280000, "percentage": 22.4 },
+    { "name": "Technologie", "views": 210000, "percentage": 16.8 },
+    { "name": "Economie", "views": 185000, "percentage": 14.8 },
+    { "name": "Culture", "views": 125000, "percentage": 10.0 }
+  ],
+  "monthlyViews": [
+    { "month": "Oct", "views": 850000 },
+    { "month": "Nov", "views": 920000 },
+    { "month": "Dec", "views": 1050000 },
+    { "month": "Jan", "views": 1100000 },
+    { "month": "Fev", "views": 1180000 },
+    { "month": "Mar", "views": 1250000 }
+  ],
+  "recentActivity": [
+    { "type": "article", "title": "Sommet de l'Union Africaine 2026", "time": "Il y a 2h" },
+    { "type": "user", "title": "Nouvel abonne Premium", "time": "Il y a 3h" },
+    { "type": "comment", "title": "15 nouveaux commentaires", "time": "Il y a 5h" }
+  ]
+}

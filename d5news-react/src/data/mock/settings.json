@@ -1,0 +1,46 @@
+{
+  "general": {
+    "siteName": "D5News",
+    "siteDescription": "Plateforme d'actualites africaines - Information, Analyse, Decryptage",
+    "siteUrl": "https://d5news.com",
+    "contactEmail": "contact@d5news.com",
+    "language": "fr",
+    "timezone": "Africa/Dakar"
+  },
+  "seo": {
+    "metaTitle": "D5News - L'actualite africaine en continu",
+    "metaDescription": "D5News est votre source d'information sur l'actualite africaine : politique, economie, technologie, sport, culture et plus encore.",
+    "ogImage": "/images/og-default.jpg",
+    "googleAnalyticsId": "UA-XXXXXXXX-X",
+    "enableSitemap": true
+  },
+  "content": {
+    "articlesPerPage": 12,
+    "enableComments": true,
+    "moderateComments": true,
+    "enableNewsletter": true,
+    "enablePodcast": true,
+    "enableRadio": true,
+    "enableLiveTV": true
+  },
+  "notifications": {
+    "emailOnNewArticle": true,
+    "emailOnNewComment": true,
+    "emailOnNewSubscriber": true,
+    "pushNotifications": false,
+    "slackWebhook": ""
+  },
+  "security": {
+    "enableTwoFactor": false,
+    "maxLoginAttempts": 5,
+    "sessionTimeout": 30,
+    "enableCaptcha": true
+  },
+  "appearance": {
+    "theme": "dark",
+    "primaryColor": "#0f58bd",
+    "showTicker": true,
+    "showWeather": true,
+    "layout": "default"
+  }
+}
