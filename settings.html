@@ -256,32 +256,67 @@
                     </div>
                 </div>
 
-                <!-- Maintenance -->
+                <!-- Coming Soon / Maintenance -->
                 <div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
                     <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center gap-3">
                         <div class="p-2 bg-amber-100 dark:bg-amber-900/30 text-amber-600 rounded-lg">
-                            <span class="material-symbols-outlined">build</span>
+                            <span class="material-symbols-outlined">rocket_launch</span>
                         </div>
                         <div>
-                            <h3 class="font-bold text-lg">Maintenance</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">Mode maintenance et sauvegardes</p>
+                            <h3 class="font-bold text-lg">Page de Lancement</h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Mode "Coming Soon" et maintenance</p>
                         </div>
                     </div>
                     <div class="p-6 space-y-5">
+                        <!-- Toggle Coming Soon -->
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-sm font-semibold">Mode Maintenance</p>
-                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Desactiver l'acces public au site</p>
+                                <p class="text-sm font-semibold">Mode Coming Soon</p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Afficher la page "Nous Lancons Bientot" aux visiteurs</p>
                             </div>
                             <label class="toggle-switch">
-                                <input type="checkbox"/>
+                                <input type="checkbox" id="comingSoonToggle" onchange="toggleComingSoon(this.checked)"/>
                                 <div class="toggle-track"></div>
                             </label>
                         </div>
-                        <div class="flex items-start gap-3 p-3 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 rounded-lg">
-                            <span class="material-symbols-outlined text-amber-600 text-lg mt-0.5">warning</span>
-                            <p class="text-xs text-amber-700 dark:text-amber-400">Activer le mode maintenance rendra le site inaccessible pour tous les utilisateurs non-administrateurs. Utilisez cette option uniquement lors de mises a jour critiques.</p>
+
+                        <!-- Status indicator -->
+                        <div id="comingSoonStatus" class="flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-200 dark:border-emerald-800/30 text-emerald-700 dark:text-emerald-400">
+                            <span class="material-symbols-outlined text-lg">check_circle</span>
+                            <span>Le site est actuellement <strong>en ligne</strong> et accessible aux visiteurs.</span>
                         </div>
+
+                        <!-- Coming Soon Options (shown when toggle is ON) -->
+                        <div id="comingSoonOptions" class="hidden space-y-5 border-t border-slate-100 dark:border-slate-800 pt-5">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Date de lancement</label>
+                                <input type="datetime-local" id="launchDate" class="w-full md:w-80 px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"/>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1.5">Le compteur a rebours s'arretera a cette date.</p>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Message personnalise</label>
+                                <textarea id="launchMessage" rows="3" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all resize-none" placeholder="Decrivez votre lancement...">Un nouveau projet passionnant est en preparation ! Nous travaillons activement pour vous offrir une experience unique en matiere d'actualite africaine et internationale. Restez connectes, ca arrive tres bientot !</textarea>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-semibold">Collecte d'emails</p>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Permettre aux visiteurs de s'inscrire pour etre notifies</p>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="collectEmails" checked/>
+                                    <div class="toggle-track"></div>
+                                </label>
+                            </div>
+                            <div>
+                                <a href="coming-soon.html" target="_blank" class="inline-flex items-center gap-2 text-sm text-primary font-semibold hover:underline">
+                                    <span class="material-symbols-outlined text-lg">visibility</span>
+                                    Previsualiser la page Coming Soon
+                                    <span class="material-symbols-outlined text-sm">open_in_new</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Backup section -->
                         <div class="border-t border-slate-100 dark:border-slate-800 pt-5 grid grid-cols-1 md:grid-cols-2 gap-5 items-end">
                             <div>
                                 <label class="block text-sm font-semibold mb-2">Planification des backups</label>
@@ -317,5 +352,40 @@
 </div>
 <script src="js/api.js"></script>
 <script src="js/app.min.js"></script>
+<script>
+    // Coming Soon toggle logic
+    function toggleComingSoon(enabled) {
+        const options = document.getElementById('comingSoonOptions');
+        const status = document.getElementById('comingSoonStatus');
+        if (enabled) {
+            options.classList.remove('hidden');
+            status.className = 'flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 text-amber-700 dark:text-amber-400';
+            status.innerHTML = '<span class="material-symbols-outlined text-lg">rocket_launch</span><span>Le site affiche actuellement la page <strong>Coming Soon</strong>. Les visiteurs ne voient pas le contenu.</span>';
+        } else {
+            options.classList.remove('hidden');
+            options.classList.add('hidden');
+            status.className = 'flex items-center gap-2 px-4 py-3 rounded-lg text-sm font-medium bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-200 dark:border-emerald-800/30 text-emerald-700 dark:text-emerald-400';
+            status.innerHTML = '<span class="material-symbols-outlined text-lg">check_circle</span><span>Le site est actuellement <strong>en ligne</strong> et accessible aux visiteurs.</span>';
+        }
+        // Save to API
+        fetch('/api/coming-soon', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ coming_soon: enabled, launch_date: document.getElementById('launchDate')?.value || null, launch_message: document.getElementById('launchMessage')?.value || '' })
+        }).catch(() => {});
+    }
+
+    // Load current state on page load
+    (function() {
+        fetch('/api/coming-soon').then(r => r.json()).then(data => {
+            if (data && data.enabled) {
+                document.getElementById('comingSoonToggle').checked = true;
+                toggleComingSoon(true);
+                if (data.launch_date) document.getElementById('launchDate').value = data.launch_date;
+                if (data.launch_message) document.getElementById('launchMessage').value = data.launch_message;
+            }
+        }).catch(() => {});
+    })();
+</script>
 </body>
 </html>

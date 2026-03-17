@@ -37,20 +37,67 @@ initDatabase().then(() => {
     app.use('/api/admin/logs', require('./src/routes/admin/logs'));
     app.use('/api/admin/settings', require('./src/routes/admin/settings'));
 
+    // Coming Soon API (public - no auth needed for GET)
+    app.get('/api/coming-soon', (req, res) => {
+        const { db } = require('./src/database');
+        const row = db.prepare("SELECT value FROM settings WHERE key = 'coming_soon'").get();
+        if (row && row.value) {
+            try {
+                res.json(JSON.parse(row.value));
+            } catch { res.json({ enabled: false }); }
+        } else {
+            res.json({ enabled: false });
+        }
+    });
+
+    app.put('/api/coming-soon', (req, res) => {
+        const { db } = require('./src/database');
+        const data = JSON.stringify({
+            enabled: !!req.body.coming_soon,
+            launch_date: req.body.launch_date || null,
+            launch_message: req.body.launch_message || ''
+        });
+        const existing = db.prepare("SELECT id FROM settings WHERE key = 'coming_soon'").get();
+        if (existing) {
+            db.prepare("UPDATE settings SET value = ?, updated_at = datetime('now') WHERE key = 'coming_soon'").run(data);
+        } else {
+            db.prepare("INSERT INTO settings (key, value) VALUES ('coming_soon', ?)").run(data);
+        }
+        res.json({ success: true });
+    });
+
     // Admin subdomain middleware
-    // admin.d5newstv.com serves admin pages (index.html, users.html, etc. at root level)
-    // Admin pages: index, users, editorial, partners, radio, settings, logs, integrations
-    const ADMIN_PAGES = ['index', 'users', 'editorial', 'partners', 'radio', 'settings', 'logs', 'integrations'];
     app.use((req, res, next) => {
         const host = req.hostname || req.headers.host;
         if (host && host.startsWith('admin.')) {
-            // Root -> admin dashboard (index.html)
             if (req.path === '/' || req.path === '') {
                 return res.sendFile(path.join(__dirname, 'index.html'));
             }
-            // Admin pages are at root level, so /users -> users.html, etc.
-            // No rewriting needed since they're already at root
         }
+        next();
+    });
+
+    // Coming Soon middleware - intercept public site when enabled
+    app.use((req, res, next) => {
+        const host = req.hostname || req.headers.host;
+        // Skip for admin subdomain, API routes, and static assets
+        if (host && host.startsWith('admin.')) return next();
+        if (req.path.startsWith('/api/')) return next();
+        if (req.path.startsWith('/css/') || req.path.startsWith('/js/') || req.path.startsWith('/images/') || req.path.startsWith('/fonts/')) return next();
+        if (req.path === '/coming-soon' || req.path === '/coming-soon.html') return next();
+        if (req.path === '/sw.js' || req.path === '/favicon.ico' || req.path.endsWith('.svg')) return next();
+
+        // Check if coming soon is enabled
+        const { db } = require('./src/database');
+        try {
+            const row = db.prepare("SELECT value FROM settings WHERE key = 'coming_soon'").get();
+            if (row && row.value) {
+                const config = JSON.parse(row.value);
+                if (config.enabled) {
+                    return res.sendFile(path.join(__dirname, 'coming-soon.html'));
+                }
+            }
+        } catch (e) { /* ignore, serve normal site */ }
         next();
     });
 

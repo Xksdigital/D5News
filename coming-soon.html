@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>D5News - Nous Lancons Bientot</title>
+    <meta name="description" content="D5News - La plateforme d'actualite africaine arrive bientot. Inscrivez-vous pour etre notifie du lancement."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="D5News"/>
+    <meta property="og:title" content="D5News - Nous Lancons Bientot"/>
+    <meta property="og:description" content="La plateforme d'actualite africaine arrive bientot."/>
+    <meta property="og:image" content="images/logo.png"/>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { "primary": "#0f58bd", "background-dark": "#101822" },
+                    fontFamily: { "display": ["Inter", "system-ui", "sans-serif"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(15,88,189,0.3); } 50% { box-shadow: 0 0 40px rgba(15,88,189,0.6); } }
+        @keyframes fade-up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slide-in { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        .float-anim { animation: float 6s ease-in-out infinite; }
+        .pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+        .fade-up { animation: fade-up 0.8s ease-out forwards; }
+        .fade-up-delay-1 { animation: fade-up 0.8s ease-out 0.2s forwards; opacity: 0; }
+        .fade-up-delay-2 { animation: fade-up 0.8s ease-out 0.4s forwards; opacity: 0; }
+        .fade-up-delay-3 { animation: fade-up 0.8s ease-out 0.6s forwards; opacity: 0; }
+        .countdown-box { animation: pulse-glow 3s ease-in-out infinite; }
+        .bg-grid { background-image: radial-gradient(circle, rgba(15,88,189,0.15) 1px, transparent 1px); background-size: 40px 40px; }
+        .social-link { transition: all 0.3s ease; }
+        .social-link:hover { transform: translateY(-3px); }
+    </style>
+</head>
+<body class="font-display bg-background-dark text-white min-h-screen flex flex-col relative overflow-hidden">
+
+    <!-- Background Effects -->
+    <div class="absolute inset-0 bg-grid opacity-30"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] -mt-96"></div>
+    <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] mb-[-200px] mr-[-100px]"></div>
+
+    <!-- Content -->
+    <div class="relative z-10 flex flex-col items-center justify-center flex-1 px-4 py-12">
+        <!-- Logo -->
+        <div class="fade-up mb-10">
+            <img src="images/logo.png" alt="D5News" class="h-12 md:h-16 float-anim"/>
+        </div>
+
+        <!-- Decorative dots -->
+        <div class="fade-up-delay-1 flex gap-2 mb-6">
+            <div class="w-3 h-3 rounded-full bg-primary"></div>
+            <div class="w-3 h-3 rounded-full bg-primary/70"></div>
+            <div class="w-3 h-3 rounded-full bg-primary/40"></div>
+            <div class="w-3 h-3 rounded-full bg-primary/70"></div>
+            <div class="w-3 h-3 rounded-full bg-primary"></div>
+        </div>
+        <div class="fade-up-delay-1 flex gap-2 mb-8">
+            <div class="w-3 h-3 rounded-full bg-primary/40"></div>
+            <div class="w-3 h-3 rounded-full bg-primary"></div>
+            <div class="w-3 h-3 rounded-full bg-primary/70"></div>
+            <div class="w-3 h-3 rounded-full bg-primary"></div>
+            <div class="w-3 h-3 rounded-full bg-primary/40"></div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="fade-up-delay-1 text-4xl md:text-6xl font-black text-center mb-6 tracking-tight">
+            Nous Lancons <span class="text-primary">Bientot</span>
+        </h1>
+
+        <!-- Description -->
+        <p class="fade-up-delay-2 text-lg md:text-xl text-slate-400 text-center max-w-2xl mb-12 leading-relaxed" id="launch-description">
+            Un nouveau projet passionnant est en preparation ! Nous travaillons activement pour vous offrir une experience unique
+            en matiere d'actualite africaine et internationale. Restez connectes, ca arrive tres bientot !
+        </p>
+
+        <!-- Countdown -->
+        <div class="fade-up-delay-2 flex gap-4 md:gap-6 mb-14" id="countdown-container">
+            <div class="countdown-box bg-primary rounded-2xl w-20 h-24 md:w-28 md:h-32 flex flex-col items-center justify-center">
+                <span id="days" class="text-3xl md:text-5xl font-black">--</span>
+                <span class="text-xs md:text-sm font-semibold text-white/70 mt-1">Jours</span>
+            </div>
+            <div class="countdown-box bg-primary rounded-2xl w-20 h-24 md:w-28 md:h-32 flex flex-col items-center justify-center" style="animation-delay: 0.5s">
+                <span id="hours" class="text-3xl md:text-5xl font-black">--</span>
+                <span class="text-xs md:text-sm font-semibold text-white/70 mt-1">Heures</span>
+            </div>
+            <div class="countdown-box bg-primary rounded-2xl w-20 h-24 md:w-28 md:h-32 flex flex-col items-center justify-center" style="animation-delay: 1s">
+                <span id="minutes" class="text-3xl md:text-5xl font-black">--</span>
+                <span class="text-xs md:text-sm font-semibold text-white/70 mt-1">Minutes</span>
+            </div>
+            <div class="countdown-box bg-primary rounded-2xl w-20 h-24 md:w-28 md:h-32 flex flex-col items-center justify-center" style="animation-delay: 1.5s">
+                <span id="seconds" class="text-3xl md:text-5xl font-black">--</span>
+                <span class="text-xs md:text-sm font-semibold text-white/70 mt-1">Secondes</span>
+            </div>
+        </div>
+
+        <!-- Email signup -->
+        <div class="fade-up-delay-3 flex flex-col sm:flex-row gap-3 w-full max-w-lg mb-10">
+            <div class="flex-1 relative">
+                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">mail</span>
+                <input id="notify-email" type="email" placeholder="Votre adresse email"
+                    class="w-full pl-12 pr-4 py-4 bg-slate-800/80 border border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-slate-500"/>
+            </div>
+            <button id="notify-btn" onclick="subscribeNotify()"
+                class="flex items-center justify-center gap-2 px-6 py-4 bg-primary hover:bg-primary/90 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/30 hover:shadow-primary/50 whitespace-nowrap">
+                <span class="material-symbols-outlined text-lg">notifications_active</span>
+                Notifier moi
+            </button>
+        </div>
+
+        <!-- Success message (hidden by default) -->
+        <div id="notify-success" class="hidden fade-up items-center gap-2 px-4 py-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-400 text-sm font-medium mb-6">
+            <span class="material-symbols-outlined">check_circle</span>
+            <span>Merci ! Vous serez notifie lors du lancement.</span>
+        </div>
+
+        <!-- Social links -->
+        <div class="fade-up-delay-3 flex items-center gap-4">
+            <a href="#" class="social-link w-11 h-11 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-all" title="Facebook">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="social-link w-11 h-11 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-all" title="X (Twitter)">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="social-link w-11 h-11 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-all" title="Instagram">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="#" class="social-link w-11 h-11 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-all" title="YouTube">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="#" class="social-link w-11 h-11 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-all" title="TikTok">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="relative z-10 text-center py-6 text-slate-500 text-sm">
+        &copy; 2025 D5News. Tous droits reserves.
+    </footer>
+
+    <script>
+        // Countdown - reads launch date from data attribute or defaults
+        (function() {
+            const container = document.getElementById('countdown-container');
+            const launchDateStr = container?.dataset?.launchDate;
+            const launchDate = launchDateStr ? new Date(launchDateStr).getTime() : new Date('2026-01-01T00:00:00').getTime();
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const diff = launchDate - now;
+                if (diff <= 0) {
+                    document.getElementById('days').textContent = '0';
+                    document.getElementById('hours').textContent = '0';
+                    document.getElementById('minutes').textContent = '0';
+                    document.getElementById('seconds').textContent = '0';
+                    return;
+                }
+                document.getElementById('days').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').textContent = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('minutes').textContent = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('seconds').textContent = Math.floor((diff % (1000 * 60)) / 1000);
+            }
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        })();
+
+        // Email notification signup
+        function subscribeNotify() {
+            const email = document.getElementById('notify-email').value.trim();
+            if (!email || !email.includes('@')) {
+                document.getElementById('notify-email').classList.add('border-red-500');
+                return;
+            }
+            document.getElementById('notify-email').classList.remove('border-red-500');
+
+            fetch('/api/newsletter', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email })
+            }).then(() => {
+                document.getElementById('notify-success').classList.remove('hidden');
+                document.getElementById('notify-success').classList.add('flex');
+                document.getElementById('notify-email').value = '';
+                document.getElementById('notify-btn').disabled = true;
+                document.getElementById('notify-btn').classList.add('opacity-50');
+            }).catch(() => {
+                document.getElementById('notify-success').classList.remove('hidden');
+                document.getElementById('notify-success').classList.add('flex');
+                document.getElementById('notify-email').value = '';
+            });
+        }
+
+        // Enter key
+        document.getElementById('notify-email').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') subscribeNotify();
+        });
+    </script>
+</body>
+</html>
