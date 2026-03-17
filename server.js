@@ -38,26 +38,24 @@ initDatabase().then(() => {
     app.use('/api/admin/settings', require('./src/routes/admin/settings'));
 
     // Admin subdomain middleware
-    // Redirects admin.d5newstv.com to serve admin pages
+    // admin.d5newstv.com serves admin pages (index.html, users.html, etc. at root level)
+    // Admin pages: index, users, editorial, partners, radio, settings, logs, integrations
+    const ADMIN_PAGES = ['index', 'users', 'editorial', 'partners', 'radio', 'settings', 'logs', 'integrations'];
     app.use((req, res, next) => {
         const host = req.hostname || req.headers.host;
         if (host && host.startsWith('admin.')) {
-            // Rewrite root to admin panel
+            // Root -> admin dashboard (index.html)
             if (req.path === '/' || req.path === '') {
-                return res.sendFile(path.join(__dirname, 'admin', 'index.html'));
+                return res.sendFile(path.join(__dirname, 'index.html'));
             }
-            // If path doesn't start with /admin and isn't an API/asset, prefix with /admin
-            if (!req.path.startsWith('/admin') && !req.path.startsWith('/api') &&
-                !req.path.startsWith('/css') && !req.path.startsWith('/js') &&
-                !req.path.startsWith('/images') && !req.path.startsWith('/fonts')) {
-                req.url = '/admin' + req.url;
-            }
+            // Admin pages are at root level, so /users -> users.html, etc.
+            // No rewriting needed since they're already at root
         }
         next();
     });
 
     // Static files
-    app.use(express.static(path.join(__dirname), { extensions: ['html'] }));
+    app.use(express.static(path.join(__dirname), { extensions: ['html'], index: false }));
 
     // Root -> home.html
     app.get('/', (req, res) => {
