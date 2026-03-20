@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { useToast } from '../../contexts/ToastContext';
 import MaterialIcon from '../../components/shared/MaterialIcon';
@@ -7,8 +7,9 @@ import MaterialIcon from '../../components/shared/MaterialIcon';
 type Tab = 'profil' | 'notifications' | 'securite';
 
 export default function Profile() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { show } = useToast();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<Tab>('notifications');
 
   // Profile form state
@@ -98,11 +99,18 @@ export default function Profile() {
               ))}
               <Link
                 to="/subscription"
-                className="flex items-center gap-3 px-5 py-3.5 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                className="flex items-center gap-3 px-5 py-3.5 text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border-b border-slate-100 dark:border-slate-800"
               >
                 <MaterialIcon name="credit_card" className="text-xl" />
                 Abonnement
               </Link>
+              <button
+                onClick={() => { logout(); navigate('/home'); }}
+                className="w-full flex items-center gap-3 px-5 py-3.5 text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors"
+              >
+                <MaterialIcon name="logout" className="text-xl" />
+                Se deconnecter
+              </button>
             </nav>
           </aside>
 

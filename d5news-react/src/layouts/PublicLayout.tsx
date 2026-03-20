@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Outlet, Link, NavLink } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import { Outlet, Link, NavLink, useNavigate } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -29,9 +29,23 @@ const continents = [
 
 export default function PublicLayout() {
   const { theme, toggle: toggleTheme } = useTheme();
-  const { isLoggedIn, user } = useAuth();
+  const { isLoggedIn, user, logout } = useAuth();
   const { language, toggle: toggleLanguage } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
+  // Close user menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -90,17 +104,55 @@ export default function PublicLayout() {
                 </span>
               </button>
               {isLoggedIn ? (
-                <Link
-                  to="/profile"
-                  className="hidden md:flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary/90 transition-colors"
-                >
-                  {user?.avatar ? (
-                    <img src={user.avatar} alt="" loading="lazy" className="w-5 h-5 rounded-full" />
-                  ) : (
-                    <span className="material-symbols-outlined text-sm">person</span>
+                <div className="relative hidden md:block" ref={userMenuRef}>
+                  <button
+                    onClick={() => setUserMenuOpen(!userMenuOpen)}
+                    className="flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary/90 transition-colors"
+                  >
+                    {user?.avatar ? (
+                      <img src={user.avatar} alt="" loading="lazy" className="w-5 h-5 rounded-full" />
+                    ) : (
+                      <span className="material-symbols-outlined text-sm">person</span>
+                    )}
+                    {user?.name?.split(' ')[0] || 'Profil'}
+                    <span className="material-symbols-outlined text-sm">{userMenuOpen ? 'expand_less' : 'expand_more'}</span>
+                  </button>
+                  {userMenuOpen && (
+                    <div className="absolute right-0 mt-2 w-52 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-xl z-50 overflow-hidden">
+                      <Link
+                        to="/profile"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                      >
+                        <span className="material-symbols-outlined text-lg">person</span>
+                        Mon profil
+                      </Link>
+                      <Link
+                        to="/favorites"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                      >
+                        <span className="material-symbols-outlined text-lg">bookmark</span>
+                        Mes favoris
+                      </Link>
+                      <Link
+                        to="/subscription"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border-b border-slate-100 dark:border-slate-800"
+                      >
+                        <span className="material-symbols-outlined text-lg">credit_card</span>
+                        Abonnement
+                      </Link>
+                      <button
+                        onClick={() => { setUserMenuOpen(false); logout(); navigate('/home'); }}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors"
+                      >
+                        <span className="material-symbols-outlined text-lg">logout</span>
+                        Se deconnecter
+                      </button>
+                    </div>
                   )}
-                  {user?.name?.split(' ')[0] || 'Profil'}
-                </Link>
+                </div>
               ) : (
                 <Link
                   to="/login"
@@ -232,14 +284,23 @@ export default function PublicLayout() {
                 {/* Auth */}
                 <div className="pt-2 border-t border-slate-200 dark:border-slate-800">
                   {isLoggedIn ? (
-                    <Link
-                      to="/profile"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center gap-2 px-4 py-3 bg-primary text-white text-sm font-bold rounded-lg w-full justify-center"
-                    >
-                      <span className="material-symbols-outlined text-sm">person</span>
-                      Mon Profil
-                    </Link>
+                    <div className="space-y-2">
+                      <Link
+                        to="/profile"
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="flex items-center gap-2 px-4 py-3 bg-primary text-white text-sm font-bold rounded-lg w-full justify-center"
+                      >
+                        <span className="material-symbols-outlined text-sm">person</span>
+                        Mon Profil
+                      </Link>
+                      <button
+                        onClick={() => { setMobileMenuOpen(false); logout(); navigate('/home'); }}
+                        className="flex items-center gap-2 px-4 py-3 border border-red-500/30 text-red-500 text-sm font-bold rounded-lg w-full justify-center hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors"
+                      >
+                        <span className="material-symbols-outlined text-sm">logout</span>
+                        Se deconnecter
+                      </button>
+                    </div>
                   ) : (
                     <div className="space-y-2">
                       <Link
