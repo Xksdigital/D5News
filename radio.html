@@ -97,9 +97,9 @@
                     <p class="text-sm font-semibold truncate">Alex Chen</p>
                     <p class="text-xs text-slate-500 truncate">Super Admin</p>
                 </div>
-                <button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+                <a href="/logout" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
                     <span class="material-symbols-outlined text-xl">logout</span>
-                </button>
+                </a>
             </div>
         </div>
     </aside>
@@ -111,7 +111,7 @@
             <div class="flex items-center gap-4 flex-1">
                 <button id="sidebarToggle" class="lg:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
                     <span class="material-symbols-outlined">menu</span>
-                </button>
+                </a>
                 <div class="relative max-w-md w-full hidden md:block">
                     <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
                     <input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/50 transition-all placeholder:text-slate-400 outline-none" placeholder="Rechercher analytics, utilisateurs, articles..." type="text"/>
@@ -121,15 +121,15 @@
                 <button data-lang-toggle class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
                     <span class="material-symbols-outlined text-lg">language</span>
                     <span data-lang-display>FR</span>
-                </button>
+                </a>
                 <button data-theme-toggle class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
                     <span class="material-symbols-outlined block dark:hidden">dark_mode</span>
                     <span class="material-symbols-outlined hidden dark:block">light_mode</span>
-                </button>
+                </a>
                 <button class="p-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative">
                     <span class="material-symbols-outlined">notifications</span>
                     <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
-                </button>
+                </a>
             </div>
         </header>
 
@@ -145,11 +145,11 @@
                     <button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-bold shadow-sm hover:shadow transition-all">
                         <span class="material-symbols-outlined text-lg">history</span>
                         Historique
-                    </button>
+                    </a>
                     <button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all">
                         <span class="material-symbols-outlined text-lg">add</span>
                         Nouveau Programme
-                    </button>
+                    </a>
                 </div>
             </div>
 
@@ -172,11 +172,11 @@
                             <button class="flex items-center gap-2 px-4 py-2 border-2 border-red-500 text-red-500 rounded-lg text-sm font-bold hover:bg-red-500 hover:text-white transition-all">
                                 <span class="material-symbols-outlined text-lg">stop_circle</span>
                                 Stop Stream
-                            </button>
+                            </a>
                             <button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-bold hover:bg-primary/90 transition-all">
                                 <span class="material-symbols-outlined text-lg">settings</span>
                                 Configure Encoder
-                            </button>
+                            </a>
                         </div>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -240,13 +240,13 @@
                         <div class="flex items-center justify-center gap-6 mt-4">
                             <button class="text-slate-400 hover:text-white transition-colors">
                                 <span class="material-symbols-outlined text-2xl">skip_previous</span>
-                            </button>
+                            </a>
                             <button class="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:scale-105 transition-transform shadow-lg">
                                 <span class="material-symbols-outlined text-slate-900 text-2xl fill-icon">pause</span>
-                            </button>
+                            </a>
                             <button class="text-slate-400 hover:text-white transition-colors">
                                 <span class="material-symbols-outlined text-2xl">skip_next</span>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -264,7 +264,7 @@
                         <button class="flex items-center gap-1.5 px-3 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
                             <span class="material-symbols-outlined text-base">edit_calendar</span>
                             Edit
-                        </button>
+                        </a>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-sm">
@@ -338,14 +338,14 @@
                             <button class="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-lg text-xs font-bold hover:bg-primary/90 transition-all">
                                 <span class="material-symbols-outlined text-base">upload_file</span>
                                 Upload
-                            </button>
+                            </a>
                         </div>
                         <!-- Tabs -->
                         <div class="flex gap-1 bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
-                            <button class="flex-1 px-3 py-1.5 rounded-md bg-white dark:bg-slate-700 text-xs font-bold shadow-sm transition-all">All Files</button>
-                            <button class="flex-1 px-3 py-1.5 rounded-md text-xs font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-all">Jingles</button>
-                            <button class="flex-1 px-3 py-1.5 rounded-md text-xs font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-all">Advertisements</button>
-                            <button class="flex-1 px-3 py-1.5 rounded-md text-xs font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-all">Auto-Playlists</button>
+                            <button class="flex-1 px-3 py-1.5 rounded-md bg-white dark:bg-slate-700 text-xs font-bold shadow-sm transition-all">All Files</a>
+                            <button class="flex-1 px-3 py-1.5 rounded-md text-xs font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-all">Jingles</a>
+                            <button class="flex-1 px-3 py-1.5 rounded-md text-xs font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-all">Advertisements</a>
+                            <button class="flex-1 px-3 py-1.5 rounded-md text-xs font-medium text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-all">Auto-Playlists</a>
                         </div>
                     </div>
                     <div class="flex-1 divide-y divide-slate-100 dark:divide-slate-800">
@@ -353,7 +353,7 @@
                         <div class="group p-4 flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors table-row-hover">
                             <button class="w-9 h-9 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 hover:bg-primary hover:text-white transition-all">
                                 <span class="material-symbols-outlined text-lg fill-icon">play_arrow</span>
-                            </button>
+                            </a>
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-semibold truncate">D5News_Morning_Jingle_v2.mp3</p>
                                 <p class="text-xs text-slate-500 mt-0.5">0:15 &middot; Jingles &middot; 12.4 MB</p>
@@ -361,17 +361,17 @@
                             <div class="row-actions opacity-0 flex items-center gap-1 transition-opacity">
                                 <button class="p-1.5 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors">
                                     <span class="material-symbols-outlined text-lg">edit</span>
-                                </button>
+                                </a>
                                 <button class="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
                                     <span class="material-symbols-outlined text-lg">delete</span>
-                                </button>
+                                </a>
                             </div>
                         </div>
                         <!-- File Item 2 -->
                         <div class="group p-4 flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors table-row-hover">
                             <button class="w-9 h-9 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 hover:bg-primary hover:text-white transition-all">
                                 <span class="material-symbols-outlined text-lg fill-icon">play_arrow</span>
-                            </button>
+                            </a>
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-semibold truncate">Breaking_News_Intro_Orchestral.wav</p>
                                 <p class="text-xs text-slate-500 mt-0.5">0:08 &middot; News Bumpers &middot; 4.2 MB</p>
@@ -379,17 +379,17 @@
                             <div class="row-actions opacity-0 flex items-center gap-1 transition-opacity">
                                 <button class="p-1.5 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors">
                                     <span class="material-symbols-outlined text-lg">edit</span>
-                                </button>
+                                </a>
                                 <button class="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
                                     <span class="material-symbols-outlined text-lg">delete</span>
-                                </button>
+                                </a>
                             </div>
                         </div>
                         <!-- File Item 3 -->
                         <div class="group p-4 flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors table-row-hover">
                             <button class="w-9 h-9 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 hover:bg-primary hover:text-white transition-all">
                                 <span class="material-symbols-outlined text-lg fill-icon">play_arrow</span>
-                            </button>
+                            </a>
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-semibold truncate">Ad_Space_Automotive_Client_30s.mp3</p>
                                 <p class="text-xs text-slate-500 mt-0.5">0:30 &middot; Commercials &middot; 1.5 MB</p>
@@ -397,17 +397,17 @@
                             <div class="row-actions opacity-0 flex items-center gap-1 transition-opacity">
                                 <button class="p-1.5 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors">
                                     <span class="material-symbols-outlined text-lg">edit</span>
-                                </button>
+                                </a>
                                 <button class="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
                                     <span class="material-symbols-outlined text-lg">delete</span>
-                                </button>
+                                </a>
                             </div>
                         </div>
                         <!-- File Item 4 -->
                         <div class="group p-4 flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors table-row-hover">
                             <button class="w-9 h-9 rounded-lg bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary flex-shrink-0 hover:bg-primary hover:text-white transition-all">
                                 <span class="material-symbols-outlined text-lg fill-icon">play_arrow</span>
-                            </button>
+                            </a>
                             <div class="flex-1 min-w-0">
                                 <p class="text-sm font-semibold truncate">Station_ID_Top_Of_Hour_FR.mp3</p>
                                 <p class="text-xs text-slate-500 mt-0.5">0:12 &middot; Station IDs &middot; 2.8 MB</p>
@@ -415,10 +415,10 @@
                             <div class="row-actions opacity-0 flex items-center gap-1 transition-opacity">
                                 <button class="p-1.5 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors">
                                     <span class="material-symbols-outlined text-lg">edit</span>
-                                </button>
+                                </a>
                                 <button class="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-500/10 transition-colors">
                                     <span class="material-symbols-outlined text-lg">delete</span>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>

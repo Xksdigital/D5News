@@ -209,6 +209,18 @@ initDatabase().then(() => {
     app.use((req, res, next) => {
         const host = req.hostname || req.headers.host;
         if (host && host.startsWith('admin.')) {
+            // Logout endpoint — forces browser to forget cached credentials
+            if (req.path === '/logout') {
+                res.set('WWW-Authenticate', 'Basic realm="D5News Admin"');
+                return res.status(401).send(`
+                    <!DOCTYPE html>
+                    <html><head><meta charset="utf-8"><title>Deconnexion</title>
+                    <style>body{background:#101822;color:#fff;font-family:Inter,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;}
+                    .box{text-align:center;}.box h1{font-size:2rem;margin-bottom:1rem;}.box a{color:#0f58bd;text-decoration:none;font-weight:600;}</style>
+                    </head><body><div class="box"><h1>Deconnecte</h1><p>Vous avez ete deconnecte avec succes.</p><p><a href="/">Se reconnecter</a></p></div></body></html>
+                `);
+            }
+
             // Allow static assets (CSS, JS, images, fonts) without auth
             if (req.path.match(/\.(css|js|png|jpg|jpeg|svg|gif|ico|woff|woff2|ttf|eot)$/)) {
                 return express.static(ADMIN_DIR, {
