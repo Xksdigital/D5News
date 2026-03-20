@@ -4,28 +4,156 @@ const path = require('path');
 const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
 const { initDatabase } = require('./src/database');
+
+// Security check: JWT_SECRET must be set and strong in production
+if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
+    if (process.env.NODE_ENV === 'production') {
+        console.error('FATAL: JWT_SECRET must be set and at least 32 characters in production');
+        process.exit(1);
+    } else {
+        console.warn('WARNING: JWT_SECRET is weak or missing. Set a strong secret for production.');
+    }
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(helmet({ contentSecurityPolicy: false, crossOriginEmbedderPolicy: false }));
-app.use(cors());
-app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
-app.use(express.json());
+// ============================================================
+// SECURITY MIDDLEWARE
+// ============================================================
 
-// Init DB (async) then start server
+// 1. Helmet — security headers (CSP, HSTS, X-Frame, etc.)
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+            fontSrc: ["'self'", "https://fonts.gstatic.com"],
+            imgSrc: ["'self'", "data:", "https:", "blob:"],
+            connectSrc: ["'self'", "https://ui-avatars.com"],
+            frameSrc: ["'none'"],
+            objectSrc: ["'none'"],
+            baseUri: ["'self'"],
+            formAction: ["'self'"],
+        }
+    },
+    crossOriginEmbedderPolicy: false,
+    hsts: {
+        maxAge: 31536000,
+        includeSubDomains: true,
+        preload: true
+    },
+    referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+}));
+
+// 2. CORS — restrict to our domains only
+const ALLOWED_ORIGINS = [
+    'https://d5newstv.com',
+    'https://www.d5newstv.com',
+    'https://admin.d5newstv.com',
+    'http://localhost:3000',
+    'http://localhost:5173',
+];
+app.use(cors({
+    origin: function (origin, callback) {
+        // Allow requests with no origin (server-to-server, curl, mobile apps)
+        if (!origin) return callback(null, true);
+        if (ALLOWED_ORIGINS.includes(origin)) {
+            return callback(null, true);
+        }
+        return callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
+// 3. Rate Limiting
+const globalLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 300, // 300 requests per 15 min per IP
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: 'Trop de requetes, veuillez reessayer dans quelques minutes' },
+});
+app.use(globalLimiter);
+
+// Strict rate limit on auth routes (anti brute-force)
+const authLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 10, // 10 attempts per 15 min
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: 'Trop de tentatives de connexion, reessayez dans 15 minutes' },
+});
+
+// Strict rate limit on public form submissions (anti-spam)
+const formLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000, // 1 hour
+    max: 5, // 5 submissions per hour
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: 'Trop de soumissions, reessayez plus tard' },
+});
+
+// 4. Body parser with size limit (prevent large payload attacks)
+app.use(express.json({ limit: '1mb' }));
+app.use(express.urlencoded({ extended: false, limit: '1mb' }));
+
+// 5. Logger
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
+
+// 6. Block access to sensitive files BEFORE static middleware
+app.use((req, res, next) => {
+    const blocked = [
+        '.env', '.git', '.gitignore', 'package.json', 'package-lock.json',
+        'node_modules', 'server.js', 'src/', 'data/', '.claude/',
+        'd5news-react/src/', 'd5news-react/node_modules/',
+        'd5news-react/package.json', 'd5news-react/vite.config',
+        'd5news-react/tsconfig', 'd5news-react/.env',
+    ];
+    const reqPath = decodeURIComponent(req.path).toLowerCase();
+    for (const pattern of blocked) {
+        if (reqPath === '/' + pattern || reqPath.startsWith('/' + pattern)) {
+            return res.status(403).json({ error: 'Acces interdit' });
+        }
+    }
+    // Block database files
+    if (reqPath.endsWith('.db') || reqPath.endsWith('.sqlite') || reqPath.endsWith('.sql')) {
+        return res.status(403).json({ error: 'Acces interdit' });
+    }
+    next();
+});
+
+// 7. Remove X-Powered-By (extra precaution, helmet does this too)
+app.disable('x-powered-by');
+
+// ============================================================
+// DATABASE INIT & ROUTES
+// ============================================================
+
 initDatabase().then(() => {
-    // API Routes
+    const { authenticate, requireAdmin } = require('./src/middleware/auth');
+
+    // API Routes with rate limiting on sensitive endpoints
+    app.use('/api/auth/login', authLimiter);
+    app.use('/api/auth/register', authLimiter);
     app.use('/api/auth', require('./src/routes/auth'));
+
     app.use('/api/articles', require('./src/routes/articles'));
     app.use('/api/favorites', require('./src/routes/favorites'));
     app.use('/api/subscriptions', require('./src/routes/subscriptions'));
-    app.use('/api/contacts', require('./src/routes/contacts'));
-    app.use('/api/newsletter', require('./src/routes/newsletter'));
     app.use('/api/podcasts', require('./src/routes/podcasts'));
     app.use('/api/radio', require('./src/routes/radio'));
+
+    // Public form endpoints with spam protection
+    app.use('/api/contacts', formLimiter, require('./src/routes/contacts'));
+    app.use('/api/newsletter', formLimiter, require('./src/routes/newsletter'));
+
+    // Admin routes (all protected by authenticate + requireAdmin)
     app.use('/api/admin/dashboard', require('./src/routes/admin/dashboard'));
     app.use('/api/admin/articles', require('./src/routes/admin/articles'));
     app.use('/api/admin/users', require('./src/routes/admin/users'));
@@ -37,7 +165,7 @@ initDatabase().then(() => {
     app.use('/api/admin/logs', require('./src/routes/admin/logs'));
     app.use('/api/admin/settings', require('./src/routes/admin/settings'));
 
-    // Coming Soon API (public - no auth needed for GET)
+    // Coming Soon API — GET is public, PUT requires admin auth
     app.get('/api/coming-soon', (req, res) => {
         const { db } = require('./src/database');
         const row = db.prepare("SELECT value FROM settings WHERE key = 'coming_soon'").get();
@@ -50,7 +178,8 @@ initDatabase().then(() => {
         }
     });
 
-    app.put('/api/coming-soon', (req, res) => {
+    // SECURED: PUT requires admin authentication
+    app.put('/api/coming-soon', authenticate, requireAdmin, (req, res) => {
         const { db } = require('./src/database');
         const data = JSON.stringify({
             enabled: !!req.body.coming_soon,
@@ -66,24 +195,30 @@ initDatabase().then(() => {
         res.json({ success: true });
     });
 
-    // Paths
-    const REACT_DIST = path.join(__dirname, 'd5news-react', 'dist');
-    const ADMIN_DIR = __dirname; // Admin pages are at root level
+    // ============================================================
+    // STATIC FILES & SPA
+    // ============================================================
 
-    // Admin subdomain middleware - serve admin pages from root
+    const REACT_DIST = path.join(__dirname, 'd5news-react', 'dist');
+    const ADMIN_DIR = __dirname;
+
+    // Admin subdomain middleware
     app.use((req, res, next) => {
         const host = req.hostname || req.headers.host;
         if (host && host.startsWith('admin.')) {
             if (req.path === '/' || req.path === '') {
                 return res.sendFile(path.join(ADMIN_DIR, 'index.html'));
             }
-            // Serve admin static files (css, js, images) from root
-            return express.static(ADMIN_DIR, { extensions: ['html'], index: false })(req, res, next);
+            return express.static(ADMIN_DIR, {
+                extensions: ['html'],
+                index: false,
+                dotfiles: 'deny', // Block .env, .git etc
+            })(req, res, next);
         }
         next();
     });
 
-    // Coming Soon middleware - intercept public site when enabled
+    // Coming Soon middleware
     app.use((req, res, next) => {
         const host = req.hostname || req.headers.host;
         if (host && host.startsWith('admin.')) return next();
@@ -104,13 +239,18 @@ initDatabase().then(() => {
         next();
     });
 
-    // Public site: serve React build from d5news-react/dist
-    app.use(express.static(REACT_DIST));
+    // Public site: serve React build (safe — only built assets)
+    app.use(express.static(REACT_DIST, {
+        dotfiles: 'deny',
+        index: 'index.html',
+    }));
 
-    // Also serve root-level static files (images, css, js for admin/coming-soon)
-    app.use(express.static(ADMIN_DIR, { extensions: ['html'], index: false }));
+    // Serve only specific safe static directories from root (for admin pages)
+    app.use('/images', express.static(path.join(ADMIN_DIR, 'images'), { dotfiles: 'deny' }));
+    app.use('/css', express.static(path.join(ADMIN_DIR, 'css'), { dotfiles: 'deny' }));
+    app.use('/js', express.static(path.join(ADMIN_DIR, 'js'), { dotfiles: 'deny' }));
 
-    // SPA fallback: all non-API, non-admin routes serve React index.html
+    // SPA fallback
     app.get('*', (req, res, next) => {
         const host = req.hostname || req.headers.host;
         if (host && host.startsWith('admin.')) return next();
@@ -118,15 +258,21 @@ initDatabase().then(() => {
         res.sendFile(path.join(REACT_DIST, 'index.html'));
     });
 
-    // 404 fallback (admin only at this point)
+    // 404 fallback
     app.use((req, res) => {
         res.status(404).sendFile(path.join(ADMIN_DIR, '404.html'));
     });
 
-    // Error handler
+    // Error handler — never leak stack traces in production
     app.use((err, req, res, next) => {
         console.error(err.stack);
-        res.status(500).sendFile(path.join(ADMIN_DIR, '500.html'));
+        if (err.message === 'Not allowed by CORS') {
+            return res.status(403).json({ error: 'Origine non autorisee' });
+        }
+        const message = process.env.NODE_ENV === 'production'
+            ? 'Erreur serveur'
+            : err.message;
+        res.status(500).json({ error: message });
     });
 
     app.listen(PORT, () => {
