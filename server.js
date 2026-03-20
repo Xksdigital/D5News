@@ -202,17 +202,43 @@ initDatabase().then(() => {
     const REACT_DIST = path.join(__dirname, 'd5news-react', 'dist');
     const ADMIN_DIR = __dirname;
 
-    // Admin subdomain middleware
+    // Admin subdomain middleware with HTTP Basic Auth
+    const ADMIN_USER = process.env.ADMIN_USER || 'admin';
+    const ADMIN_PASS = process.env.ADMIN_PASS || 'D5News@dmin2025!';
+
     app.use((req, res, next) => {
         const host = req.hostname || req.headers.host;
         if (host && host.startsWith('admin.')) {
+            // Allow static assets (CSS, JS, images, fonts) without auth
+            if (req.path.match(/\.(css|js|png|jpg|jpeg|svg|gif|ico|woff|woff2|ttf|eot)$/)) {
+                return express.static(ADMIN_DIR, {
+                    dotfiles: 'deny',
+                })(req, res, next);
+            }
+
+            // HTTP Basic Authentication
+            const authHeader = req.headers.authorization;
+            if (!authHeader || !authHeader.startsWith('Basic ')) {
+                res.set('WWW-Authenticate', 'Basic realm="D5News Admin"');
+                return res.status(401).send('Authentification requise');
+            }
+
+            const credentials = Buffer.from(authHeader.split(' ')[1], 'base64').toString();
+            const [user, pass] = credentials.split(':');
+
+            if (user !== ADMIN_USER || pass !== ADMIN_PASS) {
+                res.set('WWW-Authenticate', 'Basic realm="D5News Admin"');
+                return res.status(401).send('Identifiants incorrects');
+            }
+
+            // Authenticated — serve admin pages
             if (req.path === '/' || req.path === '') {
                 return res.sendFile(path.join(ADMIN_DIR, 'index.html'));
             }
             return express.static(ADMIN_DIR, {
                 extensions: ['html'],
                 index: false,
-                dotfiles: 'deny', // Block .env, .git etc
+                dotfiles: 'deny',
             })(req, res, next);
         }
         next();
