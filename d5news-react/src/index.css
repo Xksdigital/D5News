@@ -180,50 +180,109 @@
 .animate-ticker-slow { animation: ticker-slow 40s linear infinite; }
 .animate-ticker-reverse { animation: ticker-reverse 35s linear infinite; }
 
-/* ─── Premium NavBar ─── */
-.premium-navbar-wrapper {
-  background: linear-gradient(135deg, #0d1b2a 0%, #1b2d45 40%, #162236 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+/* ═══════════════════════════════════════════════════════
+   UNIFIED PREMIUM HEADER
+═══════════════════════════════════════════════════════ */
+
+/* Main header bar */
+.unified-header {
+  background: linear-gradient(180deg, #0a1628 0%, #0d1b2e 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(20px) saturate(1.8);
-  position: relative;
-  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 }
-.premium-navbar-wrapper::before {
+
+/* Sub-bar with categories + continents */
+.unified-subbar {
+  background: linear-gradient(135deg, #0d1b2a 0%, #152238 50%, #0f1e30 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  position: relative;
+}
+.unified-subbar::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(26, 54, 93, 0.35) 0%, transparent 70%);
+  background: radial-gradient(ellipse 70% 100% at 50% 0%, rgba(26, 54, 93, 0.2) 0%, transparent 70%);
   pointer-events: none;
 }
 
-.premium-nav-item {
-  letter-spacing: 0.02em;
-  position: relative;
-  cursor: pointer;
-}
-
-.premium-nav-active {
-  background: linear-gradient(135deg, #1A365D, #2B4C7E) !important;
-  box-shadow: 0 0 18px rgba(26, 54, 93, 0.5), 0 0 6px rgba(43, 76, 126, 0.3), inset 0 1px 0 rgba(255,255,255,0.1);
-}
-
-.premium-nav-glow {
-  position: absolute;
-  inset: -2px;
+/* Icon buttons (search, lang, theme) */
+.header-icon-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 9999px;
-  background: linear-gradient(135deg, rgba(26, 54, 93, 0.6), rgba(43, 76, 126, 0.4));
-  filter: blur(8px);
-  z-index: 0;
-  animation: nav-glow-pulse 2.5s ease-in-out infinite;
+  color: rgba(255, 255, 255, 0.55);
+  transition: all 0.3s ease;
+}
+.header-icon-btn:hover {
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-@keyframes nav-glow-pulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
+/* User button */
+.header-user-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.header-user-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Live button dot */
+/* Dropdown menu */
+.header-dropdown {
+  background: linear-gradient(135deg, #1a2a42, #152238);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  animation: dropdown-appear 0.2s ease-out;
+}
+@keyframes dropdown-appear {
+  from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Live button in header */
+.header-live-btn {
+  background: linear-gradient(135deg, #dc2626, #ef4444);
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 14px rgba(220, 38, 38, 0.3);
+}
+.header-live-btn:hover {
+  box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+  transform: scale(1.02);
+}
+
+.header-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fff;
+  animation: live-blink 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Category nav items */
+.unified-nav-item {
+  position: relative;
+  letter-spacing: 0.02em;
+}
+
+.unified-nav-active {
+  background: linear-gradient(135deg, #1A365D, #2B4C7E) !important;
+  color: white !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 16px rgba(26, 54, 93, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Live pill in subbar */
+.unified-live-pill {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Live dot animation */
 .premium-live-dot {
   width: 7px;
   height: 7px;
@@ -251,6 +310,8 @@
   100% { transform: scale(2.2); opacity: 0; }
 }
 
-.premium-live-btn {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+/* Mobile drawer */
+.mobile-drawer {
+  background: linear-gradient(180deg, #0d1b2e 0%, #0a1628 100%);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
 }
