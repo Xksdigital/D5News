@@ -3,207 +3,1069 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>D5News - Nous Lancons Bientot</title>
-    <meta name="description" content="D5News - La plateforme d'actualite africaine arrive bientot. Inscrivez-vous pour etre notifie du lancement."/>
+    <title>D5News - Nous Revenons Bientot</title>
+    <meta name="description" content="D5News - La plateforme d'actualite africaine arrive bientot. Decouvrez notre assistant IA en attendant."/>
     <meta property="og:type" content="website"/>
     <meta property="og:site_name" content="D5News"/>
-    <meta property="og:title" content="D5News - Nous Lancons Bientot"/>
-    <meta property="og:description" content="La plateforme d'actualite africaine arrive bientot."/>
+    <meta property="og:title" content="D5News - Nous Revenons Bientot"/>
+    <meta property="og:description" content="La plateforme d'actualite africaine premium arrive bientot."/>
     <meta property="og:image" content="images/logo.png"/>
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg"/>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: { "primary": "#0f58bd", "background-dark": "#101822" },
-                    fontFamily: { "display": ["Inter", "system-ui", "sans-serif"] },
-                },
-            },
-        }
-    </script>
     <style>
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
-        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px rgba(15,88,189,0.3); } 50% { box-shadow: 0 0 40px rgba(15,88,189,0.6); } }
-        @keyframes fade-up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slide-in { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
-        .float-anim { animation: float 6s ease-in-out infinite; }
-        .pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
-        .fade-up { animation: fade-up 0.8s ease-out forwards; }
-        .fade-up-delay-1 { animation: fade-up 0.8s ease-out 0.2s forwards; opacity: 0; }
-        .fade-up-delay-2 { animation: fade-up 0.8s ease-out 0.4s forwards; opacity: 0; }
-        .fade-up-delay-3 { animation: fade-up 0.8s ease-out 0.6s forwards; opacity: 0; }
-        .countdown-box { animation: pulse-glow 3s ease-in-out infinite; }
-        .bg-grid { background-image: radial-gradient(circle, rgba(15,88,189,0.15) 1px, transparent 1px); background-size: 40px 40px; }
-        .social-link { transition: all 0.3s ease; }
-        .social-link:hover { transform: translateY(-3px); }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --primary: #0f58bd;
+            --primary-light: #3b82f6;
+            --bg-dark: #080d14;
+            --bg-card: rgba(15, 23, 42, 0.6);
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --glow: rgba(15, 88, 189, 0.4);
+        }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ============ CANVAS PARTICLES ============ */
+        #particles-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ============ AURORA GRADIENT ============ */
+        .aurora {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .aurora::before, .aurora::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            animation: aurora-drift 12s ease-in-out infinite alternate;
+        }
+        .aurora::before {
+            width: 60vw; height: 60vw;
+            background: radial-gradient(circle, rgba(15,88,189,0.25) 0%, transparent 70%);
+            top: -20vw; left: -10vw;
+        }
+        .aurora::after {
+            width: 50vw; height: 50vw;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+            bottom: -15vw; right: -10vw;
+            animation-delay: -6s;
+            animation-direction: alternate-reverse;
+        }
+        @keyframes aurora-drift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(5vw, 3vw) scale(1.15); }
+        }
+
+        /* ============ MAIN LAYOUT ============ */
+        .main-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        /* ============ LOGO ============ */
+        .logo-container {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            animation: fade-in-down 1s ease-out;
+        }
+        .logo-container img {
+            height: 48px;
+            filter: drop-shadow(0 0 30px rgba(15,88,189,0.5));
+        }
+
+        /* ============ HERO TEXT ============ */
+        .hero-section {
+            text-align: center;
+            max-width: 720px;
+            margin-bottom: 3rem;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            background: rgba(15,88,189,0.15);
+            border: 1px solid rgba(15,88,189,0.3);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+            animation: fade-in-up 0.8s ease-out 0.2s both;
+        }
+        .hero-badge .dot {
+            width: 6px; height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        .hero-title {
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+            animation: fade-in-up 0.8s ease-out 0.4s both;
+        }
+        .hero-title .gradient-text {
+            background: linear-gradient(135deg, var(--primary-light), #a78bfa, var(--primary-light));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease-in-out infinite;
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            animation: fade-in-up 0.8s ease-out 0.6s both;
+        }
+        /* Dynamic greeting */
+        .hero-greeting {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            animation: fade-in-up 0.8s ease-out 0.3s both;
+        }
+
+        /* ============ COUNTDOWN ============ */
+        .countdown-grid {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            animation: fade-in-up 0.8s ease-out 0.8s both;
+        }
+        .countdown-item {
+            width: 90px; height: 100px;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .countdown-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(15,88,189,0.4);
+        }
+        .countdown-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15,88,189,0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .countdown-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+            background: linear-gradient(to bottom, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: transform 0.3s;
+        }
+        .countdown-value.flip {
+            animation: flip-digit 0.4s ease-out;
+        }
+        .countdown-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 2px;
+        }
+
+        /* ============ NOTIFICATION FORM ============ */
+        .notify-section {
+            max-width: 480px;
+            width: 100%;
+            margin-bottom: 2.5rem;
+            animation: fade-in-up 0.8s ease-out 1s both;
+        }
+        .notify-form {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 6px;
+            transition: border-color 0.3s;
+        }
+        .notify-form:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(15,88,189,0.15);
+        }
+        .notify-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            padding: 12px 16px;
+            font-family: inherit;
+        }
+        .notify-input::placeholder { color: #475569; }
+        .notify-btn {
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .notify-btn:hover {
+            background: var(--primary-light);
+            box-shadow: 0 8px 25px rgba(15,88,189,0.4);
+            transform: translateY(-1px);
+        }
+        .notify-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .notify-success {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.3);
+            border-radius: 12px;
+            color: #4ade80;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 0.75rem;
+        }
+        .notify-success.show { display: flex; animation: fade-in-up 0.4s ease-out; }
+
+        /* ============ FEATURES PREVIEW ============ */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            max-width: 720px;
+            width: 100%;
+            margin-bottom: 3rem;
+            animation: fade-in-up 0.8s ease-out 1.2s both;
+        }
+        .feature-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 1.25rem;
+            transition: all 0.3s;
+            cursor: default;
+        }
+        .feature-card:hover {
+            border-color: rgba(15,88,189,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+        .feature-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+        .feature-card h3 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+        }
+        .feature-card p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ============ AI CHATBOT ============ */
+        .ai-fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1000;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #7c3aed);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(15,88,189,0.5);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fab-entrance 0.6s ease-out 2s both;
+        }
+        .ai-fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(15,88,189,0.6);
+        }
+        .ai-fab .pulse-ring {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            animation: pulse-ring 2s ease-out infinite;
+        }
+
+        .ai-chat-panel {
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            z-index: 999;
+            width: 380px;
+            max-height: 520px;
+            background: rgba(8,13,20,0.95);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+            animation: chat-slide-up 0.4s ease-out;
+        }
+        .ai-chat-panel.open { display: flex; }
+
+        .ai-chat-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .ai-avatar {
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), #7c3aed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .ai-chat-header-info h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .ai-chat-header-info p {
+            font-size: 0.7rem;
+            color: #4ade80;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .ai-chat-header-info p::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: #4ade80;
+            border-radius: 50%;
+        }
+        .ai-chat-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.2s;
+        }
+        .ai-chat-close:hover { color: white; }
+
+        .ai-chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 340px;
+        }
+        .ai-msg {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 14px;
+            font-size: 0.82rem;
+            line-height: 1.55;
+            animation: msg-appear 0.3s ease-out;
+        }
+        .ai-msg.bot {
+            align-self: flex-start;
+            background: rgba(15,88,189,0.15);
+            border: 1px solid rgba(15,88,189,0.2);
+            border-bottom-left-radius: 4px;
+        }
+        .ai-msg.user {
+            align-self: flex-end;
+            background: var(--primary);
+            border-bottom-right-radius: 4px;
+        }
+        .ai-msg.typing {
+            align-self: flex-start;
+            background: rgba(15,88,189,0.1);
+            border: 1px solid rgba(15,88,189,0.15);
+            border-bottom-left-radius: 4px;
+        }
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+            padding: 4px 0;
+        }
+        .typing-dots span {
+            width: 6px; height: 6px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            animation: typing-bounce 1.4s ease-in-out infinite;
+        }
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+        .ai-suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            padding: 0 20px 12px;
+        }
+        .ai-suggestion-btn {
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 999px;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .ai-suggestion-btn:hover {
+            background: rgba(15,88,189,0.2);
+            border-color: rgba(15,88,189,0.4);
+            color: var(--primary-light);
+        }
+
+        .ai-chat-input-area {
+            padding: 12px 16px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            gap: 8px;
+        }
+        .ai-chat-input {
+            flex: 1;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 10px 14px;
+            color: var(--text);
+            font-size: 0.82rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .ai-chat-input:focus {
+            border-color: var(--primary);
+        }
+        .ai-chat-input::placeholder { color: #475569; }
+        .ai-chat-send {
+            width: 40px; height: 40px;
+            border-radius: 12px;
+            background: var(--primary);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .ai-chat-send:hover {
+            background: var(--primary-light);
+            transform: scale(1.05);
+        }
+
+        /* ============ SOCIAL ============ */
+        .social-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            animation: fade-in-up 0.8s ease-out 1.4s both;
+        }
+        .social-link {
+            width: 42px; height: 42px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(15,88,189,0.3);
+            border-color: var(--primary);
+        }
+        .social-link svg { width: 18px; height: 18px; fill: currentColor; }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: #475569;
+            font-size: 0.75rem;
+        }
+
+        /* ============ ANIMATIONS ============ */
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fade-in-down {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+        @keyframes flip-digit {
+            0% { transform: rotateX(90deg); opacity: 0; }
+            100% { transform: rotateX(0deg); opacity: 1; }
+        }
+        @keyframes fab-entrance {
+            from { opacity: 0; transform: scale(0) rotate(-180deg); }
+            to { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+        @keyframes chat-slide-up {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes msg-appear {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes typing-bounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-6px); }
+        }
+
+        /* ============ SCROLLBAR ============ */
+        .ai-chat-messages::-webkit-scrollbar { width: 4px; }
+        .ai-chat-messages::-webkit-scrollbar-track { background: transparent; }
+        .ai-chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 640px) {
+            .countdown-grid { gap: 0.5rem; }
+            .countdown-item { width: 72px; height: 84px; }
+            .countdown-value { font-size: 1.7rem; }
+            .features-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+            .ai-chat-panel { width: calc(100vw - 32px); right: 16px; bottom: 90px; }
+            .ai-fab { width: 52px; height: 52px; bottom: 20px; right: 20px; }
+        }
     </style>
 </head>
-<body class="font-display bg-background-dark text-white min-h-screen flex flex-col relative overflow-hidden">
+<body>
 
-    <!-- Background Effects -->
-    <div class="absolute inset-0 bg-grid opacity-30"></div>
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[150px] -mt-96"></div>
-    <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] mb-[-200px] mr-[-100px]"></div>
+    <!-- Particle Canvas -->
+    <canvas id="particles-canvas"></canvas>
 
-    <!-- Content -->
-    <div class="relative z-10 flex flex-col items-center justify-center flex-1 px-4 py-12">
+    <!-- Aurora Background -->
+    <div class="aurora"></div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+
         <!-- Logo -->
-        <div class="fade-up mb-10">
-            <img src="images/logo.png" alt="D5News" class="h-12 md:h-16 float-anim"/>
+        <div class="logo-container">
+            <img src="images/logo.png" alt="D5News"/>
         </div>
 
-        <!-- Decorative dots -->
-        <div class="fade-up-delay-1 flex gap-2 mb-6">
-            <div class="w-3 h-3 rounded-full bg-primary"></div>
-            <div class="w-3 h-3 rounded-full bg-primary/70"></div>
-            <div class="w-3 h-3 rounded-full bg-primary/40"></div>
-            <div class="w-3 h-3 rounded-full bg-primary/70"></div>
-            <div class="w-3 h-3 rounded-full bg-primary"></div>
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <p class="hero-greeting" id="greeting"></p>
+            <div class="hero-badge">
+                <span class="dot"></span>
+                En cours de preparation
+            </div>
+            <h1 class="hero-title">
+                Nous revenons<br/><span class="gradient-text">tres prochainement</span>
+            </h1>
+            <p class="hero-subtitle" id="launch-description">
+                Nous preparons quelque chose d'exceptionnel pour vous.
+                Une plateforme d'actualite africaine intelligente, immersive et premium.
+            </p>
         </div>
-        <div class="fade-up-delay-1 flex gap-2 mb-8">
-            <div class="w-3 h-3 rounded-full bg-primary/40"></div>
-            <div class="w-3 h-3 rounded-full bg-primary"></div>
-            <div class="w-3 h-3 rounded-full bg-primary/70"></div>
-            <div class="w-3 h-3 rounded-full bg-primary"></div>
-            <div class="w-3 h-3 rounded-full bg-primary/40"></div>
-        </div>
-
-        <!-- Title -->
-        <h1 class="fade-up-delay-1 text-4xl md:text-6xl font-black text-center mb-6 tracking-tight">
-            Nous Lancons <span class="text-primary">Bientot</span>
-        </h1>
-
-        <!-- Description -->
-        <p class="fade-up-delay-2 text-lg md:text-xl text-slate-400 text-center max-w-2xl mb-12 leading-relaxed" id="launch-description">
-            Un nouveau projet passionnant est en preparation ! Nous travaillons activement pour vous offrir une experience unique
-            en matiere d'actualite africaine et internationale. Restez connectes, ca arrive tres bientot !
-        </p>
 
         <!-- Countdown -->
-        <div class="fade-up-delay-2 flex gap-4 md:gap-6 mb-14" id="countdown-container">
-            <div class="countdown-box bg-primary rounded-2xl w-20 h-24 md:w-28 md:h-32 flex flex-col items-center justify-center">
-                <span id="days" class="text-3xl md:text-5xl font-black">--</span>
-                <span class="text-xs md:text-sm font-semibold text-white/70 mt-1">Jours</span>
+        <div class="countdown-grid" id="countdown-container">
+            <div class="countdown-item">
+                <span class="countdown-value" id="days">--</span>
+                <span class="countdown-label">Jours</span>
             </div>
-            <div class="countdown-box bg-primary rounded-2xl w-20 h-24 md:w-28 md:h-32 flex flex-col items-center justify-center" style="animation-delay: 0.5s">
-                <span id="hours" class="text-3xl md:text-5xl font-black">--</span>
-                <span class="text-xs md:text-sm font-semibold text-white/70 mt-1">Heures</span>
+            <div class="countdown-item">
+                <span class="countdown-value" id="hours">--</span>
+                <span class="countdown-label">Heures</span>
             </div>
-            <div class="countdown-box bg-primary rounded-2xl w-20 h-24 md:w-28 md:h-32 flex flex-col items-center justify-center" style="animation-delay: 1s">
-                <span id="minutes" class="text-3xl md:text-5xl font-black">--</span>
-                <span class="text-xs md:text-sm font-semibold text-white/70 mt-1">Minutes</span>
+            <div class="countdown-item">
+                <span class="countdown-value" id="minutes">--</span>
+                <span class="countdown-label">Minutes</span>
             </div>
-            <div class="countdown-box bg-primary rounded-2xl w-20 h-24 md:w-28 md:h-32 flex flex-col items-center justify-center" style="animation-delay: 1.5s">
-                <span id="seconds" class="text-3xl md:text-5xl font-black">--</span>
-                <span class="text-xs md:text-sm font-semibold text-white/70 mt-1">Secondes</span>
+            <div class="countdown-item">
+                <span class="countdown-value" id="seconds">--</span>
+                <span class="countdown-label">Secondes</span>
             </div>
         </div>
 
-        <!-- Email signup -->
-        <div class="fade-up-delay-3 flex flex-col sm:flex-row gap-3 w-full max-w-lg mb-10">
-            <div class="flex-1 relative">
-                <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">mail</span>
-                <input id="notify-email" type="email" placeholder="Votre adresse email"
-                    class="w-full pl-12 pr-4 py-4 bg-slate-800/80 border border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-slate-500"/>
+        <!-- Notification Form -->
+        <div class="notify-section">
+            <div class="notify-form" id="notify-form">
+                <input class="notify-input" id="notify-email" type="email" placeholder="Entrez votre email pour etre notifie..." autocomplete="email"/>
+                <button class="notify-btn" id="notify-btn" onclick="subscribeNotify()">
+                    <span class="material-symbols-outlined" style="font-size:1.1rem">notifications_active</span>
+                    M'alerter
+                </button>
             </div>
-            <button id="notify-btn" onclick="subscribeNotify()"
-                class="flex items-center justify-center gap-2 px-6 py-4 bg-primary hover:bg-primary/90 text-white rounded-xl text-sm font-bold transition-all shadow-lg shadow-primary/30 hover:shadow-primary/50 whitespace-nowrap">
-                <span class="material-symbols-outlined text-lg">notifications_active</span>
-                Notifier moi
-            </button>
+            <div class="notify-success" id="notify-success">
+                <span class="material-symbols-outlined" style="font-size:1.1rem">check_circle</span>
+                Parfait ! Vous serez notifie des le lancement.
+            </div>
         </div>
 
-        <!-- Success message (hidden by default) -->
-        <div id="notify-success" class="hidden fade-up items-center gap-2 px-4 py-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-400 text-sm font-medium mb-6">
-            <span class="material-symbols-outlined">check_circle</span>
-            <span>Merci ! Vous serez notifie lors du lancement.</span>
+        <!-- Features Preview -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(59,130,246,0.15); color:#3b82f6;">
+                    <span class="material-symbols-outlined">newspaper</span>
+                </div>
+                <h3>Actualites en direct</h3>
+                <p>Informations africaines et internationales en temps reel</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(168,85,247,0.15); color:#a855f7;">
+                    <span class="material-symbols-outlined">podcasts</span>
+                </div>
+                <h3>Podcasts exclusifs</h3>
+                <p>Analyses approfondies par nos experts du continent</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background:rgba(239,68,68,0.15); color:#ef4444;">
+                    <span class="material-symbols-outlined">radio</span>
+                </div>
+                <h3>Web Radio live</h3>
+                <p>Ecoutez notre radio en direct 24h/24</p>
+            </div>
         </div>
 
-        <!-- Social links -->
-        <div class="fade-up-delay-3 flex items-center gap-4">
-            <a href="#" class="social-link w-11 h-11 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-all" title="Facebook">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <!-- Social Links -->
+        <div class="social-row">
+            <a href="#" class="social-link" title="Facebook">
+                <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
-            <a href="#" class="social-link w-11 h-11 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-all" title="X (Twitter)">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <a href="#" class="social-link" title="X (Twitter)">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             </a>
-            <a href="#" class="social-link w-11 h-11 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-all" title="Instagram">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <a href="#" class="social-link" title="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
             </a>
-            <a href="#" class="social-link w-11 h-11 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-all" title="YouTube">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            <a href="#" class="social-link" title="YouTube">
+                <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             </a>
-            <a href="#" class="social-link w-11 h-11 rounded-full bg-slate-800 hover:bg-primary flex items-center justify-center transition-all" title="TikTok">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            <a href="#" class="social-link" title="TikTok">
+                <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
             </a>
+        </div>
+
+        <div class="footer">
+            &copy; 2025 D5News. Tous droits reserves. | Plateforme d'actualite africaine premium
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="relative z-10 text-center py-6 text-slate-500 text-sm">
-        &copy; 2025 D5News. Tous droits reserves.
-    </footer>
+    <!-- AI Chat FAB -->
+    <button class="ai-fab" id="ai-fab" onclick="toggleChat()">
+        <span class="pulse-ring"></span>
+        <span class="material-symbols-outlined">smart_toy</span>
+    </button>
+
+    <!-- AI Chat Panel -->
+    <div class="ai-chat-panel" id="ai-chat-panel">
+        <div class="ai-chat-header">
+            <div class="ai-avatar">
+                <span class="material-symbols-outlined" style="font-size:1.2rem">smart_toy</span>
+            </div>
+            <div class="ai-chat-header-info">
+                <h4>D5News Assistant</h4>
+                <p>En ligne</p>
+            </div>
+            <button class="ai-chat-close" onclick="toggleChat()">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="ai-chat-messages" id="ai-chat-messages">
+            <div class="ai-msg bot">
+                Bonjour ! Je suis l'assistant D5News. Je peux repondre a vos questions sur notre plateforme. Que souhaitez-vous savoir ?
+            </div>
+        </div>
+        <div class="ai-suggestions" id="ai-suggestions">
+            <button class="ai-suggestion-btn" onclick="askSuggestion(this)">Quand le site sera disponible ?</button>
+            <button class="ai-suggestion-btn" onclick="askSuggestion(this)">Que proposera la plateforme ?</button>
+            <button class="ai-suggestion-btn" onclick="askSuggestion(this)">Comment etre notifie ?</button>
+            <button class="ai-suggestion-btn" onclick="askSuggestion(this)">C'est gratuit ?</button>
+        </div>
+        <div class="ai-chat-input-area">
+            <input class="ai-chat-input" id="ai-chat-input" type="text" placeholder="Posez votre question..." onkeydown="if(event.key==='Enter')sendMessage()"/>
+            <button class="ai-chat-send" onclick="sendMessage()">
+                <span class="material-symbols-outlined" style="font-size:1.2rem">send</span>
+            </button>
+        </div>
+    </div>
 
     <script>
-        // Countdown - reads launch date from data attribute or defaults
-        (function() {
-            const container = document.getElementById('countdown-container');
-            const launchDateStr = container?.dataset?.launchDate;
-            const launchDate = launchDateStr ? new Date(launchDateStr).getTime() : new Date('2026-01-01T00:00:00').getTime();
+    // ============================================================
+    // PARTICLE SYSTEM
+    // ============================================================
+    (function() {
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouse = { x: 0, y: 0 };
+        let W, H;
 
-            function updateCountdown() {
-                const now = new Date().getTime();
-                const diff = launchDate - now;
-                if (diff <= 0) {
-                    document.getElementById('days').textContent = '0';
-                    document.getElementById('hours').textContent = '0';
-                    document.getElementById('minutes').textContent = '0';
-                    document.getElementById('seconds').textContent = '0';
-                    return;
+        function resize() {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+        document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * W;
+                this.y = Math.random() * H;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.5 + 0.1;
+                this.pulse = Math.random() * Math.PI * 2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.pulse += 0.02;
+
+                // Mouse repulsion
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 120) {
+                    const force = (120 - dist) / 120 * 0.8;
+                    this.x -= (dx / dist) * force;
+                    this.y -= (dy / dist) * force;
                 }
-                document.getElementById('days').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
-                document.getElementById('hours').textContent = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById('minutes').textContent = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById('seconds').textContent = Math.floor((diff % (1000 * 60)) / 1000);
-            }
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        })();
 
-        // Email notification signup
-        function subscribeNotify() {
-            const email = document.getElementById('notify-email').value.trim();
-            if (!email || !email.includes('@')) {
-                document.getElementById('notify-email').classList.add('border-red-500');
-                return;
+                if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
             }
-            document.getElementById('notify-email').classList.remove('border-red-500');
-
-            fetch('/api/newsletter', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            }).then(() => {
-                document.getElementById('notify-success').classList.remove('hidden');
-                document.getElementById('notify-success').classList.add('flex');
-                document.getElementById('notify-email').value = '';
-                document.getElementById('notify-btn').disabled = true;
-                document.getElementById('notify-btn').classList.add('opacity-50');
-            }).catch(() => {
-                document.getElementById('notify-success').classList.remove('hidden');
-                document.getElementById('notify-success').classList.add('flex');
-                document.getElementById('notify-email').value = '';
-            });
+            draw() {
+                const alpha = this.opacity * (0.6 + 0.4 * Math.sin(this.pulse));
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(59, 130, 246, ${alpha})`;
+                ctx.fill();
+            }
         }
 
-        // Enter key
-        document.getElementById('notify-email').addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') subscribeNotify();
+        // Create particles
+        const count = Math.min(80, Math.floor(W * H / 15000));
+        for (let i = 0; i < count; i++) particles.push(new Particle());
+
+        function drawConnections() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(15, 88, 189, ${0.08 * (1 - dist / 150)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, W, H);
+            particles.forEach(p => { p.update(); p.draw(); });
+            drawConnections();
+            requestAnimationFrame(animate);
+        }
+        animate();
+    })();
+
+    // ============================================================
+    // DYNAMIC GREETING
+    // ============================================================
+    (function() {
+        const hour = new Date().getHours();
+        let greeting = '';
+        if (hour >= 5 && hour < 12) greeting = 'Bonjour et bienvenue';
+        else if (hour >= 12 && hour < 18) greeting = 'Bon apres-midi et bienvenue';
+        else if (hour >= 18 && hour < 22) greeting = 'Bonsoir et bienvenue';
+        else greeting = 'Bonne nuit et bienvenue';
+
+        const el = document.getElementById('greeting');
+        if (el) el.textContent = greeting + ' sur D5News';
+    })();
+
+    // ============================================================
+    // COUNTDOWN
+    // ============================================================
+    (function() {
+        const container = document.getElementById('countdown-container');
+        const launchDateStr = container?.dataset?.launchDate;
+        const launchDate = launchDateStr ? new Date(launchDateStr).getTime() : new Date('2026-06-01T00:00:00').getTime();
+        let prev = { d: '', h: '', m: '', s: '' };
+
+        function pad(n) { return String(n).padStart(2, '0'); }
+
+        function flipIfChanged(el, newVal) {
+            if (el.textContent !== newVal) {
+                el.classList.remove('flip');
+                void el.offsetWidth; // force reflow
+                el.classList.add('flip');
+                el.textContent = newVal;
+            }
+        }
+
+        function updateCountdown() {
+            const now = Date.now();
+            const diff = Math.max(0, launchDate - now);
+            const d = Math.floor(diff / 86400000);
+            const h = Math.floor((diff % 86400000) / 3600000);
+            const m = Math.floor((diff % 3600000) / 60000);
+            const s = Math.floor((diff % 60000) / 1000);
+
+            flipIfChanged(document.getElementById('days'), pad(d));
+            flipIfChanged(document.getElementById('hours'), pad(h));
+            flipIfChanged(document.getElementById('minutes'), pad(m));
+            flipIfChanged(document.getElementById('seconds'), pad(s));
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    })();
+
+    // ============================================================
+    // EMAIL NOTIFICATION
+    // ============================================================
+    function subscribeNotify() {
+        const email = document.getElementById('notify-email').value.trim();
+        if (!email || !email.includes('@')) {
+            document.getElementById('notify-form').style.borderColor = '#ef4444';
+            setTimeout(() => { document.getElementById('notify-form').style.borderColor = ''; }, 2000);
+            return;
+        }
+        fetch('/api/newsletter', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        }).finally(() => {
+            document.getElementById('notify-success').classList.add('show');
+            document.getElementById('notify-email').value = '';
+            document.getElementById('notify-btn').disabled = true;
         });
+    }
+
+    // ============================================================
+    // AI CHATBOT
+    // ============================================================
+    let chatOpen = false;
+
+    const AI_RESPONSES = {
+        'quand': {
+            keywords: ['quand', 'disponible', 'date', 'lancement', 'sortie', 'ouverture', 'ready', 'pret'],
+            answer: "Nous travaillons activement sur le lancement ! La date prevue est pour mi-2026. Le compteur en haut de la page vous donne une estimation precise. Inscrivez-vous pour etre notifie !"
+        },
+        'propose': {
+            keywords: ['propose', 'offrir', 'fonctionnalite', 'service', 'contenu', 'feature', 'quoi', 'plateforme'],
+            answer: "D5News sera une plateforme premium d'actualite africaine avec : des articles en temps reel couvrant politique, economie, culture, sport et tech ; des podcasts exclusifs avec des analyses d'experts ; une web radio live 24h/24 ; et une experience personnalisee avec IA integree."
+        },
+        'notifie': {
+            keywords: ['notifie', 'notification', 'alerte', 'prevenir', 'email', 'inscri', 'newsletter'],
+            answer: "C'est simple ! Entrez votre adresse email dans le champ ci-dessus et cliquez sur 'M'alerter'. Vous recevrez un email des que la plateforme sera en ligne. Aucun spam, promis !"
+        },
+        'gratuit': {
+            keywords: ['gratuit', 'prix', 'cout', 'payant', 'abonnement', 'tarif', 'free', 'premium'],
+            answer: "D5News proposera un acces gratuit avec les actualites principales, et des formules Premium pour du contenu exclusif, des podcasts premium et des fonctionnalites avancees. Les tarifs seront annonces au lancement."
+        },
+        'afrique': {
+            keywords: ['afrique', 'africain', 'continent', 'pays', 'region'],
+            answer: "D5News couvre l'ensemble du continent africain et la diaspora. Nos journalistes et correspondants sont presents dans les 5 grandes regions : Afrique de l'Ouest, Centrale, de l'Est, Australe et du Nord, plus une couverture de la diaspora en Europe et Amerique."
+        },
+        'contact': {
+            keywords: ['contact', 'joindre', 'equipe', 'parler', 'support', 'aide'],
+            answer: "Vous pouvez nous suivre sur nos reseaux sociaux (liens en bas de page) pour rester en contact. Une page de contact complete sera disponible au lancement. En attendant, inscrivez-vous a la newsletter !"
+        },
+        'tech': {
+            keywords: ['technologie', 'tech', 'ia', 'intelligence artificielle', 'innovation'],
+            answer: "D5News utilise des technologies de pointe : intelligence artificielle pour la personnalisation du contenu, streaming haute qualite pour la radio et les podcasts, et une interface moderne et reactive pour une experience optimale sur tous vos appareils."
+        }
+    };
+
+    function toggleChat() {
+        chatOpen = !chatOpen;
+        document.getElementById('ai-chat-panel').classList.toggle('open', chatOpen);
+        document.getElementById('ai-fab').style.display = chatOpen ? 'none' : 'flex';
+        if (chatOpen) document.getElementById('ai-chat-input').focus();
+    }
+
+    function askSuggestion(btn) {
+        const text = btn.textContent;
+        addMessage(text, 'user');
+        btn.style.display = 'none';
+        setTimeout(() => respondToQuery(text), 600);
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('ai-chat-input');
+        const text = input.value.trim();
+        if (!text) return;
+        addMessage(text, 'user');
+        input.value = '';
+        setTimeout(() => respondToQuery(text), 600);
+    }
+
+    function addMessage(text, type) {
+        const container = document.getElementById('ai-chat-messages');
+        const msg = document.createElement('div');
+        msg.className = `ai-msg ${type}`;
+        msg.textContent = text;
+        container.appendChild(msg);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function showTyping() {
+        const container = document.getElementById('ai-chat-messages');
+        const typing = document.createElement('div');
+        typing.className = 'ai-msg typing';
+        typing.id = 'typing-indicator';
+        typing.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+        container.appendChild(typing);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function removeTyping() {
+        const el = document.getElementById('typing-indicator');
+        if (el) el.remove();
+    }
+
+    function respondToQuery(query) {
+        showTyping();
+        const q = query.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        let bestMatch = null;
+        let bestScore = 0;
+
+        for (const [key, data] of Object.entries(AI_RESPONSES)) {
+            let score = 0;
+            for (const kw of data.keywords) {
+                if (q.includes(kw)) score += 2;
+            }
+            if (score > bestScore) {
+                bestScore = score;
+                bestMatch = data;
+            }
+        }
+
+        const delay = 800 + Math.random() * 800;
+        setTimeout(() => {
+            removeTyping();
+            if (bestMatch && bestScore >= 2) {
+                typeMessage(bestMatch.answer);
+            } else {
+                typeMessage("Merci pour votre question ! Notre equipe prepare une plateforme d'actualite africaine premium avec des articles, podcasts, radio live et bien plus. Inscrivez-vous a la newsletter pour etre notifie du lancement. En attendant, n'hesitez pas a poser d'autres questions !");
+            }
+        }, delay);
+    }
+
+    function typeMessage(text) {
+        const container = document.getElementById('ai-chat-messages');
+        const msg = document.createElement('div');
+        msg.className = 'ai-msg bot';
+        msg.textContent = '';
+        container.appendChild(msg);
+
+        let i = 0;
+        const speed = 12;
+        function typeChar() {
+            if (i < text.length) {
+                msg.textContent += text.charAt(i);
+                i++;
+                container.scrollTop = container.scrollHeight;
+                setTimeout(typeChar, speed);
+            }
+        }
+        typeChar();
+    }
     </script>
 </body>
 </html>
